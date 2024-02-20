@@ -32,7 +32,9 @@
 						</div>
                         <div class="row m-t-25">
                             <!-- CONTEÚDO SERÁ COLOCADO AQUI -->
-                            CONTEÚDO SERÁ COLOCADO AQUI
+							<div class="content mt-1 col-lg-12">
+                            	CONTEÚDO SERÁ COLOCADO AQUI
+							</div>
                         </div>
                     </div>
                 </div>

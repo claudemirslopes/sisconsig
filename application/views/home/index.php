@@ -32,13 +32,13 @@
 						</div>
                         <div class="row m-t-25">
 							<!-- Início do lado A | Dashboard para os usuários da plataforma -->
-							<div class="content mt-1 col-lg-7">
+							<div class="content mt-1 col-lg-7" style="margin-top: -15px !important;">
 								<div class="card">
 									<div class="card-header" style="background: #cdcdcd;">
 										<strong class="card-title" v-if="headerText">Dashboard</strong>
 									</div>
 
-									<div class="card-body" style="border: 1px solid #A4A4A4;">
+									<div class="card-body" style="border: 1px solid #F7F7F7;">
 										<!-- Mensagem de sucesso -->
 										<?php if ($message = $this->session->flashdata('sucesso')): ?>
 											<div class="alert  alert-success alert-dismissible fade show " role="alert">
@@ -293,12 +293,12 @@
 							<!-- Fim do lado A | Dashboard para os usuários da plataforma -->
 
 							<!-- Início do lado B | Avisos gerais para os colaboradores -->
-							<div class="content mt-1 col-lg-5 pl-0">
+							<div class="content mt-1 col-lg-5 pl-0" style="margin-top: -15px !important;">
 								<div class="card">
 									<div class="card-header bg-flat-color-4 text-light">
 										<strong class="card-title" v-if="headerText">Avisos da Plataforma Administrativa</strong>
 									</div>
-									<div class="card-body" style="border: 1px solid #A4A4A4;border-top: none;">
+									<div class="card-body" style="border: 1px solid #F7F7F7;border-top: none;">
 										
 										<?php foreach ($avisos_home as $avisado): ?>
 										<?php if($avisado->avisado_tipo == 0 && $avisado->avisado_ativa == 1  || $avisado->avisado_tipo == 2 && $avisado->avisado_ativa == 1): ?>
