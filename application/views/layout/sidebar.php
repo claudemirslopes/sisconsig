@@ -121,11 +121,27 @@
             <div class="menu-sidebar__content js-scrollbar1">
 				<nav class="navbar-sidebar" style="margin-top: -10px !important;">
                     <ul class="list-unstyled navbar__list">
-						<li class="active has-sub">
+						<li class="
+						<?php
+						if (strpos($_SERVER['REQUEST_URI'], '/') == base_url('/')){
+							echo 'active';
+						} else {
+							echo '';
+						}
+						?>
+						has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>">
                                 <i class="fas fa-tachometer-alt"></i>Home</a>
                         </li><hr />
-                        <li class="has-sub">
+                        <li class="
+						<?php
+						if (strpos($_SERVER['REQUEST_URI'], '/sisconsig/clientes') == base_url('/clientes')) {
+							echo 'active';
+						} else {
+							echo '';
+						}
+						?>
+						has-sub">
                             <a class="js-arrow" href="#">
                             <i class="fa fa-users"></i>Pessoas <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -143,7 +159,15 @@
                                 </li><hr>
                             </ul>
                         </li>
-                        <li class="has-sub">
+                        <li class="
+						<?php
+						if (strpos($_SERVER['REQUEST_URI'], '/sisconsig/produtos') == base_url('/produtos')){
+							echo 'active';
+						} else {
+							echo '';
+						}
+						?>
+						has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-archive"></i>Estoque <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
