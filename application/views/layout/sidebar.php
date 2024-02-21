@@ -25,6 +25,10 @@ $edit_persona2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
 $edit_persona3 = '#' . preg_quote(base_url('/usuarios/edit/')) . '\d+#';
 $edit_persona4 = '#' . preg_quote(base_url('/clientes/edit/')) . '\d+#';
 
+$edit_stock1 = '#' . preg_quote(base_url('/parceiros/edit/')) . '\d+#';
+$edit_stock2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
+$edit_stock3 = '#' . preg_quote(base_url('/usuarios/edit/')) . '\d+#';
+
 ?>
 		<!-- HEADER MOBILE-->
 		<header class="header-mobile d-block d-lg-none">
@@ -72,14 +76,14 @@ $edit_persona4 = '#' . preg_quote(base_url('/clientes/edit/')) . '\d+#';
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-archive"></i>Estoque <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="<?php echo base_url('/'); ?>produtos"><span style="font-size: .8em;">Produtos</span></a>
+								<li>
+                                    <a href="<?php echo base_url('/'); ?>categorias"><span style="font-size: .8em;">Categorias</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>marcas"><span style="font-size: .8em;">Marcas</span></a>
                                 </li>
-								<li>
-                                    <a href="<?php echo base_url('/'); ?>categorias"><span style="font-size: .8em;">Categorias</span></a>
+                                <li>
+                                    <a href="<?php echo base_url('/'); ?>produtos"><span style="font-size: .8em;">Produtos</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -172,26 +176,18 @@ $edit_persona4 = '#' . preg_quote(base_url('/clientes/edit/')) . '\d+#';
                                 </li><hr>
                             </ul>
                         </li>
-                        <li class="
-						<?php
-						if (strpos($_SERVER['REQUEST_URI'], '/sisconsig/produtos') == base_url('/produtos')){
-							echo 'active';
-						} else {
-							echo '';
-						}
-						?>
-						has-sub">
+                        <li class="<?php if (current_url() == base_url('/categorias') || current_url() == base_url('/marcas') || current_url() == base_url('/produtos') || current_url() == base_url('/categorias/add') || current_url() == base_url('/marcas/add') || preg_match($edit_stock1, $url) || preg_match($edit_stock2, $url) || current_url() == base_url('/produtos/add') || preg_match($edit_stock3, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-archive"></i>Estoque <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="<?php echo base_url('/'); ?>produtos"><span style="font-size: .8em;">Produtos</span></a>
+								<li>
+                                    <a href="<?php echo base_url('/'); ?>categorias"><span style="font-size: .8em;">Categorias</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>marcas"><span style="font-size: .8em;">Marcas</span></a>
                                 </li>
-								<li>
-                                    <a href="<?php echo base_url('/'); ?>categorias"><span style="font-size: .8em;">Categorias</span></a>
+                                <li>
+                                    <a href="<?php echo base_url('/'); ?>produtos"><span style="font-size: .8em;">Produtos</span></a>
                                 </li><hr>
                             </ul>
                         </li>

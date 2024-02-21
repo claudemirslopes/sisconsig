@@ -56,6 +56,37 @@
 	<?php endforeach; ?>
 	<!-- Fim do modal de avisos da plataforma -->
 
+	<!-- Modal de exclusão de clientes -->
+	<?php
+    if (current_url() == base_url('/clientes')):
+    foreach ($clientes as $cliente): 		
+    ?>
+    <div class="modal fade" id="cliente-<?php echo $cliente->cliente_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticModalLabel">Excluir cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Deseja mesmo excluir este cliente?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                    <a href="<?php echo base_url('clientes/del/'.$cliente->cliente_id); ?>" class="btn btn-danger btn-sm">Confirmar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    endforeach; 
+    endif;
+    ?>
+	<!-- Fim Modal de exclusão de clientes -->
 
 	<!-- Modal de exclusão de parceiros -->
 	<?php
@@ -120,7 +151,6 @@
     endif;
     ?>
 	<!-- Fim Modal de exclusão de vendedores -->
-
 
 	<!-- Modal de exclusão de usuarios -->
 	<?php
@@ -206,3 +236,35 @@
 		</div>
 	</div>
 	<!-- Fim Modal de adição de foto usuarios -->
+
+	<!-- Modal de exclusão de categorias -->
+	<?php
+    if (current_url() == base_url('/categorias')):
+	foreach ($categorias as $categoria):	
+    ?>
+	<div class="modal fade" id="categoria-<?php echo $categoria->categoria_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticModalLabel">Excluír categoria</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						Deseja mesmo excluír esta categoria?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+					<a href="<?php echo base_url('categorias/del/'.$categoria->categoria_id); ?>" class="btn btn-danger btn-sm">Confirmar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+    endforeach; 
+    endif;
+    ?>
+	<!-- Fim Modal de exclusão de categorias -->
