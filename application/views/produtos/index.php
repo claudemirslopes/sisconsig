@@ -107,8 +107,8 @@
 													<td class="text-right">
 														<style>
 															.btn-danger {
-																background: #B40404;
-																border: solid 1px #B40404;
+																background: #D61B42;
+																border: solid 1px #D61B42;
 															}
 															.btn-primary {
 																background: #0B3861;
