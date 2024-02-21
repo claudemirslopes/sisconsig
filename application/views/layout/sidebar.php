@@ -18,6 +18,13 @@ $URL_ATUAL4 = "$protocol://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $str4 = $URL_ATUAL4;
 $str4 = explode("?", $str4);
 
+$url = current_url();
+
+$edit_persona1 = '#' . preg_quote(base_url('/parceiros/edit/')) . '\d+#';
+$edit_persona2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
+$edit_persona3 = '#' . preg_quote(base_url('/usuarios/edit/')) . '\d+#';
+$edit_persona4 = '#' . preg_quote(base_url('/clientes/edit/')) . '\d+#';
+
 ?>
 		<!-- HEADER MOBILE-->
 		<header class="header-mobile d-block d-lg-none">
@@ -25,7 +32,7 @@ $str4 = explode("?", $str4);
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="<?php echo base_url('/'); ?>">
-                            <img src="<?php echo base_url('public/images/icon/SisConsig06.png" alt="CoolAdmin'); ?>" />
+                            <img src="<?php echo base_url('public/images/icon/SisConsig06.png" alt="SisConsig'); ?>" style="width: 50% !important;" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -43,21 +50,22 @@ $str4 = explode("?", $str4);
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>">
                                 <i class="fas fa-tachometer-alt"></i>Home</a>
                         </li>
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
                             <i class="fa fa-users"></i>Pessoas <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="<?php echo base_url('/'); ?>clientes"><span style="font-size: .8em;">Clientes</span></a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('/'); ?>usuarios"><span style="font-size: .8em;">Colaboradores</span></a>
+								</li>
 								<li>
                                     <a href="<?php echo base_url('/'); ?>parceiros"><span style="font-size: .8em;">Parceiros</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>vendedores"><span style="font-size: .8em;">Vendedores</span></a>
                                 </li>
-                                <li>
-                                    <a href="<?php echo base_url('/'); ?>clientes"><span style="font-size: .8em;">Clientes</span></a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url('/'); ?>usuarios"><span style="font-size: .8em;">Colaboradores</span></a>
                             </ul>
                         </li>
                         <li class="has-sub">
@@ -146,27 +154,21 @@ $str4 = explode("?", $str4);
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>">
                                 <i class="fas fa-tachometer-alt"></i>Home</a>
                         </li><hr />
-                        <li class="<?php
-						$url = current_url();
-						$edit_pattern1 = '#' . preg_quote(base_url('/parceiros/edit/')) . '\d+#';
-						$edit_pattern2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
-						$edit_pattern3 = '#' . preg_quote(base_url('/usuarios/edit/')) . '\d+#';
-						if (current_url() == base_url('/parceiros') || current_url() == base_url('/vendedores') || current_url() == base_url('/clientes') || current_url() == base_url('/usuarios') || current_url() == base_url('/parceiros/add') || current_url() == base_url('/parceiros/edit') || current_url() == base_url('/vendedores/add') || preg_match($edit_pattern1, $url) || preg_match($edit_pattern2, $url) || current_url() == base_url('/usuarios/add') || preg_match($edit_pattern3, $url)) {
-							echo 'active'; } else { echo ''; } ?> has-sub">
+                        <li class="<?php if (current_url() == base_url('/parceiros') || current_url() == base_url('/vendedores') || current_url() == base_url('/clientes') || current_url() == base_url('/usuarios') || current_url() == base_url('/parceiros/add') || current_url() == base_url('/parceiros/edit') || current_url() == base_url('/vendedores/add') || preg_match($edit_persona1, $url) || preg_match($edit_persona2, $url) || current_url() == base_url('/usuarios/add') || preg_match($edit_persona3, $url) || current_url() == base_url('/clientes/add') || preg_match($edit_persona4, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                             <i class="fa fa-users"></i>Pessoas <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li>
-                                    <a href="<?php echo base_url('/'); ?>parceiros"><span style="font-size: .8em;">Parceiros</span></a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url('/'); ?>vendedores"><span style="font-size: .8em;">Vendedores</span></a>
-                                </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>clientes"><span style="font-size: .8em;">Clientes</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>usuarios"><span style="font-size: .8em;">Colaboradores</span></a>
+                                </li>
+								<li>
+                                    <a href="<?php echo base_url('/'); ?>parceiros"><span style="font-size: .8em;">Parceiros</span></a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('/'); ?>vendedores"><span style="font-size: .8em;">Vendedores</span></a>
                                 </li><hr>
                             </ul>
                         </li>

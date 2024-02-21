@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit ('Ação não permitida');
 
-class Parceiros extends CI_Controller{
+class Clientes extends CI_Controller{
     
     public function __construct() {
         parent::__construct(); 
@@ -16,11 +16,11 @@ class Parceiros extends CI_Controller{
         # multiple groups (by name)
         $group = array(1, 3);
         if (!$this->ion_auth->in_group($group)) {
-          $this->session->set_flashdata('info', 'Você não tem permissão para acessar o módulo de <b>Parceiros</b>');
+          $this->session->set_flashdata('info', 'Você não tem permissão para acessar o módulo de <b>Clientes</b>');
           redirect('home');
         }
         
-        $this->load->model('parceiros_model');        
+        $this->load->model('clientes_model');        
         $this->load->model('home_model');
         
     }
@@ -29,7 +29,7 @@ class Parceiros extends CI_Controller{
         
         $data = array(
             
-            'titulo' => 'Parceiros',
+            'titulo' => 'Clientes',
             
             'styles' => array(
 			  'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
@@ -64,7 +64,7 @@ class Parceiros extends CI_Controller{
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
 			'avisos_home' => $this->home_model->get_avisos_home(),
             
-            'parceiros' => $this->parceiros_model->get_all('parceiros'),
+            'clientes' => $this->clientes_model->get_all('clientes'),
             
         );
         
@@ -116,103 +116,94 @@ class Parceiros extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-         // Carrega a view de parceiros
+         // Carrega a view de clientes
         $this->load->view('layout/header', $data);
-        $this->load->view('parceiros/index');
+        $this->load->view('clientes/index');
         $this->load->view('layout/footer');
         
     }
     
     public function add() {
 
-        $this->form_validation->set_rules('parceiro_tipo', 'tipo', 'trim|required|exact_length[1]');
-        $this->form_validation->set_rules('parceiro_nome', 'nome', 'trim|required|min_length[4]|max_length[45]');
-        $this->form_validation->set_rules('parceiro_sobrenome', 'sobrenome', 'trim|required|min_length[4]|max_length[150]');
-        $this->form_validation->set_rules('parceiro_data_nascimento', 'data de nascimento', 'required');
-        $parceiro_pessoa = $this->input->post('parceiro_pessoa');
-        if ($parceiro_pessoa == 1) {
-            $this->form_validation->set_rules('parceiro_cpf', 'CPF', 'trim|required|min_length[14]|max_length[14]|is_unique[parceiros.parceiro_cpf_cnpj]|callback_valida_cpf');
+        $this->form_validation->set_rules('cliente_nome', 'nome', 'trim|required|min_length[4]|max_length[45]');
+        $this->form_validation->set_rules('cliente_sobrenome', 'sobrenome', 'trim|required|min_length[4]|max_length[150]');
+        $this->form_validation->set_rules('cliente_data_nascimento', 'data de nascimento', 'required');
+        $cliente_pessoa = $this->input->post('cliente_pessoa');
+        if ($cliente_pessoa == 1) {
+            $this->form_validation->set_rules('cliente_cpf', 'CPF', 'trim|required|min_length[14]|max_length[14]|is_unique[clientes.cliente_cpf_cnpj]|callback_valida_cpf');
         } else {
-            $this->form_validation->set_rules('parceiro_cnpj', 'CNPJ', 'trim|required|min_length[18]|max_length[18]|is_unique[parceiros.parceiro_cpf_cnpj]|callback_valida_cnpj');
+            $this->form_validation->set_rules('cliente_cnpj', 'CNPJ', 'trim|required|min_length[18]|max_length[18]|is_unique[clientes.cliente_cpf_cnpj]|callback_valida_cnpj');
         }
-        $this->form_validation->set_rules('parceiro_rg_ie', 'RG/IE', 'trim|max_length[20]|is_unique[parceiros.parceiro_rg_ie]');
-        $this->form_validation->set_rules('parceiro_email', 'e-mail', 'trim|required|valid_email|max_length[50]|is_unique[parceiros.parceiro_email]');            
-        if ($this->input->post('parceiro_telefone')) {
-            $this->form_validation->set_rules('parceiro_telefone', 'telefone fixo', 'trim|max_length[14]|is_unique[parceiros.parceiro_telefone]');
+        $this->form_validation->set_rules('cliente_rg_ie', 'RG/IE', 'trim|max_length[20]|is_unique[clientes.cliente_rg_ie]');
+        $this->form_validation->set_rules('cliente_email', 'e-mail', 'trim|valid_email|max_length[50]|is_unique[clientes.cliente_email]');            
+        if ($this->input->post('cliente_telefone')) {
+            $this->form_validation->set_rules('cliente_telefone', 'telefone fixo', 'trim|max_length[14]|is_unique[clientes.cliente_telefone]');
         }
-        if ($this->input->post('parceiro_celular')) {
-            $this->form_validation->set_rules('parceiro_celular', 'celular', 'trim|max_length[15]|is_unique[parceiros.parceiro_celular]');
+        if ($this->input->post('cliente_celular')) {
+            $this->form_validation->set_rules('cliente_celular', 'celular', 'trim|max_length[15]|is_unique[clientes.cliente_celular]');
         }
-        $this->form_validation->set_rules('parceiro_responsavel', 'responsável', 'trim|required|min_length[4]|max_length[250]');
-        $this->form_validation->set_rules('parceiro_cep', 'CEP', 'trim|required|max_length[10]');
-        $this->form_validation->set_rules('parceiro_endereco', 'endereço', 'trim|required|max_length[155]');
-        $this->form_validation->set_rules('parceiro_numero_endereco', 'número', 'trim|max_length[10]');
-        $this->form_validation->set_rules('parceiro_bairro', 'bairro', 'trim|required|max_length[45]');
-        $this->form_validation->set_rules('parceiro_complemento', 'complemento', 'trim|max_length[145]');
-        $this->form_validation->set_rules('parceiro_cidade', 'cidade', 'trim|required|max_length[50]');
-        $this->form_validation->set_rules('parceiro_estado', 'estado', 'trim|required|exact_length[2]');
-        $this->form_validation->set_rules('parceiro_obs', 'observação', 'max_length[500]');
-        $this->form_validation->set_rules('parceiro_user', 'Usuário', 'required|min_length[3]|is_unique[parceiros.parceiro_user]');
-        $this->form_validation->set_rules('parceiro_senha', 'Senha', 'required|min_length[5]');
-        $this->form_validation->set_rules('parceiro_senha_repete', 'Confirmar Senha', 'matches[parceiro_senha]');
+        $this->form_validation->set_rules('cliente_cep', 'CEP', 'trim|required|max_length[10]');
+        $this->form_validation->set_rules('cliente_endereco', 'endereço', 'trim|required|max_length[155]');
+        $this->form_validation->set_rules('cliente_numero_endereco', 'número', 'trim|max_length[10]');
+        $this->form_validation->set_rules('cliente_bairro', 'bairro', 'trim|required|max_length[45]');
+        $this->form_validation->set_rules('cliente_complemento', 'complemento', 'trim|max_length[145]');
+        $this->form_validation->set_rules('cliente_cidade', 'cidade', 'trim|required|max_length[50]');
+        $this->form_validation->set_rules('cliente_estado', 'estado', 'trim|required|exact_length[2]');
+        $this->form_validation->set_rules('cliente_obs', 'observação', 'max_length[500]');
 
         if ($this->form_validation->run()) { 
             
             $data = elements(
 
                 array(
-                    'parceiro_pessoa',
-                    'parceiro_tipo',
-                    'parceiro_nome',
-                    'parceiro_sobrenome',
-                    'parceiro_data_nascimento',
-                    'parceiro_rg_ie',
-                    'parceiro_email',
-                    'parceiro_telefone',
-                    'parceiro_celular',
-                    'parceiro_responsavel',
-                    'parceiro_cep',
-                    'parceiro_endereco',
-                    'parceiro_numero_endereco',
-                    'parceiro_bairro',
-                    'parceiro_complemento',
-                    'parceiro_cidade',
-                    'parceiro_estado',
-                    'parceiro_ativo',
-                    'parceiro_obs',
-                    'parceiro_user',
+                    'cliente_pessoa',
+                    'cliente_nome',
+                    'cliente_sobrenome',
+                    'cliente_data_nascimento',
+                    'cliente_rg_ie',
+                    'cliente_email',
+                    'cliente_telefone',
+                    'cliente_celular',
+                    'cliente_cep',
+                    'cliente_endereco',
+                    'cliente_numero_endereco',
+                    'cliente_bairro',
+                    'cliente_complemento',
+                    'cliente_cidade',
+                    'cliente_estado',
+                    'cliente_ativo',
+                    'cliente_obs',
                 ), $this->input->post()
                     
         );
         
-        if ($parceiro_pessoa == 1) {
-            $data['parceiro_cpf_cnpj'] = $this->input->post('parceiro_cpf');
+        if ($cliente_pessoa == 1) {
+            $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cpf');
         } else {
-            $data['parceiro_cpf_cnpj'] = $this->input->post('parceiro_cnpj');
+            $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cnpj');
         }
-        $data['parceiro_senha'] = sha1($this->input->post('parceiro_senha'));
 
         // Colocar todo texto em maiúsculo
-        //    $data['parceiro_estado'] = strtoupper($this->input->post('parceiro_estado'));
+        //    $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
 
         // Limpar dados maliciosos
         $data = html_escape($data);
 
-        $this->core_model->insert('parceiros', $data);
+        $this->core_model->insert('clientes', $data);
 
-        redirect('parceiros');
+        redirect('clientes');
 
         } else {
 
             // Erro de validação
             $data = array(
 
-            'titulo' => 'Cadastrar parceiro',
+            'titulo' => 'Cadastrar cliente',
 
             'scripts' => array (
                 'vendors/mask/jquery_3.2.1.min.js',
                 'vendors/mask/jquery.maskedinput.min.js',
-                'assets/js/parceiros.js',
+                'assets/js/clientes.js',
             ),
                 
             // Home
@@ -275,117 +266,104 @@ class Parceiros extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
 
-            // Carrega a view de editar parceiros
+            // Carrega a view de editar clientes
            $this->load->view('layout/header', $data);
-           $this->load->view('parceiros/add');
+           $this->load->view('clientes/add');
            $this->load->view('layout/footer');
 
         }        
 
 	}
     
-    public function edit($parceiro_id = NULL) {
+    public function edit($cliente_id = NULL) {
         
-        if (!$parceiro_id || !$this->core_model->get_by_id('parceiros', array('parceiro_id' => $parceiro_id))) {            
-            $this->session->set_flashdata('error', 'Parceiro não encontrado!');
-            redirect('parceiros');
+        if (!$cliente_id || !$this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id))) {            
+            $this->session->set_flashdata('error', 'Cliente não encontrado!');
+            redirect('clientes');
         } else {
             
-            $this->form_validation->set_rules('parceiro_tipo', 'tipo', 'trim|required|exact_length[1]');
-            $this->form_validation->set_rules('parceiro_nome', 'nome', 'trim|required|min_length[4]|max_length[45]');
-            $this->form_validation->set_rules('parceiro_sobrenome', 'sobrenome', 'trim|required|min_length[4]|max_length[150]');
-            $this->form_validation->set_rules('parceiro_data_nascimento', 'data de nascimento', 'required');
-            $parceiro_pessoa = $this->input->post('parceiro_pessoa');
-            if ($parceiro_pessoa == 1) {
-                $this->form_validation->set_rules('parceiro_cpf', 'CPF', 'trim|required|min_length[14]|max_length[14]|callback_valida_cpf');
+            $this->form_validation->set_rules('cliente_nome', 'nome', 'trim|required|min_length[4]|max_length[45]');
+            $this->form_validation->set_rules('cliente_sobrenome', 'sobrenome', 'trim|required|min_length[4]|max_length[150]');
+            $this->form_validation->set_rules('cliente_data_nascimento', 'data de nascimento', 'required');
+            $cliente_pessoa = $this->input->post('cliente_pessoa');
+            if ($cliente_pessoa == 1) {
+                $this->form_validation->set_rules('cliente_cpf', 'CPF', 'trim|required|min_length[14]|max_length[14]|callback_valida_cpf');
             } else {
-                $this->form_validation->set_rules('parceiro_cnpj', 'CNPJ', 'trim|required|min_length[18]|max_length[18]|callback_valida_cnpj');
+                $this->form_validation->set_rules('cliente_cnpj', 'CNPJ', 'trim|required|min_length[18]|max_length[18]|callback_valida_cnpj');
             }
-            $this->form_validation->set_rules('parceiro_rg_ie', 'RG/IE', 'trim|max_length[20]|callback_check_rg_ie');
-            $this->form_validation->set_rules('parceiro_email', 'e-mail', 'trim|required|valid_email|max_length[50]|callback_check_email');            
-            if ($this->input->post('parceiro_telefone')) {
-                $this->form_validation->set_rules('parceiro_telefone', 'telefone fixo', 'trim|max_length[14]|callback_check_telefone');
+            $this->form_validation->set_rules('cliente_rg_ie', 'RG/IE', 'trim|max_length[20]|callback_check_rg_ie');
+            $this->form_validation->set_rules('cliente_email', 'e-mail', 'trim|valid_email|max_length[50]|callback_check_email');            
+            if ($this->input->post('cliente_telefone')) {
+                $this->form_validation->set_rules('cliente_telefone', 'telefone fixo', 'trim|max_length[14]|callback_check_telefone');
             }
-            if ($this->input->post('parceiro_celular')) {
-                $this->form_validation->set_rules('parceiro_celular', 'celular', 'trim|max_length[15]|callback_check_celular');
+            if ($this->input->post('cliente_celular')) {
+                $this->form_validation->set_rules('cliente_celular', 'celular', 'trim|max_length[15]|callback_check_celular');
             }
-            $this->form_validation->set_rules('parceiro_responsavel', 'responsável', 'trim|required|min_length[4]|max_length[250]');
-            $this->form_validation->set_rules('parceiro_cep', 'CEP', 'trim|required|max_length[10]');
-            $this->form_validation->set_rules('parceiro_endereco', 'endereço', 'trim|required|max_length[155]');
-            $this->form_validation->set_rules('parceiro_numero_endereco', 'número', 'trim|max_length[10]');
-            $this->form_validation->set_rules('parceiro_bairro', 'bairro', 'trim|required|max_length[45]');
-            $this->form_validation->set_rules('parceiro_complemento', 'complemento', 'trim|max_length[145]');
-            $this->form_validation->set_rules('parceiro_cidade', 'cidade', 'trim|required|max_length[50]');
-            $this->form_validation->set_rules('parceiro_estado', 'estado', 'trim|required|exact_length[2]');
-            $this->form_validation->set_rules('parceiro_obs', 'observação', 'max_length[500]');
-            $this->form_validation->set_rules('parceiro_user', 'Usuário', 'required|min_length[3]|callback_check_user');
-            $this->form_validation->set_rules('parceiro_senha', 'Senha', 'min_length[5]');
-            $this->form_validation->set_rules('parceiro_senha_repete', 'Confirmar Senha', 'matches[parceiro_senha]');
+            $this->form_validation->set_rules('cliente_cep', 'CEP', 'trim|required|max_length[10]');
+            $this->form_validation->set_rules('cliente_endereco', 'endereço', 'trim|required|max_length[155]');
+            $this->form_validation->set_rules('cliente_numero_endereco', 'número', 'trim|max_length[10]');
+            $this->form_validation->set_rules('cliente_bairro', 'bairro', 'trim|required|max_length[45]');
+            $this->form_validation->set_rules('cliente_complemento', 'complemento', 'trim|max_length[145]');
+            $this->form_validation->set_rules('cliente_cidade', 'cidade', 'trim|required|max_length[50]');
+            $this->form_validation->set_rules('cliente_estado', 'estado', 'trim|required|exact_length[2]');
+            $this->form_validation->set_rules('cliente_obs', 'observação', 'max_length[500]');
             
             if ($this->form_validation->run()) { 
                 
-                $parceiro_ativo = $this->input->post('parceiro_ativo');
+                $cliente_ativo = $this->input->post('cliente_ativo');
                 if ($this->db->table_exists('contas_receber')) {
-                    if ($parceiro_ativo == 0 && $this->core_model->get_by_id('contas_receber', array('conta_receber_parceiro_id' => $parceiro_id, 'conta_receber_status' => 0))) {
-                        $this->session->set_flashdata('info', 'Este parceiro não pode ser desabilitado. (Existe pendências em <b>Contas a Receber</b>)');
-                        redirect('parceiros');
+                    if ($cliente_ativo == 0 && $this->core_model->get_by_id('contas_receber', array('conta_receber_cliente_id' => $cliente_id, 'conta_receber_status' => 0))) {
+                        $this->session->set_flashdata('info', 'Este cliente não pode ser desabilitado. (Existe pendências em <b>Contas a Receber</b>)');
+                        redirect('clientes');
                     }
                 }
                 
                 $data = elements(
 
                     array(
-                        'parceiro_pessoa',
-                        'parceiro_tipo',
-                        'parceiro_nome',
-                        'parceiro_sobrenome',
-                        'parceiro_data_nascimento',
-                        'parceiro_rg_ie',
-                        'parceiro_email',
-                        'parceiro_telefone',
-                        'parceiro_celular',
-                        'parceiro_responsavel',
-                        'parceiro_cep',
-                        'parceiro_endereco',
-                        'parceiro_numero_endereco',
-                        'parceiro_bairro',
-                        'parceiro_complemento',
-                        'parceiro_cidade',
-                        'parceiro_estado',
-                        'parceiro_ativo',
-                        'parceiro_obs',
-                        'parceiro_user',
+                        'cliente_pessoa',
+                        'cliente_nome',
+                        'cliente_sobrenome',
+                        'cliente_data_nascimento',
+                        'cliente_rg_ie',
+                        'cliente_email',
+                        'cliente_telefone',
+                        'cliente_celular',
+                        'cliente_cep',
+                        'cliente_endereco',
+                        'cliente_numero_endereco',
+                        'cliente_bairro',
+                        'cliente_complemento',
+                        'cliente_cidade',
+                        'cliente_estado',
+                        'cliente_ativo',
+                        'cliente_obs',
                     ), $this->input->post()
 
             );
                 
-            if ($parceiro_pessoa == 1) {
-                $data['parceiro_cpf_cnpj'] = $this->input->post('parceiro_cpf');
+            if ($cliente_pessoa == 1) {
+                $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cpf');
             } else {
-                $data['parceiro_cpf_cnpj'] = $this->input->post('parceiro_cnpj');
+                $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cnpj');
             }
-            $data['parceiro_senha'] = sha1($this->input->post('parceiro_senha'));
             
             // Colocar todo texto em maiúsculo
-        	// $data['parceiro_estado'] = strtoupper($this->input->post('parceiro_estado'));
+        	// $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
             
             // Limpar dados maliciosos
             $data = html_escape($data);
-            $password = $this->input->post('parceiro_senha');
-            if (!$password) { 
-                unset($data['parceiro_senha']);
-            }
             
-            $this->core_model->update('parceiros', $data, array('parceiro_id' => $parceiro_id));
+            $this->core_model->update('clientes', $data, array('cliente_id' => $cliente_id));
             
-            redirect('parceiros');
+            redirect('clientes');
             
             } else {
                 
                 // Erro de validação
                 $data = array(
             
-                'titulo' => 'Atualizar parceiro',
+                'titulo' => 'Atualizar cliente',
 
                 'scripts' => array (
                     'vendors/mask/jquery_3.2.1.min.js',
@@ -402,7 +380,7 @@ class Parceiros extends CI_Controller{
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
 				'avisos_home' => $this->home_model->get_avisos_home(),
 
-                'parceiro' => $this->core_model->get_by_id('parceiros', array('parceiro_id' => $parceiro_id)),
+                'cliente' => $this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id)),
 
             );
                 
@@ -454,9 +432,9 @@ class Parceiros extends CI_Controller{
 
             $data['contador_notificacoes'] = $contador_notificacoes;
 
-                // Carrega a view de editar parceiros
+                // Carrega a view de editar clientes
                $this->load->view('layout/header', $data);
-               $this->load->view('parceiros/edit');
+               $this->load->view('clientes/edit');
                $this->load->view('layout/footer');
                 
             }
@@ -466,23 +444,23 @@ class Parceiros extends CI_Controller{
         
     }
     
-    public function del($parceiro_id = NULL) {
+    public function del($cliente_id = NULL) {
 
-        if (!$parceiro_id || !$this->core_model->get_by_id('parceiros', array('parceiro_id' => $parceiro_id))) {
-            $this->session->set_flashdata('error', 'O parceiro não foi encontrado');
-            redirect('parceiros');
+        if (!$cliente_id || !$this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id))) {
+            $this->session->set_flashdata('error', 'O cliente não foi encontrado');
+            redirect('clientes');
         } else {
-            $this->core_model->delete('parceiros', array('parceiro_id' => $parceiro_id));
-            redirect('parceiros');
+            $this->core_model->delete('clientes', array('cliente_id' => $cliente_id));
+            redirect('clientes');
         }
 
     }
     
-    public function check_rg_ie($parceiro_rg_ie) {
-        if ($this->input->post('parceiro_rg_ie') != NULL) {
-            $parceiro_id = $this->input->post('parceiro_id');
+    public function check_rg_ie($cliente_rg_ie) {
+        if ($this->input->post('cliente_rg_ie') != NULL) {
+            $cliente_id = $this->input->post('cliente_id');
         
-            if ($this->core_model->get_by_id('parceiros', array('parceiro_rg_ie' => $parceiro_rg_ie, 'parceiro_id !=' => $parceiro_id))) {
+            if ($this->core_model->get_by_id('clientes', array('cliente_rg_ie' => $cliente_rg_ie, 'cliente_id !=' => $cliente_id))) {
                 $this->form_validation->set_message('check_rg_ie', 'Este documento já está cadatrado na base de dados');
                 return FALSE;
             } else {
@@ -491,11 +469,11 @@ class Parceiros extends CI_Controller{
         }
     }
     
-    public function check_email($parceiro_email) {
+    public function check_email($cliente_email) {
         
-        $parceiro_id = $this->input->post('parceiro_id');
+        $cliente_id = $this->input->post('cliente_id');
         
-        if ($this->core_model->get_by_id('parceiros', array('parceiro_email' => $parceiro_email, 'parceiro_id !=' => $parceiro_id))) {
+        if ($this->core_model->get_by_id('clientes', array('cliente_email' => $cliente_email, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_email', 'Este e-mail já está cadatrado na base de dados');
             return FALSE;
         } else {
@@ -504,11 +482,11 @@ class Parceiros extends CI_Controller{
         
     }
     
-    public function check_user($parceiro_user) {
+    public function check_user($cliente_user) {
         
-        $parceiro_id = $this->input->post('parceiro_id');
+        $cliente_id = $this->input->post('cliente_id');
         
-        if ($this->core_model->get_by_id('parceiros', array('parceiro_user' => $parceiro_user, 'parceiro_id !=' => $parceiro_id))) {
+        if ($this->core_model->get_by_id('clientes', array('cliente_user' => $cliente_user, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_user', 'Este usuário já está cadatrado na base de dados');
             return FALSE;
         } else {
@@ -517,11 +495,11 @@ class Parceiros extends CI_Controller{
         
     }
     
-    public function check_telefone($parceiro_telefone) {
+    public function check_telefone($cliente_telefone) {
         
-        $parceiro_id = $this->input->post('parceiro_id');
+        $cliente_id = $this->input->post('cliente_id');
         
-        if ($this->core_model->get_by_id('parceiros', array('parceiro_telefone' => $parceiro_telefone, 'parceiro_id !=' => $parceiro_id))) {
+        if ($this->core_model->get_by_id('clientes', array('cliente_telefone' => $cliente_telefone, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_telefone', 'Este telefone já está cadatrado na base de dados');
             return FALSE;
         } else {
@@ -530,11 +508,11 @@ class Parceiros extends CI_Controller{
         
     }
     
-    public function check_celular($parceiro_celular) {
+    public function check_celular($cliente_celular) {
         
-        $parceiro_id = $this->input->post('parceiro_id');
+        $cliente_id = $this->input->post('cliente_id');
         
-        if ($this->core_model->get_by_id('parceiros', array('parceiro_celular' => $parceiro_celular, 'parceiro_id !=' => $parceiro_id))) {
+        if ($this->core_model->get_by_id('clientes', array('cliente_celular' => $cliente_celular, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_celular', 'Este celular já está cadatrado na base de dados');
             return FALSE;
         } else {
@@ -551,11 +529,11 @@ class Parceiros extends CI_Controller{
             return false;
         }
 
-        if ($this->input->post('parceiro_id')) {
+        if ($this->input->post('cliente_id')) {
 
-            $parceiro_id = $this->input->post('parceiro_id');
+            $cliente_id = $this->input->post('cliente_id');
 
-            if ($this->core_model->get_by_id('parceiros', array('parceiro_id !=' => $parceiro_id, 'parceiro_cpf_cnpj' => $cnpj))) {
+            if ($this->core_model->get_by_id('clientes', array('cliente_id !=' => $cliente_id, 'cliente_cpf_cnpj' => $cnpj))) {
                 $this->form_validation->set_message('valida_cnpj', 'Esse CNPJ já existe');
                 return FALSE;
             }
@@ -629,11 +607,11 @@ class Parceiros extends CI_Controller{
     
     public function valida_cpf($cpf) {
 
-        if ($this->input->post('parceiro_id')) {
+        if ($this->input->post('cliente_id')) {
 
-            $parceiro_id = $this->input->post('parceiro_id');
+            $cliente_id = $this->input->post('cliente_id');
 
-            if ($this->core_model->get_by_id('parceiros', array('parceiro_id !=' => $parceiro_id, 'parceiro_cpf_cnpj' => $cpf))) {
+            if ($this->core_model->get_by_id('clientes', array('cliente_id !=' => $cliente_id, 'cliente_cpf_cnpj' => $cpf))) {
                 $this->form_validation->set_message('valida_cpf', 'Este CPF já existe');
                 return FALSE;
             }
