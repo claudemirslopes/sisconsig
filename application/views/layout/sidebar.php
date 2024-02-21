@@ -25,9 +25,9 @@ $edit_persona2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
 $edit_persona3 = '#' . preg_quote(base_url('/usuarios/edit/')) . '\d+#';
 $edit_persona4 = '#' . preg_quote(base_url('/clientes/edit/')) . '\d+#';
 
-$edit_stock1 = '#' . preg_quote(base_url('/parceiros/edit/')) . '\d+#';
-$edit_stock2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
-$edit_stock3 = '#' . preg_quote(base_url('/usuarios/edit/')) . '\d+#';
+$edit_stock1 = '#' . preg_quote(base_url('/categorias/edit/')) . '\d+#';
+$edit_stock2 = '#' . preg_quote(base_url('/marcas/edit/')) . '\d+#';
+$edit_stock3 = '#' . preg_quote(base_url('/produtos/edit/')) . '\d+#';
 
 ?>
 		<!-- HEADER MOBILE-->

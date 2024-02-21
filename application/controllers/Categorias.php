@@ -66,17 +66,11 @@ class Categorias extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -113,10 +107,6 @@ class Categorias extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-//        echo '<pre>';
-//        print_r($data['categorias']);
-//        exit();
-        
          // Carrega a view de categorias
         $this->load->view('layout/header', $data);
         $this->load->view('categorias/index');
@@ -129,8 +119,6 @@ class Categorias extends CI_Controller{
         $this->form_validation->set_rules('categoria_nome', 'categoria', 'trim|required|min_length[4]|max_length[45]|is_unique[categorias.categoria_nome]');
 
         if ($this->form_validation->run()) { 
-            // Teste para ver se valida
-//                exit('Validado');
 
             $data = elements(
 
@@ -142,7 +130,7 @@ class Categorias extends CI_Controller{
         );
 
         // Colocar todo texto em maiúsculo
-            // $data['categoria_nome_completo'] = strtoupper($this->input->post('categoria_nome_completo'));
+        // $data['categoria_nome_completo'] = strtoupper($this->input->post('categoria_nome_completo'));
 
         // Limpar dados maliciosos
         $data = html_escape($data);
@@ -176,17 +164,11 @@ class Categorias extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -223,10 +205,6 @@ class Categorias extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
 
-//                echo '<pre>';
-//                print_r($data['categoria']);
-//                exit(); 
-
             // Carrega a view de editar categorias
            $this->load->view('layout/header', $data);
            $this->load->view('categorias/add');
@@ -247,8 +225,6 @@ class Categorias extends CI_Controller{
             $this->form_validation->set_rules('categoria_nome', 'categoria', 'trim|required|min_length[4]|max_length[45]|callback_check_categoria_nome');
             
             if ($this->form_validation->run()) { 
-                // Teste para ver se valida
-//                exit('Validado');
                 
                 
                 //Impedir que a categoria que está em uso seja desabilitada
@@ -268,11 +244,6 @@ class Categorias extends CI_Controller{
                     ), $this->input->post()
 
             );
-            
-            // Colocar todo texto em maiúsculo
-//            $data['categoria_estado'] = strtoupper($this->input->post('categoria_estado'));
-            
-            // Limpar dados maliciosos
             $data = html_escape($data);
             
             $this->core_model->update('categorias', $data, array('categoria_id' => $categoria_id));
@@ -306,17 +277,11 @@ class Categorias extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -352,10 +317,6 @@ class Categorias extends CI_Controller{
 
 
             $data['contador_notificacoes'] = $contador_notificacoes;
-                
-//                echo '<pre>';
-//                print_r($data['categoria']);
-//                exit(); 
 
                 // Carrega a view de editar categorias
                $this->load->view('layout/header', $data);
