@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url('public/apple-icon-64x64.png'); ?>">
   <style>
       body {
-            background: url(<?php echo base_url('public/images/background3.jpg'); ?>) no-repeat center center fixed;
+            background: url(<?php echo base_url('public/images/background4.jpg'); ?>) no-repeat center center fixed;
              -webkit-background-size: cover;
              -moz-background-size: cover;
              -o-background-size: cover;

@@ -1,7 +1,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-danger">
+  <div class="card card-outline card-warning">
     <div class="card-header text-center">
         <a href="https://tanamesa.com/" title="Acessar o site" target="_blank" class="h1"><img src="<?php echo base_url('public/dist/img/SisConsig06.png'); ?>" alt="TNM Logo" class="brand-image swing"  style="border-radius: 1px !important;width: 80%;"></a>
     </div>
@@ -28,7 +28,7 @@
         <div class="row">
         </div>
         <div class="social-auth-links text-center mt-2 mb-3">
-            <button type="submit" class="btn btn-block btn-danger">
+            <button type="submit" class="btn btn-block btn-warning">
               <i class="fa fa-unlock mr-2"></i> Acessar
             </button>
         </div>
