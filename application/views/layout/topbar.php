@@ -41,10 +41,10 @@
 							<a class="nav-link text-dark" href="" style="font-size: .9em;">&nbsp;&nbsp;<i class="fa fa-arrows-v" aria-hidden="true"></i>&nbsp;&nbsp;</a>
 						</li>
 						<li class="nav-item">
-							<a class="btn btn-danger btn-sm mt-1" href="http://localhost/BluesunEAD/admin" target="_blank" style="font-size: .8em;"><i class="fa fa-mobile" aria-hidden="true" style="fon-size: 8em !important;"></i>&nbsp;&nbsp;PLATAFORMA&nbsp;EAD</a>
+							<a class="btn btn-danger btn-sm mt-1" href="http://localhost/BluesunEAD/admin" target="_blank" style="font-size: .8em;"><i class="fa fa-mobile" aria-hidden="true" style="font-size: 8em !important;"></i>&nbsp;&nbsp;PLATAFORMA&nbsp;EAD</a>
 						</li>&nbsp;&nbsp;
 						<li class="nav-item">
-							<a class="btn btn-secondary btn-sm mt-1" href="http://localhost/BluesunEAD/admin" target="_blank" style="font-size: .8em;"><i class="fa fa-cart-arrow-down" aria-hidden="true" style="fon-size: .8em !important;"></i>&nbsp;&nbsp;E-COMMERCE</a>
+							<a class="btn btn-secondary btn-sm mt-1" href="http://localhost/BluesunEAD/admin" target="_blank" style="font-size: .8em;"><i class="fa fa-cart-arrow-down" aria-hidden="true" style="font-size: .8em !important;"></i>&nbsp;&nbsp;E-COMMERCE</a>
 						</li>
 						<?php endif; ?>
 					</ul>
