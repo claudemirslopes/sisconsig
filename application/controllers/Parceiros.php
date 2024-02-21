@@ -282,7 +282,7 @@ class Parceiros extends CI_Controller{
 
         }        
 
-}
+	}
     
     public function edit($parceiro_id = NULL) {
         
@@ -323,8 +323,6 @@ class Parceiros extends CI_Controller{
             $this->form_validation->set_rules('parceiro_senha_repete', 'Confirmar Senha', 'matches[parceiro_senha]');
             
             if ($this->form_validation->run()) { 
-                // Teste para ver se valida
-//                exit('Validado');
                 
                 $parceiro_ativo = $this->input->post('parceiro_ativo');
                 if ($this->db->table_exists('contas_receber')) {
@@ -369,7 +367,7 @@ class Parceiros extends CI_Controller{
             $data['parceiro_senha'] = sha1($this->input->post('parceiro_senha'));
             
             // Colocar todo texto em maiúsculo
-//            $data['parceiro_estado'] = strtoupper($this->input->post('parceiro_estado'));
+        	// $data['parceiro_estado'] = strtoupper($this->input->post('parceiro_estado'));
             
             // Limpar dados maliciosos
             $data = html_escape($data);
@@ -387,7 +385,7 @@ class Parceiros extends CI_Controller{
                 // Erro de validação
                 $data = array(
             
-                'titulo' => 'Atualizar autorizado',
+                'titulo' => 'Atualizar parceiro',
 
                 'scripts' => array (
                     'vendors/mask/jquery_3.2.1.min.js',
@@ -402,6 +400,7 @@ class Parceiros extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'parceiro' => $this->core_model->get_by_id('parceiros', array('parceiro_id' => $parceiro_id)),
 
@@ -414,17 +413,11 @@ class Parceiros extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -460,10 +453,6 @@ class Parceiros extends CI_Controller{
 
 
             $data['contador_notificacoes'] = $contador_notificacoes;
-                
-//                echo '<pre>';
-//                print_r($data['parceiro']);
-//                exit(); 
 
                 // Carrega a view de editar parceiros
                $this->load->view('layout/header', $data);
@@ -480,7 +469,7 @@ class Parceiros extends CI_Controller{
     public function del($parceiro_id = NULL) {
 
         if (!$parceiro_id || !$this->core_model->get_by_id('parceiros', array('parceiro_id' => $parceiro_id))) {
-            $this->session->set_flashdata('error', 'O autorizado não foi encontrado');
+            $this->session->set_flashdata('error', 'O parceiro não foi encontrado');
             redirect('parceiros');
         } else {
             $this->core_model->delete('parceiros', array('parceiro_id' => $parceiro_id));

@@ -146,15 +146,12 @@ $str4 = explode("?", $str4);
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>">
                                 <i class="fas fa-tachometer-alt"></i>Home</a>
                         </li><hr />
-                        <li class="
-						<?php
-						if (strpos($_SERVER['REQUEST_URI'], '/sisconsig/parceiros') == base_url('/parceiros')) {
-							echo 'active';
-						} else {
-							echo '';
-						}
-						?>
-						has-sub">
+                        <li class="<?php
+						$url = current_url();
+						$edit_pattern1 = '#' . preg_quote(base_url('/parceiros/edit/')) . '\d+#';
+						$edit_pattern2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
+						if (current_url() == base_url('/parceiros') || current_url() == base_url('/vendedores') || current_url() == base_url('/clientes') || current_url() == base_url('/usuarios') || current_url() == base_url('/parceiros/add') || current_url() == base_url('/parceiros/edit') || current_url() == base_url('/vendedores/add') || preg_match($edit_pattern1, $url) || preg_match($edit_pattern2, $url)) {
+							echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                             <i class="fa fa-users"></i>Pessoas <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
