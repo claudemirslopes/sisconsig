@@ -29,21 +29,26 @@ class Usuarios extends CI_Controller {
             'titulo' => 'Colaboradores',
             
             'styles' => array(
-              'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-              'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
-            ),
-            
-            'scripts' => array(
-              'vendors/datatables.net/js/jquery.dataTables.min.js', 
-              'vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
-              'vendors/datatables.net-bs4/js/app.js',
-              'vendors/datatables.net-buttons/js/dataTables.buttons.min.js',
-              'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
-              'vendors/datatables.net-buttons/js/buttons.html5.min.js',
-              'vendors/datatables.net-buttons/js/buttons.print.min.js',
-              'vendors/datatables.net-buttons/js/buttons.colVis.min.js',
-              'assets/js/init-scripts/data-table/datatables-init.js',  
-            ),
+				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
+				'assets/datatables/datatables-responsive/css/responsive.bootstrap4.min.css',
+				'assets/datatables/datatables-buttons/css/buttons.bootstrap4.min.css',
+			  ),
+			  
+			  'scripts' => array(
+				  'assets/datatables/datatables/jquery.dataTables.min.js',
+				  'assets/datatables/datatables/app.js',
+				  'assets/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js',
+				  'assets/datatables/datatables-responsive/js/dataTables.responsive.min.js',
+				  'assets/datatables/datatables-responsive/js/responsive.bootstrap4.min.js',
+				  'assets/datatables/datatables-buttons/js/dataTables.buttons.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.bootstrap4.min.js',
+				  'assets/datatables/jszip/jszip.min.js',
+				  'assets/datatables/pdfmake/pdfmake.min.js',
+				  'assets/datatables/pdfmake/vfs_fonts.js',
+				  'assets/datatables/datatables-buttons/js/buttons.html5.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.print.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.colVis.min.js',
+			  ),
             
             // Home
             'soma_vendas' => $this->home_model->get_sum_vendas(),
@@ -53,6 +58,7 @@ class Usuarios extends CI_Controller {
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
             
             'usuarios' => $this->ion_auth->users()->result(),
         );
@@ -64,17 +70,11 @@ class Usuarios extends CI_Controller {
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -110,10 +110,6 @@ class Usuarios extends CI_Controller {
         
         
         $data['contador_notificacoes'] = $contador_notificacoes;
-        
-        /* echo '<pre>';
-        print_r($data['usuarios']);
-        exit(); */
         
         $this->load->view('layout/header', $data);
         $this->load->view('usuarios/index');
@@ -188,6 +184,7 @@ class Usuarios extends CI_Controller {
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
             );
             
             //CENTRAL DE NOTIFICAÇÕES
@@ -197,17 +194,11 @@ class Usuarios extends CI_Controller {
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -240,7 +231,6 @@ class Usuarios extends CI_Controller {
                     $contador_notificacoes ++;
                 } 
             }
-
 
             $data['contador_notificacoes'] = $contador_notificacoes;
             
@@ -278,10 +268,6 @@ class Usuarios extends CI_Controller {
         $this->form_validation->set_rules('senha', 'confirme a senha', 'matches[password]');
 
         if ($this->form_validation->run()) {
-            
-//            echo '<pre>';
-//            print_r($this->input->post());
-//            exit();
             
             $data = elements(
                     
@@ -370,6 +356,7 @@ class Usuarios extends CI_Controller {
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
                 
             'usuario' => $this->ion_auth->user($usuario_id)->row(),
             'perfil_usuario' => $this->ion_auth->get_users_groups($usuario_id)->row(),
@@ -382,17 +369,11 @@ class Usuarios extends CI_Controller {
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;

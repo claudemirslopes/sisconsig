@@ -67,7 +67,7 @@
 									<!-- Mensagem de erro -->
 									
 								
-								<table id="example1" class="table table-striped table-bordered">
+								<table id="example1" class="table table-striped table-bordered table-sm">
 											<thead>
 												<tr>
 													<th class="text-center">#</th>
@@ -93,8 +93,8 @@
 														<?php echo $vendedor->vendedor_ativo == 1 ? '<span class="badge badge-success btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>' ?>
 													</td>
 													<td class="text-right">
-														<a href="<?php echo base_url('vendedores/edit/'.$vendedor->vendedor_id); ?>" class="btn btn-sm btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
-														<a href="javascript(void)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#vendedor-<?php echo $vendedor->vendedor_id; ?>" title="Excluír"><i class="fa fa-trash" aria-hidden="true"></i></a>
+														<a href="<?php echo base_url('vendedores/edit/'.$vendedor->vendedor_id); ?>" class="btn btn-sm btn-info" title="Editar"><i class="fa fa-pencil"></i></a>
+														<a href="javascript(void)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#vendedor-<?php echo $vendedor->vendedor_id; ?>" title="Excluír"><i class="fa fa-trash" aria-hidden="true"></i></a>
 													</td>
 												</tr>
 												<?php endforeach; ?>

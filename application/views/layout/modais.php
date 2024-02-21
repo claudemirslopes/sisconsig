@@ -120,3 +120,89 @@
     endif;
     ?>
 	<!-- Fim Modal de exclusão de vendedores -->
+
+
+	<!-- Modal de exclusão de usuarios -->
+	<?php
+    if (current_url() == base_url('/usuarios')):
+	foreach ($usuarios as $user):	
+    ?>
+	<div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticModalLabel">Excluír colaborador</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						Deseja mesmo excluír este colaborador?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+					<a href="<?php echo base_url('usuarios/del/'.$user->id); ?>" class="btn btn-danger btn-sm">Confirmar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+    endforeach; 
+    endif;
+    ?>
+	<!-- Fim Modal de exclusão de usuarios -->
+
+	<!-- Modal de adição de foto usuarios -->
+	<div class="modal fade swing" id="foto" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="mediumModalLabel">Foto do Perfil</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					<div style="width: 100%;height: 100%;">
+					<?php if($usuario->foto_editor == 0) { ?>
+						<img src="<?php echo base_url('public/images/franquias/semFoto2.png'); ?>" alt="Logo" width="100%" height="100%" style="background-color: #cdcdcd;"/>
+					<?php } else { ?>
+					<figure id="container">
+						<img class="imagem1" src="<?php echo base_url('public/images/usuarios/'.$usuario->id.'.jpg'); ?>" alt="Logo" width="50%" height="auto" style="background-color: #cdcdcd;"/>
+					</figure>
+					<?php } ?>
+					</div>
+				</div>
+				<div class="modal-body">
+					<?php
+						$divopen = '<div class="form-group col-md-12">';
+						$divclose = '</div>';
+						echo form_open_multipart('usuarios/nova_foto');
+						echo form_hidden('id', $usuario->id);
+						echo $divopen;
+						$imagem = array('name' => 'userfile', 'id' => 'userfile', 'class' => 'form-control');
+						echo form_upload($imagem);
+						echo $divclose;
+					?>
+					<small class="form-text text-danger text-center" style="font-size: .6em !important;"><b>Form. aceito:</b> Somente JPG | <b>Med.:</b> 200x200</small>
+				</div>
+				<div class="modal-footer">
+					<?php
+						echo $divopen;
+					?>                                            
+					<div class="float-right">
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+						<?php
+							$botao = array('name' => 'btn_adicionar', 'id' => 'btn_adicionar', 'class' => 'btn btn-info btn-sm', 'value' => 'Add/Alterar Foto');
+							echo form_submit($botao);
+							echo $divclose;
+							echo form_close();
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fim Modal de adição de foto usuarios -->

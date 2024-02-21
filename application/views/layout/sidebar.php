@@ -150,7 +150,8 @@ $str4 = explode("?", $str4);
 						$url = current_url();
 						$edit_pattern1 = '#' . preg_quote(base_url('/parceiros/edit/')) . '\d+#';
 						$edit_pattern2 = '#' . preg_quote(base_url('/vendedores/edit/')) . '\d+#';
-						if (current_url() == base_url('/parceiros') || current_url() == base_url('/vendedores') || current_url() == base_url('/clientes') || current_url() == base_url('/usuarios') || current_url() == base_url('/parceiros/add') || current_url() == base_url('/parceiros/edit') || current_url() == base_url('/vendedores/add') || preg_match($edit_pattern1, $url) || preg_match($edit_pattern2, $url)) {
+						$edit_pattern3 = '#' . preg_quote(base_url('/usuarios/edit/')) . '\d+#';
+						if (current_url() == base_url('/parceiros') || current_url() == base_url('/vendedores') || current_url() == base_url('/clientes') || current_url() == base_url('/usuarios') || current_url() == base_url('/parceiros/add') || current_url() == base_url('/parceiros/edit') || current_url() == base_url('/vendedores/add') || preg_match($edit_pattern1, $url) || preg_match($edit_pattern2, $url) || current_url() == base_url('/usuarios/add') || preg_match($edit_pattern3, $url)) {
 							echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                             <i class="fa fa-users"></i>Pessoas <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
