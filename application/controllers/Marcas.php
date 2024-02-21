@@ -24,21 +24,26 @@ class Marcas extends CI_Controller{
             'titulo' => 'Marcas',
             
             'styles' => array(
-              'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-              'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
-            ),
-            
-            'scripts' => array(
-              'vendors/datatables.net/js/jquery.dataTables.min.js', 
-              'vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
-              'vendors/datatables.net-bs4/js/app.js',
-              'vendors/datatables.net-buttons/js/dataTables.buttons.min.js',
-              'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
-              'vendors/datatables.net-buttons/js/buttons.html5.min.js',
-              'vendors/datatables.net-buttons/js/buttons.print.min.js',
-              'vendors/datatables.net-buttons/js/buttons.colVis.min.js',
-              'assets/js/init-scripts/data-table/datatables-init.js',  
-            ),
+				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
+				'assets/datatables/datatables-responsive/css/responsive.bootstrap4.min.css',
+				'assets/datatables/datatables-buttons/css/buttons.bootstrap4.min.css',
+			  ),
+			  
+			  'scripts' => array(
+				  'assets/datatables/datatables/jquery.dataTables.min.js',
+				  'assets/datatables/datatables/app.js',
+				  'assets/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js',
+				  'assets/datatables/datatables-responsive/js/dataTables.responsive.min.js',
+				  'assets/datatables/datatables-responsive/js/responsive.bootstrap4.min.js',
+				  'assets/datatables/datatables-buttons/js/dataTables.buttons.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.bootstrap4.min.js',
+				  'assets/datatables/jszip/jszip.min.js',
+				  'assets/datatables/pdfmake/pdfmake.min.js',
+				  'assets/datatables/pdfmake/vfs_fonts.js',
+				  'assets/datatables/datatables-buttons/js/buttons.html5.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.print.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.colVis.min.js',
+			  ),
             
             // Home
             'soma_vendas' => $this->home_model->get_sum_vendas(),
@@ -48,6 +53,7 @@ class Marcas extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
             
             'marcas' => $this->core_model->get_all('marcas'),
             
@@ -60,17 +66,11 @@ class Marcas extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -107,10 +107,6 @@ class Marcas extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-//        echo '<pre>';
-//        print_r($data['marcas']);
-//        exit();
-        
          // Carrega a view de marcas
         $this->load->view('layout/header', $data);
         $this->load->view('marcas/index');
@@ -123,8 +119,6 @@ class Marcas extends CI_Controller{
         $this->form_validation->set_rules('marca_nome', 'marca', 'trim|required|min_length[3]|max_length[45]|is_unique[marcas.marca_nome]');
 
         if ($this->form_validation->run()) { 
-            // Teste para ver se valida
-//                exit('Validado');
 
             $data = elements(
 
@@ -136,7 +130,7 @@ class Marcas extends CI_Controller{
         );
 
         // Colocar todo texto em maiúsculo
-            // $data['marca_nome_completo'] = strtoupper($this->input->post('marca_nome_completo'));
+        // $data['marca_nome_completo'] = strtoupper($this->input->post('marca_nome_completo'));
 
         // Limpar dados maliciosos
         $data = html_escape($data);
@@ -160,6 +154,7 @@ class Marcas extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
                 
         );
             
@@ -170,17 +165,11 @@ class Marcas extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -217,10 +206,6 @@ class Marcas extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
 
-//                echo '<pre>';
-//                print_r($data['marca']);
-//                exit(); 
-
             // Carrega a view de editar marcas
            $this->load->view('layout/header', $data);
            $this->load->view('marcas/add');
@@ -240,10 +225,7 @@ class Marcas extends CI_Controller{
             
             $this->form_validation->set_rules('marca_nome', 'marca', 'trim|required|min_length[3]|max_length[45]|callback_check_marca_nome');
             
-            if ($this->form_validation->run()) { 
-                // Teste para ver se valida
-//                exit('Validado');
-                
+            if ($this->form_validation->run()) {                 
                 
                 //Impedir que a marca que está em uso seja desabilitada
                 $marca_ativa = $this->input->post('marca_ativa');
@@ -264,7 +246,7 @@ class Marcas extends CI_Controller{
             );
             
             // Colocar todo texto em maiúsculo
-//            $data['marca_estado'] = strtoupper($this->input->post('marca_estado'));
+			// $data['marca_estado'] = strtoupper($this->input->post('marca_estado'));
             
             // Limpar dados maliciosos
             $data = html_escape($data);
@@ -288,6 +270,7 @@ class Marcas extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'marca' => $this->core_model->get_by_id('marcas', array('marca_id' => $marca_id)),
 
@@ -300,17 +283,11 @@ class Marcas extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -346,10 +323,6 @@ class Marcas extends CI_Controller{
 
 
             $data['contador_notificacoes'] = $contador_notificacoes;
-                
-//                echo '<pre>';
-//                print_r($data['marca']);
-//                exit(); 
 
                 // Carrega a view de editar marcas
                $this->load->view('layout/header', $data);

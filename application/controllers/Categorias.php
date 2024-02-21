@@ -154,6 +154,7 @@ class Categorias extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
                 
         );
             
@@ -265,6 +266,7 @@ class Categorias extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'categoria' => $this->core_model->get_by_id('categorias', array('categoria_id' => $categoria_id)),
 
