@@ -12,13 +12,13 @@ class Reclamacoes_model extends CI_Model {
                 'orcamentos.orc_id',
                 'orcamentos.orc_codigo',
                 'orcamentos.orc_cli_nome',
-                'clientes.cliente_id',
-                'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
+                'parceiros.parceiro_id',
+                'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
             ]);
             
-            //Aqui faz as ligações com LEFT JOIN nas tabelas (reclamacoes, clientes_franqueados, clientes e os)
+            //Aqui faz as ligações com LEFT JOIN nas tabelas (reclamacoes, parceiros_franqueados, parceiros e os)
             $this->db->join('orcamentos', 'orc_id = reclama_orc_id', 'LEFT');
-            $this->db->join('clientes', 'cliente_id = reclama_cli_id', 'LEFT');
+            $this->db->join('parceiros', 'parceiro_id = reclama_cli_id', 'LEFT');
             
             //Retorna todos os resultados na tabela produtos,
             return $this->db->get('reclamacoes')->result();
@@ -33,14 +33,14 @@ class Reclamacoes_model extends CI_Model {
                 'orcamentos.orc_id',
                 'orcamentos.orc_codigo',
                 'orcamentos.orc_cli_nome',
-                'clientes.cliente_id',
-                'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
+                'parceiros.parceiro_id',
+                'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
             ]);
             
             $this->db->where('reclama_id', $reclama_id);
-            //Aqui faz as ligações com LEFT JOIN nas tabelas (reclamacoes, clientes_franqueados, clientes e os)
+            //Aqui faz as ligações com LEFT JOIN nas tabelas (reclamacoes, parceiros_franqueados, parceiros e os)
             $this->db->join('orcamentos', 'orc_id = reclama_orc_id', 'LEFT');
-            $this->db->join('clientes', 'cliente_id = reclama_cli_id', 'LEFT');
+            $this->db->join('parceiros', 'parceiro_id = reclama_cli_id', 'LEFT');
             
             //Retorna todos os resultados na tabela produtos,
             return $this->db->get('reclamacoes')->row();

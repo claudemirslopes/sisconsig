@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost/sisprodconsig/";
+const BASE_URL = "http://localhost/sisconsig/";
 
 
 $(function () {

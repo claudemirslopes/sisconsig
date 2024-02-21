@@ -22,9 +22,14 @@
 									<div class="card-header">
 										<strong class="card-title mb-3"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
 										<div class="pull-right">
-											<a href="<?php echo base_url('/'); ?>vendas/add"><button type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp; Novo Cliente</button></a>
-											<a href="<?php echo base_url('/'); ?>sistema" type="button" class="btn btn-outline-danger btn-sm" title="Configurações">
-												<i class="fa fa-cogs" aria-hidden="true"></i></a>
+											<a href="<?php echo base_url('/'); ?>parceiros/add"><button type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp; Novo Parceiro</button></a>
+											<a href="#" type="button" class="btn btn-outline-danger btn-sm" title="Página anterior" onclick="voltar()">
+											<i class="fa fa-angle-left" aria-hidden="true"></i></a>
+											<script>
+											function voltar() {
+											window.history.back();
+											}
+											</script>
 										</div>
 									</div>
 								</div>
@@ -87,39 +92,39 @@
 												</tr>
 											</thead>
 											<tbody>
-												<?php foreach ($clientes as $cliente): ?>
+												<?php foreach ($parceiros as $parceiro): ?>
 												<tr>
 													<td>
-														<?php if ($cliente->cliente_pessoa == 1):  ?>
-														<?php echo $cliente->cliente_nome ?>&nbsp;<?php echo $cliente->cliente_sobrenome ?>
+														<?php if ($parceiro->parceiro_pessoa == 1):  ?>
+														<?php echo $parceiro->parceiro_nome ?>&nbsp;<?php echo $parceiro->parceiro_sobrenome ?>
 														<?php else: ?>
-														<?php echo $cliente->cliente_nome ?>
+														<?php echo $parceiro->parceiro_nome ?>
 														<?php endif; ?>
 													</td>
-													<td><?php echo $cliente->cliente_cpf_cnpj ?></td>
+													<td><?php echo $parceiro->parceiro_cpf_cnpj ?></td>
 													<td class="text-center">
 														<?php 
-															if ($cliente->cliente_tipo == 1) {
+															if ($parceiro->parceiro_tipo == 1) {
 																echo '<span class="badge badge-info btn-sm">Franqueado</span>';
-															} elseif ($cliente->cliente_tipo == 2) {
+															} elseif ($parceiro->parceiro_tipo == 2) {
 																echo '<span class="badge badge-secondary btn-sm">Integrador</span>';
-															} elseif ($cliente->cliente_tipo == 0) {
-																echo '<span class="badge badge-warning btn-sm">Cliente (Teste)</span>';
+															} elseif ($parceiro->parceiro_tipo == 0) {
+																echo '<span class="badge badge-warning btn-sm">Parceiro (Teste)</span>';
 															} else {
 																echo '<span class="badge badge-primary btn-sm">Distribuidor</span>';
 															}
 														?>
 													</td>
 													<td>
-														<?php echo $cliente->cliente_pessoa == 1 ? 'Pessoa Física' : 'Pessoa Jurídica' ?>
+														<?php echo $parceiro->parceiro_pessoa == 1 ? 'Pessoa Física' : 'Pessoa Jurídica' ?>
 													</td>
-													<td class="text-center pr-4"><?php echo $cliente->cliente_id ?></td>
+													<td class="text-center pr-4"><?php echo $parceiro->parceiro_id ?></td>
 													<td class="text-center pr-4">
-														<?php echo $cliente->cliente_ativo == 1 ? '<span class="badge badge-success btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>' ?>
+														<?php echo $parceiro->parceiro_ativo == 1 ? '<span class="badge badge-success btn-sm">Sim</span>' : '<span class="badge badge-danger btn-sm">Não</span>' ?>
 													</td>
 													<td class="text-right">
-														<a href="<?php echo base_url('clientes/edit/'.$cliente->cliente_id); ?>" class="btn btn-sm btn-info" title="Editar"><i class="fa fa-pencil"></i></a>
-														<a href="javascript(void)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cliente-<?php echo $cliente->cliente_id; ?>" title="Excluír"><i class="fa fa-user-times" aria-hidden="true"></i></a>
+														<a href="<?php echo base_url('parceiros/edit/'.$parceiro->parceiro_id); ?>" class="btn btn-sm btn-info" title="Editar"><i class="fa fa-pencil"></i></a>
+														<a href="javascript(void)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#parceiro-<?php echo $parceiro->parceiro_id; ?>" title="Excluír"><i class="fa fa-user-times" aria-hidden="true"></i></a>
 													</td>
 												</tr>
 												

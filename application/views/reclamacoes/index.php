@@ -95,7 +95,7 @@
                                 <th class="text-center">#</th>
                                 <th>Orçamento</th>
                                 <th>Autorizado</th>
-                                <th>Cliente</th>
+                                <th>Parceiro</th>
                                 <th class="text-center">Emissão</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-right">Ações</th>
@@ -106,7 +106,7 @@
                             <tr>
                                 <td class="text-center"><?php echo $reclama->reclama_id; ?></td>
                                 <td><?php echo $reclama->orc_codigo; ?></td>
-                                <td><?php echo $reclama->cliente_nome_completo; ?></td>
+                                <td><?php echo $reclama->parceiro_nome_completo; ?></td>
                                 <td><?php echo $reclama->orc_cli_nome; ?></td>
                                 <td class="text-center pr-4"><?php echo formata_data_banco_com_hora($reclama->reclama_data_emissao); ?></td>
                                 <td class="text-center pr-4">

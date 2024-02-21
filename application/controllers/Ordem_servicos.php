@@ -121,13 +121,13 @@ class Ordem_servicos extends CI_Controller{
     
     public function add() {
         
-        $this->form_validation->set_rules('ordem_servico_cliente_id', 'cliente', 'required');
+        $this->form_validation->set_rules('ordem_servico_parceiro_id', 'parceiro', 'required');
         $this->form_validation->set_rules('ordem_servico_equipamento', 'equipamento', 'trim|required|min_length[2]|max_length[80]');
         $this->form_validation->set_rules('ordem_servico_marca_equipamento', 'marca', 'trim|required|min_length[2]|max_length[80]');
         $this->form_validation->set_rules('ordem_servico_modelo_equipamento', 'modelo', 'trim|required|min_length[2]|max_length[80]');
         $this->form_validation->set_rules('ordem_servico_acessorios', 'acessórios', 'required|max_length[300]');
         $this->form_validation->set_rules('ordem_servico_defeito', 'defeito', 'required|max_length[700]');
-        $this->form_validation->set_rules('ordem_servico_obs', 'cliente', 'max_length[500]');
+        $this->form_validation->set_rules('ordem_servico_obs', 'parceiro', 'max_length[500]');
                         
             if ($this->form_validation->run()) {
                 
@@ -141,7 +141,7 @@ class Ordem_servicos extends CI_Controller{
 
                     array(
                         'ordem_servico_pedido',
-                        'ordem_servico_cliente_id',
+                        'ordem_servico_parceiro_id',
                         'ordem_servico_status',
                         'ordem_servico_equipamento',
                         'ordem_servico_marca_equipamento',
@@ -227,7 +227,7 @@ class Ordem_servicos extends CI_Controller{
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
                    
-                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),                    
+                'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),                    
                 'ordem_servico_pedido' => $this->core_model->generate_unique_code('ordens_servicos', 'numeric', 10, 'ordem_servico_pedido'),
                     
                 );
@@ -302,7 +302,7 @@ class Ordem_servicos extends CI_Controller{
             redirect('os');
         } else {
             
-            $this->form_validation->set_rules('ordem_servico_cliente_id', 'cliente', 'required');
+            $this->form_validation->set_rules('ordem_servico_parceiro_id', 'parceiro', 'required');
             
             $ordem_servico_status = $this->input->post('ordem_servico_status');
             
@@ -317,7 +317,7 @@ class Ordem_servicos extends CI_Controller{
             $this->form_validation->set_rules('ordem_servico_modelo_equipamento', 'modelo', 'trim|required|min_length[2]|max_length[80]');
             $this->form_validation->set_rules('ordem_servico_acessorios', 'acessórios', 'required|max_length[300]');
             $this->form_validation->set_rules('ordem_servico_defeito', 'defeito', 'required|max_length[700]');
-            $this->form_validation->set_rules('ordem_servico_obs', 'cliente', 'max_length[500]');
+            $this->form_validation->set_rules('ordem_servico_obs', 'parceiro', 'max_length[500]');
             
             
             if ($this->form_validation->run()) {
@@ -332,7 +332,7 @@ class Ordem_servicos extends CI_Controller{
 
                     array(
                         'ordem_servico_pedido',
-                        'ordem_servico_cliente_id',
+                        'ordem_servico_parceiro_id',
                         'ordem_servico_forma_pagamento_id',
                         'ordem_servico_status',
                         'ordem_servico_equipamento',
@@ -423,7 +423,7 @@ class Ordem_servicos extends CI_Controller{
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
 
-                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
+                'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
                 'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos', array('forma_pagamento_ativa' => 1)),
                 'os_tem_servicos' => $this->ordem_servicos_model->get_all_servicos_by_ordem($ordem_servico_id),
                 
@@ -596,12 +596,12 @@ class Ordem_servicos extends CI_Controller{
             $html .= '<p align="right"><b>Ordem de Serviço</b> nº: '.$ordem_servico->ordem_servico_id.'</p>';
             $html .='<hr/>';
             
-            //Dados do cliente
+            //Dados do parceiro
             
             $html .= '<p>
-                    '.'<b>Cliente:</b> '.$ordem_servico->cliente_nome_completo.'<br/>
-                    '.'<b>CPF/CNPJ:</b> '.$ordem_servico->cliente_cpf_cnpj.'<br/>
-                    '.'<b>Celular:</b> '.$ordem_servico->cliente_celular.'<br/>
+                    '.'<b>Parceiro:</b> '.$ordem_servico->parceiro_nome_completo.'<br/>
+                    '.'<b>CPF/CNPJ:</b> '.$ordem_servico->parceiro_cpf_cnpj.'<br/>
+                    '.'<b>Celular:</b> '.$ordem_servico->parceiro_celular.'<br/>
                     '.'<b>Data da OS:</b> '. formata_data_banco_com_hora($ordem_servico->ordem_servico_data_emissao).'<br/>
                     '.'<b>Forma de Pagamento:</b> '.($ordem_servico->ordem_servico_status == 1 ? $ordem_servico->forma_pagamento : 'Em aberto').'<br/>
                     </p>';
@@ -656,7 +656,7 @@ class Ordem_servicos extends CI_Controller{
             
             $html .='<p align="center" style="margin-top: 135px;">
                     __________________________________________________________<br>
-                    Assinatura do Cliente
+                    Assinatura do Parceiro
                     </p>';
             
             //Texto do rodapé da OS

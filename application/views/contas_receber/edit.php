@@ -86,13 +86,13 @@
                             <legend class="font-small"><i class="fa fa-credit-card-alt"></i> Dados da conta</legend>
                             <div class="form-row">
                                 <div class="form-group col-md-5">
-                                    <label for="conta_receber_cliente_id">Autorizado <span style="color: red;font-weight: bold;">*</span></label> 
-                                    <select style="pointer-events: none;touch-action: none;" name="conta_receber_cliente_id" class="form-control custom-select">
-                                        <?php foreach($clientes as $cliente): ?>
-                                        <option value="<?php echo $cliente->cliente_id ?>" <?php echo ($cliente->cliente_id == $conta_receber->conta_receber_cliente_id ? 'selected' : ''); ?>><?php echo $cliente->cliente_nome.'&nbsp;'.$cliente->cliente_sobrenome ?></option>
+                                    <label for="conta_receber_parceiro_id">Autorizado <span style="color: red;font-weight: bold;">*</span></label> 
+                                    <select style="pointer-events: none;touch-action: none;" name="conta_receber_parceiro_id" class="form-control custom-select">
+                                        <?php foreach($parceiros as $parceiro): ?>
+                                        <option value="<?php echo $parceiro->parceiro_id ?>" <?php echo ($parceiro->parceiro_id == $conta_receber->conta_receber_parceiro_id ? 'selected' : ''); ?>><?php echo $parceiro->parceiro_nome.'&nbsp;'.$parceiro->parceiro_sobrenome ?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <?php echo form_error('conta_receber_cliente_id', '<small class="form-text text-danger">','</small>') ?>
+                                    <?php echo form_error('conta_receber_parceiro_id', '<small class="form-text text-danger">','</small>') ?>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="conta_receber_valor">Valor <span style="color: red;font-weight: bold;">*</span></label>

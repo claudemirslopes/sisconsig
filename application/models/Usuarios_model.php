@@ -19,9 +19,9 @@ defined('BASEPATH') OR exit('Ação não permitida');
     }
     
     public function alterar($senha,$id) {
-        $dados['cliente_senha'] = md5($senha);
-        $this->db->where('cliente_id', $id);
-        return $this->db->update('clientes', $dados);
+        $dados['parceiro_senha'] = md5($senha);
+        $this->db->where('parceiro_id', $id);
+        return $this->db->update('parceiros', $dados);
     }   
         
 }

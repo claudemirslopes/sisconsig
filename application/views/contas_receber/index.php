@@ -105,7 +105,7 @@
                             <tr>
                                 <td class="text-center"><?php echo $conta_receber->conta_receber_id; ?></td>
                                 <td>
-                                    <?php echo ($conta_receber->pessoa == 1 ? $conta_receber->cliente.'&nbsp;'.$conta_receber->cliente_sobrenome : $conta_receber->cliente); ?>
+                                    <?php echo ($conta_receber->pessoa == 1 ? $conta_receber->parceiro.'&nbsp;'.$conta_receber->parceiro_sobrenome : $conta_receber->parceiro); ?>
                                 </td>
                                 <td><?php echo ('R$ '.$conta_receber->conta_receber_valor); ?></td>
                                 <td class="text-center pr-4"><?php echo formata_data_banco_sem_hora($conta_receber->conta_receber_data_vencimento); ?></td>

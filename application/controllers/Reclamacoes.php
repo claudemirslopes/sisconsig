@@ -183,7 +183,7 @@ class Reclamacoes extends CI_Controller{
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
                 
-                'clientes' => $this->core_model->get_all('clientes'),
+                'parceiros' => $this->core_model->get_all('parceiros'),
                 'orcamentos' => $this->core_model->get_all('orcamentos'),
                 'reclama' => $this->core_model->get_by_id('reclamacoes', array('reclama_id' => $reclama_id)),
             );

@@ -108,7 +108,7 @@
                                 <td class="text-center"><?php echo $os->ordem_servico_id; ?></td>
                                  <td class="text-center"><?php echo $os->ordem_servico_pedido; ?></td>
                                 <td class="text-center pr-4"><?php echo formata_data_banco_com_hora($os->ordem_servico_data_emissao); ?></td>
-                                <td><?php echo $os->cliente_nome.'&nbsp;'.$os->cliente_sobrenome; ?></td>
+                                <td><?php echo $os->parceiro_nome.'&nbsp;'.$os->parceiro_sobrenome; ?></td>
                                 <td><?php echo ('R$ '.$os->ordem_servico_valor_total); ?></td>
                                 <td class="text-center pr-4">
                                     <?php echo $os->ordem_servico_status == 1 ? '<span class="badge badge-success btn-sm">Paga</span>' : '<span class="badge badge-secondary btn-sm">Em aberto</span>' ?>

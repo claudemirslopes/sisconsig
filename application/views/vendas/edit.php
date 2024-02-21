@@ -166,13 +166,13 @@
                                 <div class="form-group row">
 
                                     <div class="col-sm-6 mb-1 mb-sm-0">
-                                        <label class="small my-0">Escolha o cliente <span class="text-danger">*</span></label>
-                                        <select class="custom-select contas_receber" name="venda_cliente_id" required="">
-                                            <?php foreach ($clientes as $cliente): ?>
-                                                <option value="<?php echo $cliente->cliente_id; ?>" <?php echo ($venda->venda_cliente_id == $cliente->cliente_id ? 'selected' : '') ?>><?php echo $cliente->cliente_nome . ' ' . $cliente->cliente_sobrenome . ' | CPF ou CNPJ: ' . $cliente->cliente_cpf_cnpj; ?></option>
+                                        <label class="small my-0">Escolha o parceiro <span class="text-danger">*</span></label>
+                                        <select class="custom-select contas_receber" name="venda_parceiro_id" required="">
+                                            <?php foreach ($parceiros as $parceiro): ?>
+                                                <option value="<?php echo $parceiro->parceiro_id; ?>" <?php echo ($venda->venda_parceiro_id == $parceiro->parceiro_id ? 'selected' : '') ?>><?php echo $parceiro->parceiro_nome . ' ' . $parceiro->parceiro_sobrenome . ' | CPF ou CNPJ: ' . $parceiro->parceiro_cpf_cnpj; ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                        <?php echo form_error('venda_cliente_id', '<div class="text-danger small">', '</div>') ?>
+                                        <?php echo form_error('venda_parceiro_id', '<div class="text-danger small">', '</div>') ?>
                                     </div>
 
 

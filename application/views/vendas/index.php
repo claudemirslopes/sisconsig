@@ -92,7 +92,7 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">Data Emissão</th>
-                                <th>Cliente</th>
+                                <th>Parceiro</th>
                                 <th>Vendedor</th>
                                 <th>Valor Total</th>
                                 <th class="text-center">Forma de Pagamento</th>
@@ -104,7 +104,7 @@
                             <tr>
                                 <td class="text-center"><?php echo $venda->venda_id; ?></td>
                                 <td class="text-center pr-4"><?php echo formata_data_banco_com_hora($venda->venda_data_emissao); ?></td>
-                                <td><?php echo $venda->cliente_nome.'&nbsp;'.$venda->cliente_sobrenome; ?></td>
+                                <td><?php echo $venda->parceiro_nome.'&nbsp;'.$venda->parceiro_sobrenome; ?></td>
                                 <td><?php echo $venda->vendedor_nome_completo; ?></td>
                                 <td><?php echo ('R$ '.$venda->venda_valor_total); ?></td>
                                 <td class="text-center pr-4">

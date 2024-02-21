@@ -68,14 +68,14 @@ class Home_model extends CI_Model {
         
         $this->db->select([
             'contas_receber.*',
-            'cliente_id',
-            'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
+            'parceiro_id',
+            'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
         ]);
         
         $this->db->where('conta_receber_status', 0);
         $this->db->where('conta_receber_data_vencimento =', date('Y-m-d'));
         
-        $this->db->join('clientes', 'cliente_id = conta_receber_cliente_id', 'LEFT');
+        $this->db->join('parceiros', 'parceiro_id = conta_receber_parceiro_id', 'LEFT');
         return $this->db->get('contas_receber')->result();
         
     }

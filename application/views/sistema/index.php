@@ -187,7 +187,7 @@
                         
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="sistema_txt_ordem_servico">Texto ao cliente (Bluesun Solar)</label>
+                                    <label for="sistema_txt_ordem_servico">Texto ao parceiro (Bluesun Solar)</label>
                                     <textarea name="sistema_txt_ordem_servico" rows="3" class="form-control form-control-user" id="sistema_txt_ordem_servico" placeholder="Sistema Bluesun (Orçamento)"><?php echo $sistema->sistema_txt_ordem_servico ?></textarea>
                                     <?php echo form_error('sistema_txt_ordem_servico', '<small class="form-text text-danger">','</small>') ?>
                                 </div>

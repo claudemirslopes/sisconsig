@@ -9,15 +9,15 @@ defined('BASEPATH') OR exit('Ação não permitida');
             //Array de um select com JOIN na base de dados
             $this->db->select([
                 'ordens_servicos.*',
-                'clientes.cliente_id',
-                'clientes.cliente_nome',
-                'clientes.cliente_sobrenome',
+                'parceiros.parceiro_id',
+                'parceiros.parceiro_nome',
+                'parceiros.parceiro_sobrenome',
                 'formas_pagamentos.forma_pagamento_id',
                 'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
             ]);
             
-            //Aqui faz as ligações com LEFT JOIN nas tabelas (ordens_servicos, clientes e formas_pagamentos)
-            $this->db->join('clientes', 'cliente_id = ordem_servico_cliente_id', 'LEFT');
+            //Aqui faz as ligações com LEFT JOIN nas tabelas (ordens_servicos, parceiros e formas_pagamentos)
+            $this->db->join('parceiros', 'parceiro_id = ordem_servico_parceiro_id', 'LEFT');
             $this->db->join('formas_pagamentos', 'forma_pagamento_id = ordem_servico_forma_pagamento_id', 'LEFT');
             
             //Retorna todos os resultados na tabela produtos,
@@ -29,10 +29,10 @@ defined('BASEPATH') OR exit('Ação não permitida');
  
             $this->db->select([
                 'ordens_servicos.*',
-                'clientes.cliente_id',
-                'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
-                'clientes.cliente_cpf_cnpj',
-                'clientes.cliente_celular',
+                'parceiros.parceiro_id',
+                'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
+                'parceiros.parceiro_cpf_cnpj',
+                'parceiros.parceiro_celular',
                 'formas_pagamentos.forma_pagamento_id',
                 'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
             ]);
@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('Ação não permitida');
             $this->db->where('ordem_servico_id', $ordem_servico_id);
 
 
-            $this->db->join('clientes', 'cliente_id = ordem_servico_cliente_id', 'LEFT');
+            $this->db->join('parceiros', 'parceiro_id = ordem_servico_parceiro_id', 'LEFT');
             $this->db->join('formas_pagamentos', 'forma_pagamento_id = ordem_servico_forma_pagamento_id', 'LEFT');
 
             return $this->db->get('ordens_servicos')->row();
@@ -114,13 +114,13 @@ defined('BASEPATH') OR exit('Ação não permitida');
             //Array de um select com JOIN na base de dados
             $this->db->select([
                 'ordens_servicos.*',
-                'clientes.cliente_id',
-                'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
+                'parceiros.parceiro_id',
+                'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
                 'formas_pagamentos.forma_pagamento_id',
                 'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
             ]);
-            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, clientes e formas_pagamentos)
-            $this->db->join('clientes', 'cliente_id = ordem_servico_cliente_id', 'LEFT');
+            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, parceiros e formas_pagamentos)
+            $this->db->join('parceiros', 'parceiro_id = ordem_servico_parceiro_id', 'LEFT');
             $this->db->join('formas_pagamentos', 'forma_pagamento_id = ordem_servico_forma_pagamento_id', 'LEFT');
             
             if ($data_inicial && $data_final) {

@@ -161,7 +161,7 @@
 															</div>
 														</div>
 														<h4 class="mb-0">
-															<span class="text-light" style="font-size: .8em;"><i class="fa fa-cogs" aria-hidden="true"></i> Pedidos de Clientes</span><hr/>
+															<span class="text-light" style="font-size: .8em;"><i class="fa fa-cogs" aria-hidden="true"></i> Pedidos de Parceiros</span><hr/>
 															<center><span class="count text-light"><?php echo 'R$ '.$soma_servicos->ordem_servico_valor_total; ?></span></center>
 														</h4>
 														<p class="text-light small mb-2" style="text-align: center;">total cobrado</p>
@@ -169,7 +169,7 @@
 												</div>
 											</div>
 										</div>
-										<!-- Contador para verificar número de clientes -->
+										<!-- Contador para verificar número de parceiros -->
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="card text-white bg-flat-color-1 imagem3">
@@ -180,14 +180,14 @@
 															</button>
 															<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 																<div class="dropdown-menu-content">
-																	<a class="dropdown-item" href="<?php echo base_url('clientes'); ?>">Ver Todas</a>
-																	<a class="dropdown-item" href="<?php echo base_url('clientes/add'); ?>">Adicionar</a>
+																	<a class="dropdown-item" href="<?php echo base_url('parceiros'); ?>">Ver Todas</a>
+																	<a class="dropdown-item" href="<?php echo base_url('parceiros/add'); ?>">Adicionar</a>
 																</div>
 															</div>
 														</div>
 														<h4 class="mb-0">
 															<span class="text-light" style="font-size: .8em;"><i class="fa fa-users" aria-hidden="true"></i> Franqueados</span><hr/>
-															<center><span class="count text-light" style=""><?php echo $num_rows = $this->db->count_all_results('clientes'); ?></span></center>
+															<center><span class="count text-light" style=""><?php echo $num_rows = $this->db->count_all_results('parceiros'); ?></span></center>
 														</h4>
 														<p class="text-light small mb-2" style="text-align: center;">total de autorizados</p>
 													</div>

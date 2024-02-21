@@ -83,7 +83,7 @@
                     <form method="post" name="form_edit" class="user">
                         
                         <fieldset class="border p-2" style="margin-top: -10px;">
-                            <legend class="font-small"><i class="fa fa-th-list"></i> Dados do cliente e pedido</legend>
+                            <legend class="font-small"><i class="fa fa-th-list"></i> Dados do parceiro e pedido</legend>
                             
                             <div class="form-row">
                                 <div class="form-group col-md-2">
@@ -97,13 +97,13 @@
                                 <div class="form-group col-md-5">
                                     <label for="reclama_cli_id">Autorizado <span style="color: red;font-weight: bold;">*</span></label> 
                                     <select style="pointer-events: none;touch-action: none;" name="reclama_cli_id" class="form-control custom-select bg-light" id="reclama_cli_id">
-                                        <?php foreach($clientes as $cliente): ?>
-                                        <option value="<?php echo $cliente->cliente_id ?>" <?php echo ($cliente->cliente_id == $reclama->reclama_cli_id ? 'selected' : ''); ?>><?php echo $cliente->cliente_nome ?></option>
+                                        <?php foreach($parceiros as $parceiro): ?>
+                                        <option value="<?php echo $parceiro->parceiro_id ?>" <?php echo ($parceiro->parceiro_id == $reclama->reclama_cli_id ? 'selected' : ''); ?>><?php echo $parceiro->parceiro_nome ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5">
-                                    <label for="reclama_orc_id">Cliente <span style="color: red;font-weight: bold;">*</span></label> 
+                                    <label for="reclama_orc_id">Parceiro <span style="color: red;font-weight: bold;">*</span></label> 
                                     <select style="pointer-events: none;touch-action: none;" name="" class="form-control custom-select" id="reclama_orc_id" disabled="">
                                         <?php foreach($orcamentos as $orcamento): ?>
                                         <option <?php echo ($orcamento->orc_id == $reclama->reclama_orc_id ? 'selected' : ''); ?>><?php echo $orcamento->orc_cli_nome ?></option>
