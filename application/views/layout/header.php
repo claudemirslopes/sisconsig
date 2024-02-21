@@ -10,7 +10,7 @@
     <meta name="keywords" content="siscadpro, sistema, agendamento, cadastro, servicos, profissionais">
 
     <!-- Título da página-->
-    <?php echo (isset($titulo) ? '<title>SiscadPro | '.$titulo.'</title>' : '<title>SiscadPro | Administrativo</title>'); ?>
+    <?php echo (isset($titulo) ? '<title>SisConsig | '.$titulo.'</title>' : '<title>SisConsig | Administrativo</title>'); ?>
 
     <!-- Fontfaces CSS-->
     <link href="<?php echo base_url('public/css/font-face.css'); ?>" rel="stylesheet" media="all">

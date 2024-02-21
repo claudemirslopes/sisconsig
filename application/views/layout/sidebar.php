@@ -4,7 +4,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="<?php echo base_url('/'); ?>">
-                            <img src="<?php echo base_url('public/images/icon/logo.png" alt="CoolAdmin'); ?>" />
+                            <img src="<?php echo base_url('public/images/icon/SisConsig06.png" alt="CoolAdmin'); ?>" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -115,7 +115,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="<?php echo base_url('/'); ?>">
-                    <img src="<?php echo base_url('public/images/icon/logo.png'); ?>" alt="SisCadPro" />
+                    <img src="<?php echo base_url('public/images/icon/SisConsig06.png'); ?>" alt="SisCadPro" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -233,7 +233,7 @@
                                 <i class="fa fa-sign-out"></i>Sair</a>
                         </li><hr>
                         <li class="mb-2">
-                          <span class="p-1 pl-2 pr-2 text-center text-light bg-dark" style="font-size: .7em;border-radius:3px;"><strong><red style="color:#FA5858">Sis</red><red style="color:#D8D8D8">Cad</red>Pro &copy; </strong>| Versão 2.0.0</span>
+                          <span class="p-1 pl-2 pr-2 text-center text-light bg-dark" style="font-size: .7em;border-radius:3px;"><strong><red style="color:#FA5858">Sis</red>C<red style="color:#FC9D0E">onsig</red> &copy; </strong>| Versão 1.0.0</span>
                         </li>
                     </ul>
                 </nav>
