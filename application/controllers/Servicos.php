@@ -24,21 +24,27 @@ class Servicos extends CI_Controller{
             'titulo' => 'Serviços',
             
             'styles' => array(
-              'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-              'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
-            ),
+				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
+				'assets/datatables/datatables-responsive/css/responsive.bootstrap4.min.css',
+				'assets/datatables/datatables-buttons/css/buttons.bootstrap4.min.css',
+			  ),
+			  
+			  'scripts' => array(
+				  'assets/datatables/datatables/jquery.dataTables.min.js',
+				  'assets/datatables/datatables/app.js',
+				  'assets/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js',
+				  'assets/datatables/datatables-responsive/js/dataTables.responsive.min.js',
+				  'assets/datatables/datatables-responsive/js/responsive.bootstrap4.min.js',
+				  'assets/datatables/datatables-buttons/js/dataTables.buttons.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.bootstrap4.min.js',
+				  'assets/datatables/jszip/jszip.min.js',
+				  'assets/datatables/pdfmake/pdfmake.min.js',
+				  'assets/datatables/pdfmake/vfs_fonts.js',
+				  'assets/datatables/datatables-buttons/js/buttons.html5.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.print.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.colVis.min.js',
+			  ),
             
-            'scripts' => array(
-              'vendors/datatables.net/js/jquery.dataTables.min.js', 
-              'vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
-              'vendors/datatables.net-bs4/js/app.js',
-              'vendors/datatables.net-buttons/js/dataTables.buttons.min.js',
-              'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
-              'vendors/datatables.net-buttons/js/buttons.html5.min.js',
-              'vendors/datatables.net-buttons/js/buttons.print.min.js',
-              'vendors/datatables.net-buttons/js/buttons.colVis.min.js',
-              'assets/js/init-scripts/data-table/datatables-init.js',  
-            ),
             
             // Home
             'soma_vendas' => $this->home_model->get_sum_vendas(),
@@ -48,6 +54,7 @@ class Servicos extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
             
             'servicos' => $this->core_model->get_all('servicos'),
             
@@ -60,17 +67,11 @@ class Servicos extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -107,10 +108,6 @@ class Servicos extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-//        echo '<pre>';
-//        print_r($data['servicos']);
-//        exit();
-        
          // Carrega a view de servicos
         $this->load->view('layout/header', $data);
         $this->load->view('servicos/index');
@@ -125,8 +122,6 @@ class Servicos extends CI_Controller{
         $this->form_validation->set_rules('servico_descricao', 'descrição', 'trim|required|max_length[500]');
 
         if ($this->form_validation->run()) { 
-            // Teste para ver se valida
-//                exit('Validado');
 
             $data = elements(
 
@@ -140,7 +135,7 @@ class Servicos extends CI_Controller{
         );
 
         // Colocar todo texto em maiúsculo
-            // $data['servico_nome_completo'] = strtoupper($this->input->post('servico_nome_completo'));
+        // $data['servico_nome_completo'] = strtoupper($this->input->post('servico_nome_completo'));
 
         // Limpar dados maliciosos
         $data = html_escape($data);
@@ -170,6 +165,7 @@ class Servicos extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
                 
         );
             
@@ -180,17 +176,11 @@ class Servicos extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -227,10 +217,6 @@ class Servicos extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
 
-//                echo '<pre>';
-//                print_r($data['servico']);
-//                exit(); 
-
             // Carrega a view de editar servicos
            $this->load->view('layout/header', $data);
            $this->load->view('servicos/add');
@@ -253,8 +239,6 @@ class Servicos extends CI_Controller{
             $this->form_validation->set_rules('servico_descricao', 'trim|descrição', 'required|max_length[500]');
             
             if ($this->form_validation->run()) { 
-                // Teste para ver se valida
-//                exit('Validado');
                 
                 $data = elements(
 
@@ -268,7 +252,7 @@ class Servicos extends CI_Controller{
             );
             
             // Colocar todo texto em maiúsculo
-//            $data['servico_estado'] = strtoupper($this->input->post('servico_estado'));
+			// $data['servico_estado'] = strtoupper($this->input->post('servico_estado'));
             
             // Limpar dados maliciosos
             $data = html_escape($data);
@@ -298,6 +282,7 @@ class Servicos extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'servico' => $this->core_model->get_by_id('servicos', array('servico_id' => $servico_id)),
 
@@ -310,17 +295,11 @@ class Servicos extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -356,10 +335,6 @@ class Servicos extends CI_Controller{
 
 
             $data['contador_notificacoes'] = $contador_notificacoes;
-                
-//                echo '<pre>';
-//                print_r($data['servico']);
-//                exit(); 
 
                 // Carrega a view de editar servicos
                $this->load->view('layout/header', $data);

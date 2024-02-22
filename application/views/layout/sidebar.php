@@ -29,6 +29,8 @@ $edit_stock1 = '#' . preg_quote(base_url('/categorias/edit/')) . '\d+#';
 $edit_stock2 = '#' . preg_quote(base_url('/marcas/edit/')) . '\d+#';
 $edit_stock3 = '#' . preg_quote(base_url('/produtos/edit/')) . '\d+#';
 
+$edit_service1 = '#' . preg_quote(base_url('/servicos/edit/')) . '\d+#';
+
 ?>
 		<!-- HEADER MOBILE-->
 		<header class="header-mobile d-block d-lg-none">
@@ -191,7 +193,7 @@ $edit_stock3 = '#' . preg_quote(base_url('/produtos/edit/')) . '\d+#';
                                 </li><hr>
                             </ul>
                         </li>
-						<li class="has-sub">
+						<li class="<?php if (current_url() == base_url('/servicos') || current_url() == base_url('/servicos/add') || preg_match($edit_service1, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>servicos">
                                 <i class="fas fa-server"></i>Serviços</a>
                         </li><hr />
