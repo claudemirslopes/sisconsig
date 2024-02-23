@@ -28,21 +28,19 @@
     <script src="<?php echo base_url('public/vendor/circle-progress/circle-progress.min.js'); ?>"></script>
     <script src="<?php echo base_url('public/vendor/perfect-scrollbar/perfect-scrollbar.js'); ?>"></script>
     <script src="<?php echo base_url('public/vendor/chartjs/Chart.bundle.min.js'); ?>"></script>
-    <script src="<?php echo base_url('public/vendor/select2/select2.min.js'); ?>">
-    </script>
+    <!-- <script src="<?php echo base_url('public/vendor/select2/select2.min.js'); ?>"> </script> -->
 
     <!-- Main JS-->
     <script src="<?php echo base_url('public/js/main.js'); ?>"></script>
 
 	<?php if (isset($scripts)): ?>
-    
 		<?php foreach ($scripts as $script): ?>
-
 			<script src="<?php echo base_url('public/'.$script); ?>"></script>
-
 		<?php endforeach; ?>
-
 	<?php endif; ?>
+
+	<!-- Adicione a definição da variável BASE_URL após incluir os scripts -->
+	<script>var BASE_URL = "<?php echo base_url(); ?>";</script>
 
 </body>
 

@@ -32,6 +32,10 @@ $edit_stock3 = '#' . preg_quote(base_url('/produtos/edit/')) . '\d+#';
 
 $edit_service1 = '#' . preg_quote(base_url('/servicos/edit/')) . '\d+#';
 
+$edit_financial1 = '#' . preg_quote(base_url('/modulo/edit/')) . '\d+#';
+$edit_financial2 = '#' . preg_quote(base_url('/contas_pagar/edit/')) . '\d+#';
+$edit_financial3 = '#' . preg_quote(base_url('/contas_receber/edit/')) . '\d+#';
+
 ?>
 		<!-- HEADER MOBILE-->
 		<header class="header-mobile d-block d-lg-none">
@@ -204,7 +208,7 @@ $edit_service1 = '#' . preg_quote(base_url('/servicos/edit/')) . '\d+#';
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>servicos">
                                 <i class="fas fa-server"></i>Serviços</a>
                         </li><hr />
-						<li class="has-sub">
+						<li class="<?php if (current_url() == base_url('/modulo') || current_url() == base_url('/modulo/add') || current_url() == base_url('/contas_pagar') || current_url() == base_url('/contas_pagar/add') || current_url() == base_url('/contas_receber') || current_url() == base_url('/contas_receber/add') || preg_match($edit_financial1, $url) || preg_match($edit_financial2, $url) || preg_match($edit_financial3, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                               <i class="fa fa-credit-card" aria-hidden="true"></i>Financeiro <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">

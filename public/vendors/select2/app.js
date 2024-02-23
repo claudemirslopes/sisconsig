@@ -45,7 +45,7 @@ $(document).ready(function () {
         allowClear: true,
         "language": {
             "noResults": function () {
-                return '<span class="text-danger">Fornecedor não encontrado</span> <a href="' + BASE_URL + 'fornecedores/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+                return '<span class="text-danger">Fornecedor não encontrado</span> <a href="' + BASE_URL + 'fornecedores/add" target="_blank" class="btn btn-primary btn-sm btn-block">Cadastrar</a>';
             }
         },
         escapeMarkup: function (markup) {
@@ -58,7 +58,7 @@ $(document).ready(function () {
         allowClear: true,
         "language": {
             "noResults": function () {
-                return '<span class="text-danger">Cliente não encontrado</span> <a href="' + BASE_URL + 'franquias/clientes/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+                return '<span class="text-danger">Cliente não encontrado</span> <a href="' + BASE_URL + 'franquias/clientes/add" target="_blank" class="btn btn-primary btn-sm btn-block">Cadastrar</a>';
             }
         },
         escapeMarkup: function (markup) {

@@ -396,3 +396,67 @@
     endif;
     ?>
 	<!-- Fim Modal de exclusão de serviços -->
+
+	<!-- Modal de exclusão de contas a pagar -->
+	<?php
+    if (current_url() == base_url('/contas_pagar')):
+	foreach ($contas_pagar as $conta_pagar):	
+    ?>
+	<div class="modal fade" id="conta_pagar-<?php echo $conta_pagar->conta_pagar_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticModalLabel">Excluír conta?</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						Deseja mesmo excluír esta conta?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+					<a href="<?php echo base_url('contas_pagar/del/'.$conta_pagar->conta_pagar_id); ?>" class="btn btn-danger btn-sm">Confirmar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+    endforeach; 
+    endif;
+    ?>
+	<!-- Fim Modal de exclusão de contas a pagar -->
+
+	<!-- Modal de exclusão de formas de pagamentos-->
+	<?php
+    if (current_url() == base_url('/modulo')):
+	foreach ($formas_pagamentos as $forma_pagamento):	
+    ?>
+	<div class="modal fade" id="forma_pagamento-<?php echo $forma_pagamento->forma_pagamento_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticModalLabel">Excluír forma de pagamento</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						Deseja mesmo excluír esta forma de pagamento?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+					<a href="<?php echo base_url('modulo/del/'.$forma_pagamento->forma_pagamento_id); ?>" class="btn btn-danger btn-sm">Confirmar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+    endforeach; 
+    endif;
+    ?>
+	<!-- Fim Modal de exclusão de formas de pagamentos -->

@@ -32,9 +32,8 @@
     <link href="<?php echo base_url('public/vendor/wow/animate.css'); ?>" rel="stylesheet" media="all">
     <link href="<?php echo base_url('public/vendor/css-hamburgers/hamburgers.min.css'); ?>" rel="stylesheet" media="all">
     <link href="<?php echo base_url('public/vendor/slick/slick.css'); ?>" rel="stylesheet" media="all">
-    <link href="<?php echo base_url('public/vendor/select2/select2.min.css'); ?>" rel="stylesheet" media="all">
     <link href="<?php echo base_url('public/vendor/perfect-scrollbar/perfect-scrollbar.css'); ?>" rel="stylesheet" media="all">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css'); ?>">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css'); ?>"> -->
 
     <!-- Main CSS-->
     <link href="<?php echo base_url('public/css/custom.css'); ?>" rel="stylesheet" media="all">
@@ -71,14 +70,19 @@
     <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url('public/apple-icon-64x64.png'); ?>">
 
 	<?php if (isset($styles)): ?>
-    
 		<?php foreach ($styles as $style): ?>
-
 			<link rel="stylesheet" href="<?php echo base_url('public/'.$style); ?>">
-
 		<?php endforeach; ?>
-
 	<?php endif; ?>
+
+	<!-- Adicione a definição da variável BASE_URL após incluir os estilos -->
+	<script>var BASE_URL = "<?php echo base_url(); ?>";</script>
+
+	<style>
+		.select2-container .select2-selection--single .select2-selection__rendered {
+			width: 278px !important;
+		}
+	</style>
 
 </head>
 

@@ -32,21 +32,26 @@ class Contas_pagar extends CI_Controller{
             'titulo' => 'Contas a Pagar',
             
             'styles' => array(
-              'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-              'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
-            ),
-            
-            'scripts' => array(
-              'vendors/datatables.net/js/jquery.dataTables.min.js', 
-              'vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
-              'vendors/datatables.net-bs4/js/app.js',
-              'vendors/datatables.net-buttons/js/dataTables.buttons.min.js',
-              'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
-              'vendors/datatables.net-buttons/js/buttons.html5.min.js',
-              'vendors/datatables.net-buttons/js/buttons.print.min.js',
-              'vendors/datatables.net-buttons/js/buttons.colVis.min.js',
-              'assets/js/init-scripts/data-table/datatables-init.js',  
-            ),
+				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
+				'assets/datatables/datatables-responsive/css/responsive.bootstrap4.min.css',
+				'assets/datatables/datatables-buttons/css/buttons.bootstrap4.min.css',
+			  ),
+			  
+			  'scripts' => array(
+				  'assets/datatables/datatables/jquery.dataTables.min.js',
+				  'assets/datatables/datatables/app.js',
+				  'assets/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js',
+				  'assets/datatables/datatables-responsive/js/dataTables.responsive.min.js',
+				  'assets/datatables/datatables-responsive/js/responsive.bootstrap4.min.js',
+				  'assets/datatables/datatables-buttons/js/dataTables.buttons.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.bootstrap4.min.js',
+				  'assets/datatables/jszip/jszip.min.js',
+				  'assets/datatables/pdfmake/pdfmake.min.js',
+				  'assets/datatables/pdfmake/vfs_fonts.js',
+				  'assets/datatables/datatables-buttons/js/buttons.html5.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.print.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.colVis.min.js',
+			  ),
             
             // Home
             'soma_vendas' => $this->home_model->get_sum_vendas(),
@@ -56,6 +61,7 @@ class Contas_pagar extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
             
             'contas_pagar' => $this->financeiro_model->get_all_pagar(),
             
@@ -68,17 +74,11 @@ class Contas_pagar extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -115,10 +115,6 @@ class Contas_pagar extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-//        echo '<pre>';
-//        print_r($data['contas_pagar']);
-//        exit();
-        
          // Carrega a view de contas_pagar
         $this->load->view('layout/header', $data);
         $this->load->view('contas_pagar/index');
@@ -135,8 +131,6 @@ class Contas_pagar extends CI_Controller{
             $this->form_validation->set_rules('conta_pagar_obs', 'observação', 'max_length[100]');
             
             if ($this->form_validation->run()) { 
-                // Teste para ver se valida
-//                exit('Validado');
                 
                 $data = elements(
 
@@ -159,10 +153,6 @@ class Contas_pagar extends CI_Controller{
             // Limpar dados maliciosos
             $data = html_escape($data);
             
-//            echo '<pre>';
-//            print_r($data);
-//            exit();
-            
             $this->core_model->insert('contas_pagar', $data);
             
             redirect('contas_pagar');
@@ -176,7 +166,7 @@ class Contas_pagar extends CI_Controller{
                 'styles' => array(
                     'vendors/select2/select2.min.css',
                     'vendors/autocomplete/jquery-ui.css',
-                    'vendors/autocomplete/estilos.css',
+                    'vendors/autocomplete/estilo.css',
                 ),
 
                 'scripts' => array (
@@ -198,6 +188,7 @@ class Contas_pagar extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
 
@@ -210,17 +201,11 @@ class Contas_pagar extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -280,8 +265,6 @@ class Contas_pagar extends CI_Controller{
             $this->form_validation->set_rules('conta_pagar_obs', 'observação', 'max_length[100]');
             
             if ($this->form_validation->run()) { 
-                // Teste para ver se valida
-//                exit('Validado');
                 
                 $data = elements(
 
@@ -303,11 +286,6 @@ class Contas_pagar extends CI_Controller{
             
             // Limpar dados maliciosos
             $data = html_escape($data);
-            
-//            echo '<pre>';
-//            print_r($data);
-//            exit();
-            
             $this->core_model->update('contas_pagar', $data, array('conta_pagar_id' => $conta_pagar_id));
             
             redirect('contas_pagar');
@@ -343,6 +321,7 @@ class Contas_pagar extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'conta_pagar' => $this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id)),
                 'fornecedores' => $this->core_model->get_all('fornecedores'),
@@ -356,17 +335,11 @@ class Contas_pagar extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;

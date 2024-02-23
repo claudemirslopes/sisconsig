@@ -325,7 +325,7 @@ $("#cnpj").focusout(function(){
         $.ajax({
             //O campo URL diz o caminho de onde virá os dados
             //É importante concatenar o valor digitado no CNPJ
-            url: 'http://localhost/BluesunPlataforma/dados/cnpj.php?cnpj='+$("#cnpj").val(),
+            url: 'http://localhost/sisconsig/dados/cnpj.php?cnpj='+$("#cnpj").val(),
             //Atualização: caso use java, use cnpj.jsp, usando o outro exemplo.
             //Aqui você deve preencher o tipo de dados que será lido,
             //no caso, estamos lendo JSON.
