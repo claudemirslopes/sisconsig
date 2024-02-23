@@ -78,12 +78,6 @@
 	<!-- Adicione a definição da variável BASE_URL após incluir os estilos -->
 	<script>var BASE_URL = "<?php echo base_url(); ?>";</script>
 
-	<style>
-		.select2-container .select2-selection--single .select2-selection__rendered {
-			width: 278px !important;
-		}
-	</style>
-
 </head>
 
 <body class="animsition">

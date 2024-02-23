@@ -25,21 +25,26 @@ class Ordem_servicos extends CI_Controller{
             'titulo' => 'Ordem de Serviços',
             
             'styles' => array(
-              'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-              'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
-            ),
-            
-            'scripts' => array(
-              'vendors/datatables.net/js/jquery.dataTables.min.js', 
-              'vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
-              'vendors/datatables.net-bs4/js/app.js',
-              'vendors/datatables.net-buttons/js/dataTables.buttons.min.js',
-              'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
-              'vendors/datatables.net-buttons/js/buttons.html5.min.js',
-              'vendors/datatables.net-buttons/js/buttons.print.min.js',
-              'vendors/datatables.net-buttons/js/buttons.colVis.min.js',
-              'assets/js/init-scripts/data-table/datatables-init.js',  
-            ),
+				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
+				'assets/datatables/datatables-responsive/css/responsive.bootstrap4.min.css',
+				'assets/datatables/datatables-buttons/css/buttons.bootstrap4.min.css',
+			  ),
+			  
+			  'scripts' => array(
+				  'assets/datatables/datatables/jquery.dataTables.min.js',
+				  'assets/datatables/datatables/app.js',
+				  'assets/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js',
+				  'assets/datatables/datatables-responsive/js/dataTables.responsive.min.js',
+				  'assets/datatables/datatables-responsive/js/responsive.bootstrap4.min.js',
+				  'assets/datatables/datatables-buttons/js/dataTables.buttons.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.bootstrap4.min.js',
+				  'assets/datatables/jszip/jszip.min.js',
+				  'assets/datatables/pdfmake/pdfmake.min.js',
+				  'assets/datatables/pdfmake/vfs_fonts.js',
+				  'assets/datatables/datatables-buttons/js/buttons.html5.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.print.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.colVis.min.js',
+			  ),
             
             // Home
             'soma_vendas' => $this->home_model->get_sum_vendas(),
@@ -49,6 +54,7 @@ class Ordem_servicos extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
             
             'ordens_servicos' => $this->ordem_servicos_model->get_all(),
             
@@ -61,17 +67,11 @@ class Ordem_servicos extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -108,10 +108,6 @@ class Ordem_servicos extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-//        echo '<pre>';
-//        print_r($data['ordens_servicos']);
-//        exit();
-        
          // Carrega a view de servicos
         $this->load->view('layout/header', $data);
         $this->load->view('ordem_servicos/index');
@@ -130,10 +126,6 @@ class Ordem_servicos extends CI_Controller{
         $this->form_validation->set_rules('ordem_servico_obs', 'parceiro', 'max_length[500]');
                         
             if ($this->form_validation->run()) {
-                
-//                echo '<pre>';
-//                print_r($this->input->post());
-//                exit();
                 
                 $ordem_servico_valor_total = str_replace('R$',"", trim($this->input->post('ordem_servico_valor_total')));
                 
@@ -226,6 +218,7 @@ class Ordem_servicos extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
                    
                 'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),                    
                 'ordem_servico_pedido' => $this->core_model->generate_unique_code('ordens_servicos', 'numeric', 10, 'ordem_servico_pedido'),
@@ -239,17 +232,11 @@ class Ordem_servicos extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-        //        else {
-        //            $data['contas_receber_vencidas'] = FALSE;
-        //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-        //        else {
-        //            $data['contas_pagar_vencidas'] = FALSE;
-        //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -321,10 +308,6 @@ class Ordem_servicos extends CI_Controller{
             
             
             if ($this->form_validation->run()) {
-                
-//                echo '<pre>';
-//                print_r($this->input->post());
-//                exit();
                 
                 $ordem_servico_valor_total = str_replace('R$',"", trim($this->input->post('ordem_servico_valor_total')));
                 
@@ -422,6 +405,7 @@ class Ordem_servicos extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
                 'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos', array('forma_pagamento_ativa' => 1)),
@@ -440,17 +424,11 @@ class Ordem_servicos extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -486,10 +464,6 @@ class Ordem_servicos extends CI_Controller{
 
 
             $data['contador_notificacoes'] = $contador_notificacoes;
-
-//                echo '<pre>';
-//                print_r($ordem_servico);
-//                exit();
                 
                  // Carrega a view de servicos
                 $this->load->view('layout/header', $data);
@@ -529,10 +503,67 @@ class Ordem_servicos extends CI_Controller{
             
             $data = array(
                 'titulo' => 'Escolha uma opção',
+
+				'soma_vendas' => $this->home_model->get_sum_vendas(),
+                'soma_servicos' => $this->home_model->get_sum_ordem_servicos(),
+                'soma_receber' => $this->home_model->get_sum_receber(),
+                'soma_pagar' => $this->home_model->get_sum_pagar(),
+                'soma_produtos' => $this->home_model->get_produtos_quantidade(),
+                'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
+                'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
                 
                 // Enviar dados da OS
                 'ordem_servico' => $this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id)),
             );
+
+			//CENTRAL DE NOTIFICAÇÕES
+            $contador_notificacoes = 0;
+            if ($this->home_model->get_contas_receber_vencidas()) {
+
+                $data['contas_receber_vencidas'] = TRUE;
+                $contador_notificacoes ++;
+            } 
+            if ($this->home_model->get_contas_pagar_vencidas()) {
+
+                $data['contas_pagar_vencidas'] = TRUE;
+                $contador_notificacoes ++;
+            } 
+            if ($this->home_model->get_contas_pagar_vencem_hoje()) {
+
+                $data['contas_pagar_vence_hoje'] = TRUE;
+                $contador_notificacoes ++;
+            }
+            if ($this->home_model->get_contas_receber_vencem_hoje()) {
+
+                $data['contas_receber_vence_hoje'] = TRUE;
+                $contador_notificacoes ++;
+            }
+            if ($this->home_model->get_usuarios_desativados()) {
+
+                $data['usuarios_desativados'] = TRUE;
+                $contador_notificacoes ++;
+            }
+            if ($this->home_model->get_produtos_sem_estoque()) {
+
+                $data['produto_sem_estoque'] = TRUE;
+                $contador_notificacoes ++;
+            }
+            if ($this->home_model->get_reclamacoes_pendentes()) {
+
+                $data['reclama_pendente'] = TRUE;
+                $contador_notificacoes ++;
+            }
+            if ($this->ion_auth->is_admin()) {
+               if ($this->home_model->get_tickets_pendentes()) {
+
+                    $data['ticket_pendente'] = TRUE;
+                    $contador_notificacoes ++;
+                } 
+            }
+
+
+            $data['contador_notificacoes'] = $contador_notificacoes;
             
             // Carrega a view de servicos
             $this->load->view('layout/header', $data);
@@ -552,15 +583,7 @@ class Ordem_servicos extends CI_Controller{
             
             $empresa = $this->core_model->get_by_id('sistema', array('sistema_id' => 1));
             
-//            echo '<pre>';
-//            print_r($empresa);
-//            exit();
-            
             $ordem_servico = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
-            
-//            echo '<pre>';
-//            print_r($ordem_servico);
-//            exit();
             
             $file_name = 'OS_'.$ordem_servico->ordem_servico_id;
 
@@ -576,7 +599,7 @@ class Ordem_servicos extends CI_Controller{
             $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
             $html .= '<tr>';
             $html .= '<th align="left">';
-            $html .='<img src="public/images/logo_bsum.png" width="330px">';
+            $html .='<img src="public/images/icon/SisConsig06.png" width="330px">';
             $html .='</th>';
             $html .= '<th align="right">';
             $html .= '<h4 align="right">                  

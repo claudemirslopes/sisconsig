@@ -6,6 +6,11 @@
         <!-- BARRA SUPERIOR - NAVBAR -->
         <?php $this->load->view('layout/navbar') ?>
         <!-- BARRA SUPERIOR - NAVBAR -->
+		<style>
+			.select2-container .select2-selection--single .select2-selection__rendered {
+				width: 278px !important;
+			}
+		</style>
 
             <!-- MAIN CONTENT-->
             <div class="main-content">

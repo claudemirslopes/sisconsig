@@ -36,6 +36,8 @@ $edit_financial1 = '#' . preg_quote(base_url('/modulo/edit/')) . '\d+#';
 $edit_financial2 = '#' . preg_quote(base_url('/contas_pagar/edit/')) . '\d+#';
 $edit_financial3 = '#' . preg_quote(base_url('/contas_receber/edit/')) . '\d+#';
 
+$edit_order1 = '#' . preg_quote(base_url('/os/edit/')) . '\d+#';
+$edit_order2 = '#' . preg_quote(base_url('/os/imprimir/')) . '\d+#';
 ?>
 		<!-- HEADER MOBILE-->
 		<header class="header-mobile d-block d-lg-none">
@@ -120,7 +122,7 @@ $edit_financial3 = '#' . preg_quote(base_url('/contas_receber/edit/')) . '\d+#';
                                 <i class="fas fa-shopping-cart"></i>Pedidos <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="<?php echo base_url('/'); ?>pedidos"><span style="font-size: .8em;">Ordem de Serviços</span></a>
+                                    <a href="<?php echo base_url('/'); ?>os"><span style="font-size: .8em;">Ordem de Serviços</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>vendas"><span style="font-size: .8em;">Vendas produtos</span></a>
@@ -223,12 +225,12 @@ $edit_financial3 = '#' . preg_quote(base_url('/contas_receber/edit/')) . '\d+#';
                                 </li><hr>
                             </ul>
                         </li>
-						<li class="has-sub">
+						<li class="<?php if (current_url() == base_url('/os') || current_url() == base_url('/os/add') || preg_match($edit_order1, $url) || preg_match($edit_order2, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-shopping-cart"></i>Pedidos <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="<?php echo base_url('/'); ?>pedidos"><span style="font-size: .8em;">Ordem de Serviços</span></a>
+                                    <a href="<?php echo base_url('/'); ?>os"><span style="font-size: .8em;">Ordem de Serviços</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>vendas"><span style="font-size: .8em;">Vendas produtos</span></a>
