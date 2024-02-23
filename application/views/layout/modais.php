@@ -429,6 +429,38 @@
     ?>
 	<!-- Fim Modal de exclusão de contas a pagar -->
 
+	<!-- Modal de exclusão de contas a receber -->
+	<?php
+    if (current_url() == base_url('/contas_receber')):
+	foreach ($contas_receber as $conta_receber):	
+    ?>
+	<div class="modal fade" id="conta_receber-<?php echo $conta_receber->conta_receber_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticModalLabel">Excluír conta?</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						Deseja mesmo excluír esta conta?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+					<a href="<?php echo base_url('contas_receber/del/'.$conta_receber->conta_receber_id); ?>" class="btn btn-danger btn-sm">Confirmar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+    endforeach; 
+    endif;
+    ?>
+	<!-- Fim Modal de exclusão de contas a receber -->
+
 	<!-- Modal de exclusão de formas de pagamentos-->
 	<?php
     if (current_url() == base_url('/modulo')):
@@ -460,3 +492,4 @@
     endif;
     ?>
 	<!-- Fim Modal de exclusão de formas de pagamentos -->
+

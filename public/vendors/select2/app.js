@@ -6,7 +6,7 @@ $(document).ready(function () {
         allowClear: true,
         "language": {
             "noResults": function () {
-                return '<span class="text-danger">Cliente não encontrado</span> <a href="' + BASE_URL + 'clientes/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+                return '<span class="text-danger">Cliente não encontrado</span> <a href="' + BASE_URL + 'clientes/add" target="_blank" class="btn btn-primary btn-sm btn-block">Cadastrar</a>';
             }
         },
         escapeMarkup: function (markup) {
@@ -19,7 +19,7 @@ $(document).ready(function () {
         allowClear: true,
         "language": {
             "noResults": function () {
-                return '<span class="text-danger">Forma não encontrada</span> <a href="' + BASE_URL + 'modulo/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+                return '<span class="text-danger">Forma não encontrada</span> <a href="' + BASE_URL + 'modulo/add" target="_blank" class="btn btn-primary btn-sm btn-block">Cadastrar</a>';
             }
         },
         escapeMarkup: function (markup) {
@@ -32,7 +32,7 @@ $(document).ready(function () {
         allowClear: true,
         "language": {
             "noResults": function () {
-                return '<span class="text-danger">Vendedor não encontrado</span> <a href="' + BASE_URL + 'vendedores/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+                return '<span class="text-danger">Vendedor não encontrado</span> <a href="' + BASE_URL + 'vendedores/add" target="_blank" class="btn btn-primary btn-sm btn-block">Cadastrar</a>';
             }
         },
         escapeMarkup: function (markup) {
