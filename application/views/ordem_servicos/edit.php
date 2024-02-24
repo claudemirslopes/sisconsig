@@ -90,10 +90,10 @@
 
 									<div class="form-group row">
 										<div class="ui-widget col-lg-10 mb-1 mt-1">
-											<input id="buscar_servicos" class="search form-control form-control-lg col-lg-12" placeholder="Que serviço você está buscando?">
+											<input id="buscar_servicos" class="search form-control form-control-sm col-lg-12" placeholder="Que serviço você está buscando?">
 										</div>
 										<div class="ui-widget col-lg-2 mb-1 mt-1">
-											<input class="form-control bg-dark text-light text-center" name="ordem_servico_pedido" value="<?php echo $ordem_servico->ordem_servico_pedido; ?>" readonly="">
+											<input class="form-control form-control-sm bg-dark text-light text-center" name="ordem_servico_pedido" value="<?php echo $ordem_servico->ordem_servico_pedido; ?>" readonly="">
 											<small class="form-text text-muted">Número do pedido</small>
 										</div>
 									</div>
@@ -104,8 +104,8 @@
 											<thead>
 												<tr>
 													<th></th>
-													<th class="" style="width: 55%">Serviço</th>
-													<th class="text-right pr-2" style="width: 12%">Valor unitário</th>
+													<th class="" style="width: 47%">Serviço</th>
+													<th class="text-right pr-2" style="width: 20%">Valor unitário</th>
 													<th class="text-center" style="width: 8%">Qty</th>
 													<th class="" style="width: 8%">% Desc</th>
 													<th class="text-right pr-2" style="width: 15%">Total</th>
@@ -125,12 +125,12 @@
 
 														<tr>
 															<td><input type="hidden" name="servico_id[]" value="<?php echo $os_servico->ordem_ts_id_servico ?>" data-cell="A<?php echo $i; ?>" data-format="0" readonly></td>
-															<td><input title="Descrição do servico" type="text" name="servico_descricao[]" value="<?php echo $os_servico->servico_descricao ?>" class="servico_descricao form-control form-control-user input-sm" data-cell="B<?php echo $i; ?>" readonly></td>
-															<td><input title="Valor unitário do servico" name="servico_preco[]" value="<?php echo $os_servico->ordem_ts_valor_unitario ?>" class="form-control form-control-user input-sm text-right money pr-1" data-cell="C<?php echo $i; ?>" data-format="R$ 0,0.00" readonly></td>
-															<td><input title="Digite a quantidade apenas em número inteiros" type="text" inputmode="numeric" pattern="[-+]?[0-9]*[.,]?[0-9]+" name="servico_quantidade[]" value="<?php echo $os_servico->ordem_ts_quantidade ?>" class="qty form-control form-control-user text-center" data-cell="D<?php echo $i; ?>" data-format="0[.]00" required></td>
-															<td><input title="Insira o desconto" name="servico_desconto[]" class="form-control form-control-user input-sm text-right" value="<?php echo $os_servico->ordem_ts_valor_desconto ?>" data-cell="E<?php echo $i; ?>" data-format="0,0[.]00 %" required></td>
-															<td><input title="Valor total do servico selecionado" name="servico_item_total[]" value="<?php echo $os_servico->ordem_ts_valor_total ?>" class="form-control form-control-user input-sm text-right pr-1" data-cell="F<?php echo $i; ?>" data-format="R$ 0,0.00" data-formula="D<?php echo $i; ?>*(C<?php echo $i; ?>-(C<?php echo $i; ?>*E<?php echo $i; ?>))" readonly></td>
-															<td class="text-center"><input type="hidden" name="valor_desconto_servico[]" data-cell="H<?php echo $i; ?>" data-format="R$ 0,0.00" data-formula="((C<?php echo $i; ?>*D<?php echo $i; ?>)-F<?php echo $i; ?>)"><button title="Remover o servico" class="btn-remove btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
+															<td><input title="Descrição do servico" type="text" name="servico_descricao[]" value="<?php echo $os_servico->servico_descricao ?>" class="servico_descricao form-control form-control-sm form-control-user input-sm" data-cell="B<?php echo $i; ?>" readonly></td>
+															<td><input title="Valor unitário do servico" name="servico_preco[]" value="<?php echo $os_servico->ordem_ts_valor_unitario ?>" class="form-control form-control-user form-control-sm input-sm text-right money pr-1" data-cell="C<?php echo $i; ?>" data-format="R$ 0,0.00" readonly></td>
+															<td><input title="Digite a quantidade apenas em número inteiros" type="text" inputmode="numeric" pattern="[-+]?[0-9]*[.,]?[0-9]+" name="servico_quantidade[]" value="<?php echo $os_servico->ordem_ts_quantidade ?>" class="qty form-control form-control-user form-control-sm text-center" data-cell="D<?php echo $i; ?>" data-format="0[.]00" required></td>
+															<td><input title="Insira o desconto" name="servico_desconto[]" class="form-control form-control-user form-control-sm input-sm text-right" value="<?php echo $os_servico->ordem_ts_valor_desconto ?>" data-cell="E<?php echo $i; ?>" data-format="0,0[.]00 %" required></td>
+															<td><input title="Valor total do servico selecionado" name="servico_item_total[]" value="<?php echo $os_servico->ordem_ts_valor_total ?>" class="form-control form-control-user form-control-sm input-sm text-right pr-1" data-cell="F<?php echo $i; ?>" data-format="R$ 0,0.00" data-formula="D<?php echo $i; ?>*(C<?php echo $i; ?>-(C<?php echo $i; ?>*E<?php echo $i; ?>))" readonly></td>
+															<td class="text-center"><input type="hidden" name="valor_desconto_servico[]" data-cell="H<?php echo $i; ?>" data-format="R$ 0,0.00" data-formula="((C<?php echo $i; ?>*D<?php echo $i; ?>)-F<?php echo $i; ?>)"><button title="Remover o servico" class="btn-remove btn btn-sm btn-primary"><i class="fa fa-trash"></i></button></td>
 														</tr>
 
 
@@ -145,7 +145,7 @@
 														<label class="font-weight-bold pt-1" for="total">Valor de desconto:</label>
 													</td>
 													<td class="text-right border-0">
-														<input type="text" name="ordem_servico_valor_desconto" class="form-control form-control-user text-right pr-1" data-format="$ 0,0.00" data-cell="L1" data-formula="SUM(H1:H5)" readonly="">
+														<input type="text" name="ordem_servico_valor_desconto" class="form-control form-control-user form-control-sm text-right pr-1" data-format="$ 0,0.00" data-cell="L1" data-formula="SUM(H1:H5)" readonly="">
 													</td>
 													<td class="border-0">&nbsp;</td>
 												</tr>
@@ -154,7 +154,7 @@
 														<label class="font-weight-bold pt-1" for="total">Total a pagar:</label>
 													</td>
 													<td class="text-right border-0">
-														<input type="text" name="ordem_servico_valor_total" class="form-control form-control-user text-right pr-1" data-format="$ 0,0.00" data-cell="G2" data-formula="SUM(F1:F5)" readonly="">
+														<input type="text" name="ordem_servico_valor_total" class="form-control form-control-user form-control-sm text-right pr-1" data-format="$ 0,0.00" data-cell="G2" data-formula="SUM(F1:F5)" readonly="">
 													</td>
 													<td class="border-0">&nbsp;</td>
 												</tr>
@@ -172,8 +172,8 @@
 										<div class="form-group row">
 
 											<div class="col-sm-6 mb-1 mb-sm-0">
-												<label class="small my-0">Escolha o parceiro <span class="text-danger">*</span></label>
-												<select class="custom-select contas_receber" name="ordem_servico_parceiro_id" required="">
+												<label class="small my-0">Escolha o parceiro <span class="text-danger">*</span></label><br>
+												<select class="form-control form-control-sm custom-select contas_receber" name="ordem_servico_parceiro_id" required="">
 													<?php foreach ($parceiros as $parceiro) : ?>
 														<option value="<?php echo $parceiro->parceiro_id; ?>" <?php echo ($parceiro->parceiro_id == $ordem_servico->ordem_servico_parceiro_id ? 'selected' : '') ?>><?php echo $parceiro->parceiro_nome . ' ' . $parceiro->parceiro_sobrenome . ' | CPF ou CNPJ: ' . $parceiro->parceiro_cpf_cnpj; ?></option>
 													<?php endforeach; ?>
@@ -183,7 +183,7 @@
 
 											<div class="col-md-3">
 												<label class="small my-0">Forma de pagamento <span class="text-danger">*</span></label>
-												<select id="id_pagamento" class="custom-select forma-pagamento" name="ordem_servico_forma_pagamento_id">
+												<select id="id_pagamento" class="form-control form-control-sm custom-select forma-pagamento" name="ordem_servico_forma_pagamento_id">
 													<option value="">Escolha</option>
 													<?php foreach ($formas_pagamentos as $forma_pagamento) : ?>
 														<option value="<?php echo $forma_pagamento->forma_pagamento_id; ?>" <?php echo ($forma_pagamento->forma_pagamento_id == $ordem_servico->ordem_servico_forma_pagamento_id ? 'selected' : '') ?>><?php echo $forma_pagamento->forma_pagamento_nome; ?></option>
@@ -194,7 +194,7 @@
 
 											<div class="col-md-3">
 												<label class="small my-0">Status da ordem <span class="text-danger">*</span></label>
-												<select class="custom-select" name="ordem_servico_status">
+												<select class="form-control form-control-sm custom-select" name="ordem_servico_status">
 													<option value="0" <?php echo $ordem_servico->ordem_servico_status == 0 ? 'selected' : '' ?>>Aberta</option>
 													<option value="1" <?php echo $ordem_servico->ordem_servico_status == 1 ? 'selected' : '' ?>>Fechada</option>
 												</select>
@@ -206,19 +206,19 @@
 
 											<div class="col-sm-6 mb-1 mb-sm-0">
 												<label class="small my-0">Equipamento <span class="text-danger">*</span></label>
-												<input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_equipamento', $ordem_servico->ordem_servico_equipamento); ?>" name="ordem_servico_equipamento" required="">
+												<input type="text" class="form-control form-control-sm  form-control-user" value="<?php echo set_value('ordem_servico_equipamento', $ordem_servico->ordem_servico_equipamento); ?>" name="ordem_servico_equipamento" required="">
 												<?php echo form_error('ordem_servico_equipamento', '<div class="text-danger small">', '</div>') ?>
 											</div>
 
 											<div class="col-sm-3 mb-1 mb-sm-0">
 												<label class="small my-0">Marca <span class="text-danger">*</span></label>
-												<input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_marca_equipamento', $ordem_servico->ordem_servico_marca_equipamento); ?>" name="ordem_servico_marca_equipamento" required="">
+												<input type="text" class="form-control form-control-sm form-control-user" value="<?php echo set_value('ordem_servico_marca_equipamento', $ordem_servico->ordem_servico_marca_equipamento); ?>" name="ordem_servico_marca_equipamento" required="">
 												<?php echo form_error('ordem_servico_marca_equipamento', '<div class="text-danger small">', '</div>') ?>
 											</div>
 
 											<div class="col-sm-3 mb-1 mb-sm-0">
 												<label class="small my-0">Modelo <span class="text-danger">*</span></label>
-												<input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_modelo_equipamento', $ordem_servico->ordem_servico_modelo_equipamento); ?>" name="ordem_servico_modelo_equipamento" required="">
+												<input type="text" class="form-control form-control-sm form-control-user" value="<?php echo set_value('ordem_servico_modelo_equipamento', $ordem_servico->ordem_servico_modelo_equipamento); ?>" name="ordem_servico_modelo_equipamento" required="">
 												<?php echo form_error('ordem_servico_modelo_equipamento', '<div class="text-danger small">', '</div>') ?>
 											</div>
 
@@ -228,13 +228,13 @@
 
 											<div class="col-sm-6 mb-1 mb-sm-0">
 												<label class="small my-0">Defeitos <span class="text-danger">*</span></label>
-												<input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_defeito', $ordem_servico->ordem_servico_defeito); ?>" name="ordem_servico_defeito" required="">
+												<input type="text" class="form-control form-control-sm form-control-user" value="<?php echo set_value('ordem_servico_defeito', $ordem_servico->ordem_servico_defeito); ?>" name="ordem_servico_defeito" required="">
 												<?php echo form_error('ordem_servico_defeito', '<div class="text-danger small">', '</div>') ?>
 											</div>
 
 											<div class="col-sm-6 mb-1 mb-sm-0">
 												<label class="small my-0">Acessórios <span class="text-danger">*</span></label>
-												<input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_acessorios', $ordem_servico->ordem_servico_acessorios); ?>" name="ordem_servico_acessorios" required="">
+												<input type="text" class="form-control form-control-sm form-control-user" value="<?php echo set_value('ordem_servico_acessorios', $ordem_servico->ordem_servico_acessorios); ?>" name="ordem_servico_acessorios" required="">
 												<?php echo form_error('ordem_servico_acessorios', '<div class="text-danger small">', '</div>') ?>
 											</div>
 
@@ -243,7 +243,7 @@
 
 											<div class="col-sm-12 mb-1 mb-sm-0">
 												<label class="small my-0">Observações <span class="text-danger"></span></label>
-												<textarea type="text" class="form-control form-control-user" value="" name="ordem_servico_obs"><?php echo set_value('ordem_servico_obs', $ordem_servico->ordem_servico_obs); ?></textarea>
+												<textarea type="text" class="form-control form-control-sm form-control-user" value="" name="ordem_servico_obs"><?php echo set_value('ordem_servico_obs', $ordem_servico->ordem_servico_obs); ?></textarea>
 											</div>
 
 										</div>

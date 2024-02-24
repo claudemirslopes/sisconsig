@@ -10,15 +10,6 @@
 	.select2-container .select2-selection--single .select2-selection__rendered {
 		width: 578px !important;
 	}
-	#lista_servicos > tr > td:nth-child(2) > input{
-		background-color: #FAFAFA !important;
-	}
-	#lista_servicos > tr > td:nth-child(3) > input{
-		background-color: #FAFAFA !important;
-	}
-	#lista_servicos > tr > td:nth-child(6) > input{
-		background-color: #FAFAFA !important;
-	}
 </style>
 
 <!-- MAIN CONTENT-->
@@ -103,8 +94,8 @@
 											<thead>
 												<tr>
 													<th></th>
-													<th class="" style="width: 55%">Serviço</th>
-													<th class="text-right pr-2" style="width: 12%">Valor unitário</th>
+													<th class="" style="width: 47%">Serviço</th>
+													<th class="text-right pr-2" style="width: 20%">Valor unitário</th>
 													<th class="text-center" style="width: 8%">Qty</th>
 													<th class="" style="width: 8%">% Desc</th>
 													<th class="text-right pr-2" style="width: 15%">Total</th>
