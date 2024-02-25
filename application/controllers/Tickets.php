@@ -26,27 +26,26 @@ class Tickets extends CI_Controller{
             'titulo' => 'Tickets',
             
             'styles' => array(
-              'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-              'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
-            ),
-            
-            'scripts' => array(
-              'vendors/datatables.net/js/jquery.dataTables.min.js', 
-              'vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
-              
-              'vendors/datatables.net/export/dataTables.buttons.min.js',
-              'vendors/datatables.net/export/pdfmake.min.js',
-              'vendors/datatables.net/export/vfs_fonts.js',
-              'vendors/datatables.net/export/buttons.html5.min.js',
-                
-              'vendors/datatables.net-bs4/js/app.js',
-              'vendors/datatables.net-buttons/js/dataTables.buttons.min.js',
-              'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
-              'vendors/datatables.net-buttons/js/buttons.html5.min.js',
-              'vendors/datatables.net-buttons/js/buttons.print.min.js',
-              'vendors/datatables.net-buttons/js/buttons.colVis.min.js',
-              'assets/js/init-scripts/data-table/datatables-init.js',       
-            ),
+				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
+				'assets/datatables/datatables-responsive/css/responsive.bootstrap4.min.css',
+				'assets/datatables/datatables-buttons/css/buttons.bootstrap4.min.css',
+			  ),
+			  
+			  'scripts' => array(
+				  'assets/datatables/datatables/jquery.dataTables.min.js',
+				  'assets/datatables/datatables/app.js',
+				  'assets/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js',
+				  'assets/datatables/datatables-responsive/js/dataTables.responsive.min.js',
+				  'assets/datatables/datatables-responsive/js/responsive.bootstrap4.min.js',
+				  'assets/datatables/datatables-buttons/js/dataTables.buttons.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.bootstrap4.min.js',
+				  'assets/datatables/jszip/jszip.min.js',
+				  'assets/datatables/pdfmake/pdfmake.min.js',
+				  'assets/datatables/pdfmake/vfs_fonts.js',
+				  'assets/datatables/datatables-buttons/js/buttons.html5.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.print.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.colVis.min.js',
+			  ),
             
             // Home
             'soma_vendas' => $this->home_model->get_sum_vendas(),
@@ -56,6 +55,7 @@ class Tickets extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
             
             //Usa o model de tickets para dar JOIN nas tabelas
             'tickets' => $this->tickets_model->get_all(),
@@ -69,17 +69,11 @@ class Tickets extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -115,11 +109,6 @@ class Tickets extends CI_Controller{
         
         
         $data['contador_notificacoes'] = $contador_notificacoes;
-        
-//        echo '<pre>';
-//        print_r($data['tickets']);
-//        exit();
-        
          // Carrega a view de tickets
         $this->load->view('layout/header', $data);
         $this->load->view('tickets/index');
@@ -176,6 +165,7 @@ class Tickets extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
 
             );
                 
@@ -186,17 +176,11 @@ class Tickets extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -252,11 +236,6 @@ class Tickets extends CI_Controller{
             $this->form_validation->set_rules('ticket_assunto', 'assunto', 'trim|required|min_length[4]|max_length[80]');
             $this->form_validation->set_rules('ticket_mensagem', 'mensagem', 'trim|required|max_length[500]');
             $this->form_validation->set_rules('ticket_resposta', 'resposta', 'trim|required|max_length[500]');
-            
-//            echo '<pre>';
-//            print_r($this->input->post());
-//            exit();
-            
             if ($this->form_validation->run()) {
                 
                 $data = elements(
@@ -274,7 +253,7 @@ class Tickets extends CI_Controller{
             );
             
             // Colocar todo texto em maiúsculo
-//            $data['ticket_estado'] = strtoupper($this->input->post('ticket_estado'));
+			// $data['ticket_estado'] = strtoupper($this->input->post('ticket_estado'));
             
             // Limpar dados maliciosos
             $data = html_escape($data);
@@ -299,6 +278,7 @@ class Tickets extends CI_Controller{
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+				'avisos_home' => $this->home_model->get_avisos_home(),
                 
                 'users' => $this->core_model->get_all('users'),
                 'ticket' => $this->core_model->get_by_id('tickets', array('ticket_id' => $ticket_id)),
@@ -311,17 +291,11 @@ class Tickets extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -357,11 +331,6 @@ class Tickets extends CI_Controller{
 
 
             $data['contador_notificacoes'] = $contador_notificacoes;
-                
-//            $ticket = $data['ticket'] = $this->tickets_model->get_by_id($ticket_id);
-//            echo '<pre>';
-//            print_r($this->input->post());
-//            exit();
             
             // Carrega a view de editar tickets
             $this->load->view('layout/header', $data);

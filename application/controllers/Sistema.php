@@ -42,6 +42,7 @@ class Sistema extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(),
             
             'sistema' => $this->core_model->get_by_id('sistema', array('sistema_id' => 1)),
         );
@@ -82,10 +83,6 @@ class Sistema extends CI_Controller{
                 [sistema_txt_ordem_servico] => 
              */
             
-//            echo '<pre>';
-//            print_r($this->input->post());
-//            exit();
-            
             $data = elements(
 
                     array(
@@ -123,17 +120,11 @@ class Sistema extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
