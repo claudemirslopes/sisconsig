@@ -25,21 +25,26 @@ class Reclamacoes extends CI_Controller{
             'titulo' => 'Reclamações',
             
             'styles' => array(
-              'vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-              'vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
-            ),
-            
-            'scripts' => array(
-              'vendors/datatables.net/js/jquery.dataTables.min.js', 
-              'vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
-              'vendors/datatables.net-bs4/js/app.js',
-              'vendors/datatables.net-buttons/js/dataTables.buttons.min.js',
-              'vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js',
-              'vendors/datatables.net-buttons/js/buttons.html5.min.js',
-              'vendors/datatables.net-buttons/js/buttons.print.min.js',
-              'vendors/datatables.net-buttons/js/buttons.colVis.min.js',
-              'assets/js/init-scripts/data-table/datatables-init.js',  
-            ),
+				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
+				'assets/datatables/datatables-responsive/css/responsive.bootstrap4.min.css',
+				'assets/datatables/datatables-buttons/css/buttons.bootstrap4.min.css',
+			  ),
+			  
+			  'scripts' => array(
+				  'assets/datatables/datatables/jquery.dataTables.min.js',
+				  'assets/datatables/datatables/app.js',
+				  'assets/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js',
+				  'assets/datatables/datatables-responsive/js/dataTables.responsive.min.js',
+				  'assets/datatables/datatables-responsive/js/responsive.bootstrap4.min.js',
+				  'assets/datatables/datatables-buttons/js/dataTables.buttons.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.bootstrap4.min.js',
+				  'assets/datatables/jszip/jszip.min.js',
+				  'assets/datatables/pdfmake/pdfmake.min.js',
+				  'assets/datatables/pdfmake/vfs_fonts.js',
+				  'assets/datatables/datatables-buttons/js/buttons.html5.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.print.min.js',
+				  'assets/datatables/datatables-buttons/js/buttons.colVis.min.js',
+			  ),
             
             // Home
             'soma_vendas' => $this->home_model->get_sum_vendas(),
@@ -49,6 +54,7 @@ class Reclamacoes extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(), 
             
             'reclamacoes' => $this->reclamacoes_model->get_all(),
             
@@ -61,17 +67,11 @@ class Reclamacoes extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -108,10 +108,6 @@ class Reclamacoes extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-//        echo '<pre>';
-//        print_r($data['categorias']);
-//        exit();
-        
          // Carrega a view de categorias
         $this->load->view('layout/header', $data);
         $this->load->view('reclamacoes/index');
@@ -131,10 +127,6 @@ class Reclamacoes extends CI_Controller{
             $this->form_validation->set_rules('reclama_obs', 'reclamação', 'trim|required|max_length[500]');
             $this->form_validation->set_rules('reclama_retorno_obs', 'resposta', 'trim|required|max_length[500]');
             
-//            echo '<pre>';
-//            print_r($this->input->post());
-//            exit();
-            
             if ($this->form_validation->run()) {
                 
                 $data = elements(
@@ -151,7 +143,7 @@ class Reclamacoes extends CI_Controller{
             );
             
             // Colocar todo texto em maiúsculo
-//            $data['reclama_estado'] = strtoupper($this->input->post('reclama_estado'));
+			// $data['reclama_estado'] = strtoupper($this->input->post('reclama_estado'));
             
             // Limpar dados maliciosos
             $data = html_escape($data);
@@ -181,7 +173,8 @@ class Reclamacoes extends CI_Controller{
                 'soma_pagar' => $this->home_model->get_sum_pagar(),
                 'soma_produtos' => $this->home_model->get_produtos_quantidade(),
                 'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
-                'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+                'top_servicos' => $this->home_model->get_servicos_mais_vendidos(),
+				'avisos_home' => $this->home_model->get_avisos_home(), 
                 
                 'parceiros' => $this->core_model->get_all('parceiros'),
                 'orcamentos' => $this->core_model->get_all('orcamentos'),
@@ -195,17 +188,11 @@ class Reclamacoes extends CI_Controller{
                 $data['contas_receber_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_receber_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencidas()) {
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
             } 
-    //        else {
-    //            $data['contas_pagar_vencidas'] = FALSE;
-    //        }
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -241,11 +228,6 @@ class Reclamacoes extends CI_Controller{
 
 
             $data['contador_notificacoes'] = $contador_notificacoes;
-                
-//            $reclama = $data['reclama'] = $this->reclamacoes_model->get_by_id($reclama_id);
-//            echo '<pre>';
-//            print_r($this->input->post());
-//            exit();
             
             // Carrega a view de editar reclamacoes
             $this->load->view('layout/header', $data);
