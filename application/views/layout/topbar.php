@@ -20,9 +20,6 @@
 						</li>
 						<?php $group = array(1, 3); if ($this->ion_auth->in_group($group)): ?>
 						<li class="nav-item">
-							<a class="nav-link text-dark" href="<?php echo base_url('relatorios'); ?>" style="font-size: .9em;"><i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;&nbsp;Relatórios</a>
-						</li>
-						<li class="nav-item">
 							<a class="nav-link text-dark" href="<?php echo base_url('avisos'); ?>" style="font-size: .9em;"><i class="fa fa-sticky-note" aria-hidden="true"></i>&nbsp;&nbsp;Avisos</a>
 						</li>
 						<li class="nav-item">

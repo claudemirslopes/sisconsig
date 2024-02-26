@@ -55,6 +55,7 @@ class Relatorios extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(), 
             
             
             
@@ -67,17 +68,11 @@ class Relatorios extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -114,10 +109,6 @@ class Relatorios extends CI_Controller{
         
         $data['contador_notificacoes'] = $contador_notificacoes;
         
-//        echo '<pre>';
-//        print_r($data['categorias']);
-//        exit();
-        
          // Carrega a view de categorias
         $this->load->view('layout/header', $data);
         $this->load->view('relatorios/index');
@@ -138,6 +129,7 @@ class Relatorios extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
+			'avisos_home' => $this->home_model->get_avisos_home(), 
         );
         
         $data_inicial = $this->input->post('data_inicial');
@@ -167,7 +159,7 @@ class Relatorios extends CI_Controller{
                 $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                 $html .= '<tr>';
                 $html .= '<th align="left">';
-                $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                 $html .='</th>';
                 $html .= '<th align="right">';
                 $html .= '<h4 align="right">                  
@@ -253,17 +245,11 @@ class Relatorios extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -320,6 +306,7 @@ class Relatorios extends CI_Controller{
             'soma_produtos' => $this->home_model->get_produtos_quantidade(),
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(),
+			'avisos_home' => $this->home_model->get_avisos_home(), 
         );
         
         $data_inicial = $this->input->post('data_inicial');
@@ -349,7 +336,7 @@ class Relatorios extends CI_Controller{
                 $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                 $html .= '<tr>';
                 $html .= '<th align="left">';
-                $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                 $html .='</th>';
                 $html .= '<th align="right">';
                 $html .= '<h4 align="right">                  
@@ -435,17 +422,11 @@ class Relatorios extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -503,6 +484,7 @@ class Relatorios extends CI_Controller{
         'soma_produtos' => $this->home_model->get_produtos_quantidade(),
         'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
         'top_servicos' => $this->home_model->get_servicos_mais_vendidos(),
+		'avisos_home' => $this->home_model->get_avisos_home(), 
         );
         
         $contas = $this->input->post('contas');
@@ -537,7 +519,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                     $html .= '<tr>';
                     $html .= '<th align="left">';
-                    $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                    $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                     $html .='</th>';
                     $html .= '<th align="right">';
                     $html .= '<h4 align="right">                  
@@ -596,10 +578,6 @@ class Relatorios extends CI_Controller{
                     $html .= '</body>';         
                     $html .= '</html>';
 
-    //                echo '<pre>';
-    //                print_r($html);
-    //                exit();
-
                     //False abre PDF no navegador e o true faz download
                     $this->pdf->createPDF($html, $file_name, false);
                     
@@ -634,7 +612,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                     $html .= '<tr>';
                     $html .= '<th align="left">';
-                    $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                    $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                     $html .='</th>';
                     $html .= '<th align="right">';
                     $html .= '<h4 align="right">                  
@@ -693,10 +671,6 @@ class Relatorios extends CI_Controller{
                     $html .= '</body>';         
                     $html .= '</html>';
 
-//                    echo '<pre>';
-//                    print_r($html);
-//                    exit();
-
                     //False abre PDF no navegador e o true faz download
                     $this->pdf->createPDF($html, $file_name, false);
                     
@@ -731,7 +705,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                     $html .= '<tr>';
                     $html .= '<th align="left">';
-                    $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                    $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                     $html .='</th>';
                     $html .= '<th align="right">';
                     $html .= '<h4 align="right">                  
@@ -790,10 +764,6 @@ class Relatorios extends CI_Controller{
                     $html .= '</body>';         
                     $html .= '</html>';
 
-//                    echo '<pre>';
-//                    print_r($html);
-//                    exit();
-
                     //False abre PDF no navegador e o true faz download
                     $this->pdf->createPDF($html, $file_name, false);
                     
@@ -813,17 +783,11 @@ class Relatorios extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
@@ -881,6 +845,8 @@ class Relatorios extends CI_Controller{
         'soma_produtos' => $this->home_model->get_produtos_quantidade(),
         'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
         'top_servicos' => $this->home_model->get_servicos_mais_vendidos(),
+		'avisos_home' => $this->home_model->get_avisos_home(), 
+
         );
         
         $contas = $this->input->post('contas');
@@ -915,7 +881,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                     $html .= '<tr>';
                     $html .= '<th align="left">';
-                    $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                    $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                     $html .='</th>';
                     $html .= '<th align="right">';
                     $html .= '<h4 align="right">                  
@@ -976,10 +942,6 @@ class Relatorios extends CI_Controller{
                     $html .= '</body>';         
                     $html .= '</html>';
 
-    //                echo '<pre>';
-    //                print_r($html);
-    //                exit();
-
                     //False abre PDF no navegador e o true faz download
                     $this->pdf->createPDF($html, $file_name, false);
                     
@@ -1014,7 +976,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                     $html .= '<tr>';
                     $html .= '<th align="left">';
-                    $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                    $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                     $html .='</th>';
                     $html .= '<th align="right">';
                     $html .= '<h4 align="right">                  
@@ -1075,10 +1037,6 @@ class Relatorios extends CI_Controller{
                     $html .= '</body>';         
                     $html .= '</html>';
 
-//                    echo '<pre>';
-//                    print_r($html);
-//                    exit();
-
                     //False abre PDF no navegador e o true faz download
                     $this->pdf->createPDF($html, $file_name, false);
                     
@@ -1113,7 +1071,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
                     $html .= '<tr>';
                     $html .= '<th align="left">';
-                    $html .='<img src="public/images/logo_bsum.png" width="330px">';
+                    $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
                     $html .='</th>';
                     $html .= '<th align="right">';
                     $html .= '<h4 align="right">                  
@@ -1174,10 +1132,6 @@ class Relatorios extends CI_Controller{
                     $html .= '</body>';         
                     $html .= '</html>';
 
-//                    echo '<pre>';
-//                    print_r($html);
-//                    exit();
-
                     //False abre PDF no navegador e o true faz download
                     $this->pdf->createPDF($html, $file_name, false);
                     
@@ -1197,17 +1151,11 @@ class Relatorios extends CI_Controller{
             $data['contas_receber_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_receber_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencidas()) {
             
             $data['contas_pagar_vencidas'] = TRUE;
             $contador_notificacoes ++;
         } 
-//        else {
-//            $data['contas_pagar_vencidas'] = FALSE;
-//        }
         if ($this->home_model->get_contas_pagar_vencem_hoje()) {
             
             $data['contas_pagar_vence_hoje'] = TRUE;
