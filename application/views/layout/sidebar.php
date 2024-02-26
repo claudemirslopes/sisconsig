@@ -136,7 +136,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                             </ul>
 						<li class="has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>relatorios">
-                                <i class="fas fa-list"></i>Relatorios</a>
+                                <i class="fas fa-th-list"></i>Relatorios</a>
                         </li>
 						<li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -249,7 +249,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                         </li><hr>
 						<li class="<?php if (current_url() == base_url('/relatorios') || current_url() == base_url('/relatorios/vendas') || current_url() == base_url('/relatorios/os') || current_url() == base_url('/relatorios/receber') || current_url() == base_url('/relatorios/pagar')) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>relatorios">
-                                <i class="fas fa-list"></i>Relatórios</a>
+                                <i class="fas fa-th-list"></i>Relatórios</a>
                         </li>
 						<li class="<?php if (current_url() == base_url('/sistema') || current_url() == base_url('/kb') || current_url() == base_url('/kb/add') || current_url() == base_url('/tickets') || current_url() == base_url('/tickets/add') || preg_match($edit_tools1, $url) || preg_match($edit_tools2, $url) || preg_match($edit_tools3, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
