@@ -19,9 +19,9 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<strong class="card-title mb-3"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
+							<strong class="card-title mb-3"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
 							<div class="pull-right">
-								<!-- <a href="<?php echo base_url('/'); ?>reclamacoes/add"><button type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp; Nova reclamação</button></a> -->
+								<a href="<?php echo base_url('/'); ?>mensagens/add"><button type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp; Nova mensagem</button></a>
 								<a href="#" type="button" class="btn btn-outline-danger btn-sm" title="Página anterior" onclick="voltar()">
 									<i class="fa fa-angle-left" aria-hidden="true"></i></a>
 								<script>
@@ -113,7 +113,7 @@
 												}
 											</style>
 											<td class="text-right">
-												<a href="<?php echo base_url('reclamacoes/edit/' . $reclama->reclama_id); ?>" class="btn btn-sm btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
+												<a href="<?php echo base_url('mensagens/edit/' . $reclama->reclama_id); ?>" class="btn btn-sm btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
 												<a href="javascript(void)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#reclama-<?php echo $reclama->reclama_id; ?>" title="Excluír"><i class="fa fa-trash" aria-hidden="true"></i></a>
 											</td>
 										</tr>

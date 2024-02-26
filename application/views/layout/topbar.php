@@ -16,7 +16,7 @@
 						</li>
 						<?php endif; ?>
 						<li class="nav-item">
-						<a class="nav-link text-dark" href="<?php echo base_url('reclamacoes'); ?>" style="font-size: .9em;"><i class="fa fa-bullhorn" aria-hidden="true"></i>&nbsp;&nbsp;Reclamações</a>
+						<a class="nav-link text-dark" href="<?php echo base_url('mensagens'); ?>" style="font-size: .9em;"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;Mensagens</a>
 						</li>
 						<?php $group = array(1, 3); if ($this->ion_auth->in_group($group)): ?>
 						<li class="nav-item">

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('Ação não permitida');
 
-class Reclamacoes_model extends CI_Model {
+class Mensagens_model extends CI_Model {
 
     public function get_all() {
             

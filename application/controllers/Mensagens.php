@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit ('Ação não permitida');
 
-class Reclamacoes extends CI_Controller{
+class Mensagens extends CI_Controller{
     
     public function __construct() {
         parent::__construct(); 
@@ -13,7 +13,7 @@ class Reclamacoes extends CI_Controller{
             redirect('login');
         }
         
-        $this->load->model('reclamacoes_model');
+        $this->load->model('mensagens_model');
         $this->load->model('home_model');
         
     }
@@ -22,7 +22,7 @@ class Reclamacoes extends CI_Controller{
         
         $data = array(
             
-            'titulo' => 'Reclamações',
+            'titulo' => 'Mensagens',
             
             'styles' => array(
 				'assets/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css',
@@ -56,7 +56,7 @@ class Reclamacoes extends CI_Controller{
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
 			'avisos_home' => $this->home_model->get_avisos_home(), 
             
-            'reclamacoes' => $this->reclamacoes_model->get_all(),
+            'reclamacoes' => $this->mensagens_model->get_all(),
             
         );
         
@@ -110,7 +110,7 @@ class Reclamacoes extends CI_Controller{
         
          // Carrega a view de categorias
         $this->load->view('layout/header', $data);
-        $this->load->view('reclamacoes/index');
+        $this->load->view('mensagens/index');
         $this->load->view('layout/footer');
         
     }
@@ -118,13 +118,13 @@ class Reclamacoes extends CI_Controller{
     public function edit($reclama_id = NULL) {
         
         if (!$reclama_id || !$this->core_model->get_by_id('reclamacoes', array('reclama_id' => $reclama_id))) {            
-            $this->session->set_flashdata('error', 'Reclamação não encontrada!');
-            redirect('reclamacoes');
+            $this->session->set_flashdata('error', 'Mensagen não encontrada!');
+            redirect('mensagens');
         } else {
             
             $this->form_validation->set_rules('reclama_orc_id', 'codigo', 'required');
             $this->form_validation->set_rules('reclama_cli_id', 'autorizado', 'required');
-            $this->form_validation->set_rules('reclama_obs', 'reclamação', 'trim|required|max_length[500]');
+            $this->form_validation->set_rules('reclama_obs', 'mensagem', 'trim|required|max_length[500]');
             $this->form_validation->set_rules('reclama_retorno_obs', 'resposta', 'trim|required|max_length[500]');
             
             if ($this->form_validation->run()) {
@@ -150,7 +150,7 @@ class Reclamacoes extends CI_Controller{
             
             $this->core_model->update('reclamacoes', $data, array('reclama_id' => $reclama_id));
             
-            redirect('reclamacoes');
+            redirect('mensagens');
                 
             } else {
                 
@@ -158,7 +158,7 @@ class Reclamacoes extends CI_Controller{
                 
                 $data = array(
             
-                'titulo' => 'Atualizar reclamação',
+                'titulo' => 'Atualizar mensagem',
 
                 'scripts' => array (
                     'vendors/mask/jquery_3.2.1.min.js',
@@ -231,7 +231,7 @@ class Reclamacoes extends CI_Controller{
             
             // Carrega a view de editar reclamacoes
             $this->load->view('layout/header', $data);
-            $this->load->view('reclamacoes/edit');
+            $this->load->view('mensagens/edit');
             $this->load->view('layout/footer');
                
             }
@@ -242,16 +242,16 @@ class Reclamacoes extends CI_Controller{
     public function del($reclama_id = NULL) {
 
         if (!$reclama_id || !$this->core_model->get_by_id('reclamacoes', array('reclama_id' => $reclama_id))) {
-            $this->session->set_flashdata('error', 'A reclamação não foi encontrada');
-            redirect('reclamacoes');
+            $this->session->set_flashdata('error', 'A mensagem não foi encontrada');
+            redirect('mensagens');
         } 
         if ($this->core_model->get_by_id('reclamacoes', array('reclama_id' => $reclama_id, 'reclama_status' => 0))) {
-            $this->session->set_flashdata('info', 'Esta reclamação não pode ser excluída, pois ainda não foi resolvida');
-            redirect('reclamacoes');
+            $this->session->set_flashdata('info', 'Esta mensagem não pode ser excluída, pois ainda não foi resolvida');
+            redirect('mensagens');
         } 
         
             $this->core_model->delete('reclamacoes', array('reclama_id' => $reclama_id));
-            redirect('reclamacoes');
+            redirect('mensagens');
 
     }
     

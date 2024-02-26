@@ -100,13 +100,13 @@
 											</a>
 											<?php endif; ?>
 											<?php if(isset($reclama_pendente)): ?>
-											<a href="<?php echo base_url('reclamacoes'); ?>">
+											<a href="<?php echo base_url('mensagens'); ?>">
                                             <div class="notifi__item">
                                                 <div class="bg-c7 img-cir img-35">
-                                                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                                 </div>
                                                 <div class="content">
-                                                    <p>Há reclamações pendentes não resolvidas</p>
+                                                    <p>Há mensagens pendentes não finalizadas</p>
                                                 </div>
                                             </div>
 											</a>
