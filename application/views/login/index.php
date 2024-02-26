@@ -2,10 +2,10 @@
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-warning">
-    <div class="card-header text-center">
-        <a href="https://tanamesa.com/" title="Acessar o site" target="_blank" class="h1"><img src="<?php echo base_url('public/dist/img/SisConsig06.png'); ?>" alt="TNM Logo" class="brand-image swing"  style="border-radius: 1px !important;width: 80%;"></a>
+    <div class="card-header text-center bg-dark">
+        <a href="https://tanamesa.com/" title="Acessar o site" target="_blank" class="h1"><img src="<?php echo base_url('public/dist/img/Logo_SisConsig03.png'); ?>" alt="TNM Logo" class="brand-image swing"  style="border-radius: 1px !important;width: 80%;"></a>
     </div>
-    <div class="card-body form-signin">
+    <div class="card-body form-signin bg-dark">
       <p class="login-box-msg">Bem vindo ao Painel ADM</p>
 
       <form method="POST" accept-charset="utf-8" class="n" action="<?php echo base_url('login/autentica'); ?>" id="login" name="form_autentica">
@@ -28,7 +28,7 @@
         <div class="row">
         </div>
         <div class="social-auth-links text-center mt-2 mb-3">
-            <button type="submit" class="btn btn-block btn-warning">
+            <button type="submit" class="btn btn-block btn-danger">
               <i class="fa fa-unlock mr-2"></i> Acessar
             </button>
         </div>

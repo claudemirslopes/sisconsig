@@ -51,7 +51,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="<?php echo base_url('/'); ?>">
-                            <img src="<?php echo base_url('public/images/icon/SisConsig06.png" alt="SisConsig'); ?>" style="width: 50% !important;" />
+                            <img src="<?php echo base_url('public/dist/img/Logo_SisConsig02.png" alt="SisConsig'); ?>" style="width: 50% !important;" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -166,7 +166,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="<?php echo base_url('/'); ?>">
-                    <img src="<?php echo base_url('public/images/icon/SisConsig06.png'); ?>" alt="SisConsig" />
+                    <img src="<?php echo base_url('public/dist/img/Logo_SisConsig02.png'); ?>" width="80%" alt="SisConsig" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
