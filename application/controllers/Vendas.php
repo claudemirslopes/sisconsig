@@ -599,7 +599,7 @@ class Vendas extends CI_Controller{
             $html .= '<table width="100%" align="center" style="border-collapse: collapse;padding-top:15px;">';
             $html .= '<tr>';
             $html .= '<th align="left">';
-            $html .='<img src="public/images/icon/SisConsig06.png" width="330px">';
+            $html .='<img src="public/dist/img/Logo_SisConsig02.png" width="330px">';
             $html .='</th>';
             $html .= '<th align="right">';
             $html .= '<h4 align="right">                  

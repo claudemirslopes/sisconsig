@@ -530,7 +530,7 @@
 	if (current_url() == base_url('/vendas')) :
 		foreach ($vendas as $venda) :
 	?>
-			<div class="modal fade" id="servico-<?php echo $venda->venda_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+			<div class="modal fade" id="venda-<?php echo $venda->venda_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">

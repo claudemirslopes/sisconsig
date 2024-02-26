@@ -90,3 +90,5 @@ $route['orcamentos/kb/add'] = 'orcamentos/Base_conhecimento/add';
 $route['orcamentos/kb/edit/(:num)'] = 'orcamentos/Base_conhecimento/edit/$1';
 $route['orcamentos/kb/del/(:num)'] = 'orcamentos/Base_conhecimento/del/$1';
 $route['orcamentos/kb/view/(:num)'] = 'orcamentos/Base_conhecimento/view/$1';
+
+$route['pesquisa'] = 'pesquisas/pesquisa';
