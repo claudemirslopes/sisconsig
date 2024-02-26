@@ -621,3 +621,35 @@
 	endif;
 	?>
 	<!-- Fim Modal de exclusão de reclamacoes -->
+
+	<!-- Modal de exclusão de avisos-->
+	<?php
+	if (current_url() == base_url('/avisos')) :
+		foreach ($avisados as $avisado) :
+	?>
+			<div class="modal fade" id="avisado-<?php echo $avisado->avisado_id; ?>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticModalLabel">Excluír aviso</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>
+								Deseja mesmo excluír este aviso?
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+							<a href="<?php echo base_url('avisos/del/' . $avisado->avisado_id); ?>" class="btn btn-danger btn-sm">Confirmar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+	<?php
+		endforeach;
+	endif;
+	?>
+	<!-- Fim Modal de exclusão de avisos -->
