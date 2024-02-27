@@ -79,11 +79,11 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>usuarios"><span style="font-size: .8em;">Colaboradores</span></a>
 								</li>
-								<li>
+								<!-- <li>
                                     <a href="<?php echo base_url('/'); ?>fornecedores"><span style="font-size: .8em;">Fornecedores</span></a>
-								</li>
+								</li> -->
 								<li>
-                                    <a href="<?php echo base_url('/'); ?>parceiros"><span style="font-size: .8em;">Parceiros</span></a>
+                                    <a href="<?php echo base_url('/'); ?>parceiros"><span style="font-size: .8em;">Parceiros Consignados</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>vendedores"><span style="font-size: .8em;">Vendedores</span></a>
@@ -149,7 +149,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                     <a href="<?php echo base_url('/'); ?>tickets"><span style="font-size: .8em;">Tickets (chamados)</span></a>
                                 </li>
 								<li>
-                                    <a href="<?php echo base_url('/'); ?>sistema"><span style="font-size: .8em;">Configurações da Loja</span></a>
+                                    <a href="<?php echo base_url('/'); ?>sistema"><span style="font-size: .8em;">Dados da Empresa</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -190,11 +190,11 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>usuarios"><span style="font-size: .8em;">Colaboradores</span></a>
                                 </li>
-								<li>
+								<!-- <li>
                                     <a href="<?php echo base_url('/'); ?>fornecedores"><span style="font-size: .8em;">Fornecedores</span></a>
-								</li>
+								</li> -->
 								<li>
-                                    <a href="<?php echo base_url('/'); ?>parceiros"><span style="font-size: .8em;">Parceiros</span></a>
+                                    <a href="<?php echo base_url('/'); ?>parceiros"><span style="font-size: .8em;">Parceiros Consignados</span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('/'); ?>vendedores"><span style="font-size: .8em;">Vendedores</span></a>
@@ -262,7 +262,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                     <a href="<?php echo base_url('/'); ?>tickets"><span style="font-size: .8em;">Tickets (chamados)</span></a>
                                 </li>
 								<li>
-                                    <a href="<?php echo base_url('/'); ?>sistema"><span style="font-size: .8em;">Configurações da Loja</span></a>
+                                    <a href="<?php echo base_url('/'); ?>sistema"><span style="font-size: .8em;">Dados da Empresa</span></a>
                                 </li>
                             </ul>
                         </li><hr />

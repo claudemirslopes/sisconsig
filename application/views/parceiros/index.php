@@ -20,7 +20,7 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong class="card-title mb-3"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
+										<strong class="card-title mb-3"><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
 										<div class="pull-right">
 											<a href="<?php echo base_url('/'); ?>parceiros/add"><button type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp; Novo Parceiro</button></a>
 											<a href="#" type="button" class="btn btn-outline-danger btn-sm" title="Página anterior" onclick="voltar()">
@@ -98,20 +98,18 @@
 														<?php if ($parceiro->parceiro_pessoa == 1):  ?>
 														<?php echo $parceiro->parceiro_nome ?>&nbsp;<?php echo $parceiro->parceiro_sobrenome ?>
 														<?php else: ?>
-														<?php echo $parceiro->parceiro_nome ?>
+														<?php echo $parceiro->parceiro_sobrenome ?>
 														<?php endif; ?>
 													</td>
 													<td><?php echo $parceiro->parceiro_cpf_cnpj ?></td>
 													<td class="text-center">
 														<?php 
 															if ($parceiro->parceiro_tipo == 1) {
-																echo '<span class="badge badge-info btn-sm">Franqueado</span>';
+																echo '<span class="badge badge-info btn-sm">Consignado</span>';
 															} elseif ($parceiro->parceiro_tipo == 2) {
-																echo '<span class="badge badge-secondary btn-sm">Integrador</span>';
-															} elseif ($parceiro->parceiro_tipo == 0) {
-																echo '<span class="badge badge-warning btn-sm">Parceiro (Teste)</span>';
-															} else {
-																echo '<span class="badge badge-primary btn-sm">Distribuidor</span>';
+																echo '<span class="badge badge-secondary btn-sm">Fornecedor</span>';
+															}  else {
+																echo '<span class="badge badge-primary btn-sm">Outros</span>';
 															}
 														?>
 													</td>

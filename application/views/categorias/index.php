@@ -20,7 +20,7 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong class="card-title mb-3"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
+										<strong class="card-title mb-3"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
 										<div class="pull-right">
 											<a href="<?php echo base_url('/'); ?>categorias/add"><button type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp; Nova categoria</button></a>
 											<a href="#" type="button" class="btn btn-outline-danger btn-sm" title="Página anterior" onclick="voltar()">

@@ -18,6 +18,19 @@
 			<div class="row" style="margin-bottom: -25px;">
 				<div class="col-md-12">
 					<div class="card">
+						<div class="card-header">
+							<strong class="card-title mb-3"><i class="fa fa-building" aria-hidden="true"></i>&nbsp; <?php echo $titulo; ?></small></strong>
+							<div class="pull-right">
+								<!-- <a href="<?php echo base_url('/'); ?>vendas/add"><button type="button" class="btn btn-outline-dark btn-sm"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp; Realizar nova venda</button></a> -->
+								<a href="#" type="button" class="btn btn-outline-danger btn-sm" title="Página anterior" onclick="voltar()">
+									<i class="fa fa-angle-left" aria-hidden="true"></i></a>
+								<script>
+									function voltar() {
+										window.history.back();
+									}
+								</script>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -25,9 +38,6 @@
 				<!-- CONTEÚDO SERÁ COLOCADO AQUI -->
 				<div class="content mt-1 col-lg-12" style="margin-top: -15px !important;">
 					<div class="card">
-						<div class="card-header bg-secondary text-light">
-							<strong class="card-title" v-if="headerText">Configuração do Sistema</strong>
-						</div>
 
 						<div class="card-body" style="border: 1px solid #f7f7f7;">
 
@@ -58,7 +68,7 @@
 
 							<form method="post" name="form_edit" class="user">
 								<fieldset class="border p-2" style="margin-top: -10px;">
-									<legend class="font-small"><i class="fa fa-building-o"></i> Dados da Empresa</legend>
+									<legend class="font-small"><i class="fa fa-building-o"></i> Informações</legend>
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label for="sistema_razao_social">Razão Social <span style="color: red;font-weight: bold;">*</span></label>

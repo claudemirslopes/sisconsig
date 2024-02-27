@@ -120,6 +120,10 @@ class Produtos extends CI_Controller{
     }
     
     public function add() {
+
+		$this->form_validation->set_rules('produto_categoria_id', 'categoria', 'trim|required');
+		$this->form_validation->set_rules('produto_marca_id', 'marca', 'trim|required');
+		$this->form_validation->set_rules('produto_parceiro_id', 'parceiro', 'trim|required');
 		$this->form_validation->set_rules('produto_descricao', 'descrição', 'trim|required|min_length[4]|max_length[145]|is_unique[produtos.produto_descricao]');
 		$this->form_validation->set_rules('produto_unidade', 'unidade', 'trim|required|min_length[2]|max_length[10]');
 		$this->form_validation->set_rules('produto_codigo_barras', 'código de barras', 'trim|max_length[45]');
@@ -128,8 +132,8 @@ class Produtos extends CI_Controller{
 		$this->form_validation->set_rules('produto_preco_venda', 'preço de venda', 'trim|required|max_length[45]|callback_check_produto_preco_venda');
 		$this->form_validation->set_rules('produto_estoque_minimo', 'estoque mínimo', 'trim|required|greater_than_equal_to[1]');
 		$this->form_validation->set_rules('produto_qtde_estoque', 'quantidade estoque', 'trim|required');
-		$this->form_validation->set_rules('produto_eficiência', 'eficiência', 'min_length[1]');
 		$this->form_validation->set_rules('produto_obs', 'observação', 'trim|max_length[500]');
+		$this->form_validation->set_rules('produto_estado', 'estado', 'trim|required|min_length[2]');
 		
 		if ($this->form_validation->run()) {
 			// Upload da imagem
@@ -149,7 +153,7 @@ class Produtos extends CI_Controller{
 					array(
 						'produto_codigo',
 						'produto_categoria_id',
-						'produto_fornecedor_id',
+						'produto_parceiro_id',
 						'produto_marca_id',
 						'produto_descricao',
 						'produto_unidade',
@@ -159,11 +163,10 @@ class Produtos extends CI_Controller{
 						'produto_preco_venda',
 						'produto_estoque_minimo',
 						'produto_qtde_estoque',
-						'produto_potencia',
-						'produto_eficiencia',
 						'produto_codigo_interno',
 						'produto_ativo',
 						'produto_obs',
+						'produto_estado',
 					), $this->input->post()
 				);
 	
@@ -185,7 +188,7 @@ class Produtos extends CI_Controller{
 				$data['produto_codigo_interno'] = $this->core_model->generate_unique_code('produtos', 'numeric', 8, 'produto_codigo_interno');
 	
 				$data['marcas'] = $this->core_model->get_all('marcas', array('marca_ativa' => 1));
-				$data['fornecedores'] = $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1));
+				$data['parceiros'] = $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1));
 				$data['categorias'] = $this->core_model->get_all('categorias', array('categoria_ativa' => 1));
 	
 				//CENTRAL DE NOTIFICAÇÕES
@@ -254,6 +257,7 @@ class Produtos extends CI_Controller{
 	
 			$data = array(
 				'titulo' => 'Cadastrar produto',
+
 				'scripts' => array(
 					'vendors/mask/jquery_3.2.1.min.js',
 					'vendors/mask/jquery.mask.min.js',
@@ -273,7 +277,7 @@ class Produtos extends CI_Controller{
 				'produto_codigo_interno' => $this->core_model->generate_unique_code('produtos', 'numeric', 8, 'produto_codigo_interno'),
 	
 				'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
-				'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
+				'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
 				'categorias' => $this->core_model->get_all('categorias', array('categoria_ativa' => 1)),
 			);
 
@@ -321,7 +325,7 @@ class Produtos extends CI_Controller{
 					} 
 				}
 
-						$data['contador_notificacoes'] = $this->get_contador_notificacoes();
+				$data['contador_notificacoes'] = $this->get_contador_notificacoes();
 	
 			$this->load->view('layout/header', $data);
 			$this->load->view('produtos/add');
@@ -360,11 +364,15 @@ class Produtos extends CI_Controller{
 	}
     
     public function edit($produto_id = NULL) {
+
 		if (!$produto_id || !$this->core_model->get_by_id('produtos', array('produto_id' => $produto_id))) {
 			$this->session->set_flashdata('error', 'Produto não encontrado!');
 			redirect('produtos');
 		} else {
-			$this->form_validation->set_rules('produto_descricao', 'descrição', 'trim|required|min_length[4]|max_length[145]|callback_check_produto_descricao');
+			$this->form_validation->set_rules('produto_categoria_id', 'categoria', 'trim|required');
+			$this->form_validation->set_rules('produto_marca_id', 'marca', 'trim|required');
+			$this->form_validation->set_rules('produto_parceiro_id', 'parceiro', 'trim|required');
+			$this->form_validation->set_rules('produto_descricao', 'descrição', 'trim|required|min_length[4]|max_length[145]');
 			$this->form_validation->set_rules('produto_unidade', 'unidade', 'trim|required|min_length[2]|max_length[10]');
 			$this->form_validation->set_rules('produto_codigo_barras', 'código de barras', 'trim|max_length[45]');
 			$this->form_validation->set_rules('produto_ncm', 'ncm', 'trim|max_length[15]');
@@ -372,14 +380,16 @@ class Produtos extends CI_Controller{
 			$this->form_validation->set_rules('produto_preco_venda', 'preço de venda', 'trim|required|max_length[45]|callback_check_produto_preco_venda');
 			$this->form_validation->set_rules('produto_estoque_minimo', 'estoque mínimo', 'trim|required|greater_than_equal_to[1]');
 			$this->form_validation->set_rules('produto_qtde_estoque', 'quantidade estoque', 'trim|required');
-			$this->form_validation->set_rules('produto_potencia', 'potência', 'trim');
-			$this->form_validation->set_rules('produto_eficiência', 'eficiência', 'min_length[1]');
-			$this->form_validation->set_rules('produto_codigo_interno', 'código interno', 'trim|required');
 			$this->form_validation->set_rules('produto_obs', 'observação', 'trim|max_length[500]');
+			$this->form_validation->set_rules('produto_estado', 'estado', 'trim|required|min_length[2]');
 	
 			if ($this->form_validation->run()) {
 				$data = elements(
 					array(
+						'produto_codigo',
+						'produto_categoria_id',
+						'produto_parceiro_id',
+						'produto_marca_id',
 						'produto_descricao',
 						'produto_unidade',
 						'produto_codigo_barras',
@@ -388,11 +398,10 @@ class Produtos extends CI_Controller{
 						'produto_preco_venda',
 						'produto_estoque_minimo',
 						'produto_qtde_estoque',
-						'produto_potencia',
-						'produto_eficiencia',
 						'produto_codigo_interno',
 						'produto_ativo',
 						'produto_obs',
+						'produto_estado',
 					),
 					$this->input->post()
 				);
@@ -436,6 +445,7 @@ class Produtos extends CI_Controller{
 				// Erro de validação
 				$data = array(
 					'titulo' => 'Atualizar produto',
+
 					'scripts' => array(
 						'vendors/mask/jquery_3.2.1.min.js',
 						'vendors/mask/jquery.mask.min.js',
@@ -451,7 +461,7 @@ class Produtos extends CI_Controller{
 					'avisos_home' => $this->home_model->get_avisos_home(),
 					'produto' => $this->core_model->get_by_id('produtos', array('produto_id' => $produto_id)),
 					'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
-					'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
+					'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
 					'categorias' => $this->core_model->get_all('categorias', array('categoria_ativa' => 1)),
 				);
 	

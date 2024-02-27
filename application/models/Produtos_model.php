@@ -13,14 +13,14 @@ defined('BASEPATH') OR exit('Ação não permitida');
                 'categorias.categoria_nome as categoria',
                 'marcas.marca_id',
                 'marcas.marca_nome as marca',
-                'fornecedores.fornecedor_id',
-                'fornecedores.fornecedor_nome_fantasia as fornecedor',
+                'parceiros.parceiro_id',
+                'parceiros.parceiro_sobrenome as parceiro',
             ]);
             
             //Aqui faz as ligações com LEFT JOIN nas tabelas (produtos, categorias, marcas e fornecedores)
             $this->db->join('categorias', 'categoria_id = produto_categoria_id', 'LEFT');
             $this->db->join('marcas', 'marca_id = produto_marca_id', 'LEFT');
-            $this->db->join('fornecedores', 'fornecedor_id = produto_fornecedor_id', 'LEFT');
+            $this->db->join('parceiros', 'parceiro_id = produto_parceiro_id', 'LEFT');
             
             $this->db->order_by('produtos.produto_descricao', 'ASC');
             
