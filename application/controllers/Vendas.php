@@ -119,7 +119,7 @@ class Vendas extends CI_Controller{
     public function add() {
         
                         
-            $this->form_validation->set_rules('venda_parceiro_id', 'parceiro', 'required');
+            $this->form_validation->set_rules('venda_cliente_id', 'cliente', 'required');
             $this->form_validation->set_rules('venda_tipo', 'tipo', 'required');
             $this->form_validation->set_rules('venda_forma_pagamento_id', 'forma de pagamento', 'required');
             $this->form_validation->set_rules('venda_vendedor_id', 'vendedor', 'required');
@@ -131,7 +131,7 @@ class Vendas extends CI_Controller{
                 $data = elements(
 
                     array(
-                        'venda_parceiro_id',
+                        'venda_cliente_id',
                         'venda_forma_pagamento_id',
                         'venda_tipo',
                         'venda_vendedor_id',
@@ -225,7 +225,7 @@ class Vendas extends CI_Controller{
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
 				'avisos_home' => $this->home_model->get_avisos_home(),
 
-                'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
                 'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos', array('forma_pagamento_ativa' => 1)),
                 'vendedores' => $this->core_model->get_all('vendedores', array('vendedor_ativo' => 1)),
 
@@ -299,7 +299,7 @@ class Vendas extends CI_Controller{
             //Atualização de estoque
             $venda_produtos = $data['venda_produtos'] =  $this->vendas_model->get_all_produtos_by_venda($venda_id);
                         
-            $this->form_validation->set_rules('venda_parceiro_id', 'parceiro', 'required');
+            $this->form_validation->set_rules('venda_cliente_id', 'cliente', 'required');
             $this->form_validation->set_rules('venda_tipo', 'tipo', 'required');
             $this->form_validation->set_rules('venda_forma_pagamento_id', 'forma de pagamento', 'required');
             $this->form_validation->set_rules('venda_vendedor_id', 'vendedor', 'required');
@@ -312,7 +312,7 @@ class Vendas extends CI_Controller{
                 $data = elements(
 
                     array(
-                        'venda_parceiro_id',
+                        'venda_cliente_id',
                         'venda_forma_pagamento_id',
                         'venda_tipo',
                         'venda_vendedor_id',
@@ -413,7 +413,7 @@ class Vendas extends CI_Controller{
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
 				'avisos_home' => $this->home_model->get_avisos_home(),
 
-                'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
                 'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos', array('forma_pagamento_ativa' => 1)),
                 'vendedores' => $this->core_model->get_all('vendedores', array('vendedor_ativo' => 1)),
                 'venda' => $this->vendas_model->get_by_id($venda_id),
@@ -619,16 +619,18 @@ class Vendas extends CI_Controller{
             $html .= '<p align="right"><b>FAT_VENDA</b> Nº: '.$venda->venda_id.'</p>';
             $html .='<hr/>';
             
-            //Dados do parceiro
+            //Dados do cliente
             
-            $html .= '<p>
-                    '.'<b>Parceiro:</b> '.$venda->parceiro_nome_completo.'<br/>
-                    '.'<b>CPF/CNPJ:</b> '.$venda->parceiro_cpf_cnpj.'<br/>
-                    '.'<b>Celular:</b> '.$venda->parceiro_celular.'<br/>
-                    '.'<b>Data da Venda:</b> '. formata_data_banco_com_hora($venda->venda_data_emissao).'<br/>
-                    '.'<b>Forma de Pagamento:</b> '. $venda->forma_pagamento .'<br/>
-                    </p>';
-            $html .= '<hr/>';
+			$html .= '<p>';
+			$html .= '<b>Cliente:</b> ';
+			$html .= ($venda->cliente_pessoa == 1) ? $venda->nome.' '.$venda->sobrenome : $venda->sobrenome;
+			$html .= '<br/>';
+			$html .= '<b>CPF/CNPJ:</b> '.$venda->cliente_cpf_cnpj.'<br/>';
+			$html .= '<b>Celular:</b> '.$venda->cliente_celular.'<br/>';
+			$html .= '<b>Data da Venda:</b> '. formata_data_banco_com_hora($venda->venda_data_emissao).'<br/>';
+			$html .= '<b>Forma de Pagamento:</b> '. $venda->forma_pagamento .'<br/>';
+			$html .= '</p>';
+			$html .= '<hr/>';
             
             //Dados da venda
             

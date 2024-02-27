@@ -9,9 +9,10 @@ defined('BASEPATH') OR exit('Ação não permitida');
             //Array de um select com JOIN na base de dados
             $this->db->select([
                 'vendas.*',
-                'parceiros.parceiro_id',
-                'parceiros.parceiro_nome',
-                'parceiros.parceiro_sobrenome',
+                'clientes.cliente_id',
+                'clientes.cliente_nome',
+                'clientes.cliente_sobrenome',
+                'clientes.cliente_pessoa',
                 'vendedores.vendedor_id',
                 'vendedores.vendedor_codigo',
                 'vendedores.vendedor_nome_completo',
@@ -19,8 +20,8 @@ defined('BASEPATH') OR exit('Ação não permitida');
                 'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
             ]);
             
-            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, parceiros e formas_pagamentos)
-            $this->db->join('parceiros', 'parceiro_id = venda_parceiro_id', 'LEFT');
+            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, clientes e formas_pagamentos)
+            $this->db->join('clientes', 'cliente_id = venda_cliente_id', 'LEFT');
             $this->db->join('vendedores', 'vendedor_id = venda_vendedor_id', 'LEFT');
             $this->db->join('formas_pagamentos', 'forma_pagamento_id = venda_forma_pagamento_id', 'LEFT');
             
@@ -34,10 +35,12 @@ defined('BASEPATH') OR exit('Ação não permitida');
             //Array de um select com JOIN na base de dados
             $this->db->select([
                 'vendas.*',
-                'parceiros.parceiro_id',
-                'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
-                'parceiros.parceiro_cpf_cnpj',
-                'parceiros.parceiro_celular',
+                'clientes.cliente_id',
+                'clientes.cliente_nome as nome', 
+				'clientes.cliente_sobrenome as sobrenome',
+                'clientes.cliente_cpf_cnpj',
+                'clientes.cliente_celular',
+                'clientes.cliente_pessoa',
                 'vendedores.vendedor_id',
                 'vendedores.vendedor_codigo',
                 'vendedores.vendedor_nome_completo',
@@ -46,8 +49,8 @@ defined('BASEPATH') OR exit('Ação não permitida');
             ]);
             
             $this->db->where('venda_id', $venda_id);
-            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, parceiros e formas_pagamentos)
-            $this->db->join('parceiros', 'parceiro_id = venda_parceiro_id', 'LEFT');
+            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, clientes e formas_pagamentos)
+            $this->db->join('clientes', 'cliente_id = venda_cliente_id', 'LEFT');
             $this->db->join('vendedores', 'vendedor_id = venda_vendedor_id', 'LEFT');
             $this->db->join('formas_pagamentos', 'forma_pagamento_id = venda_forma_pagamento_id', 'LEFT');
             
@@ -127,13 +130,13 @@ defined('BASEPATH') OR exit('Ação não permitida');
             //Array de um select com JOIN na base de dados
             $this->db->select([
                 'vendas.*',
-                'parceiros.parceiro_id',
-                'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
+                'clientes.cliente_id',
+                'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
                 'formas_pagamentos.forma_pagamento_id',
                 'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
             ]);
-            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, parceiros e formas_pagamentos)
-            $this->db->join('parceiros', 'parceiro_id = venda_parceiro_id', 'LEFT');
+            //Aqui faz as ligações com LEFT JOIN nas tabelas (vendas, clientes e formas_pagamentos)
+            $this->db->join('clientes', 'cliente_id = venda_cliente_id', 'LEFT');
             $this->db->join('formas_pagamentos', 'forma_pagamento_id = venda_forma_pagamento_id', 'LEFT');
             
             if ($data_inicial && $data_final) {
