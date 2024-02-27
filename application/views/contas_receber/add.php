@@ -78,13 +78,19 @@
 									<legend class="font-small"><i class="fa fa-credit-card-alt"></i> Dados da conta</legend>
 									<div class="form-row">
 										<div class="form-group col-md-3">
-											<label for="conta_receber_parceiro_id">Cliente <span style="color: red;font-weight: bold;">*</span></label><br>
-											<select class="custom-select contas_receber" name="conta_receber_parceiro_id" required="">
-												<?php foreach ($parceiros as $parceiro) : ?>
-													<option value="<?php echo $parceiro->parceiro_id ?>"><?php echo $parceiro->parceiro_nome . '&nbsp;' . $parceiro->parceiro_sobrenome; ?></option>
+											<label for="conta_receber_cliente_id">Cliente <span style="color: red;font-weight: bold;">*</span></label><br>
+											<select class="custom-select contas_receber" name="conta_receber_cliente_id" required="">
+												<?php foreach($clientes as $cliente): ?>
+													<option value="<?php echo $cliente->cliente_id ?>"><?php 
+														if($cliente->cliente_pessoa == 1){
+															echo $cliente->cliente_nome.' '.$cliente->cliente_sobrenome;
+														} else {
+															echo $cliente->cliente_sobrenome;
+														}
+														?></option>
 												<?php endforeach; ?>
 											</select>
-											<?php echo form_error('conta_receber_parceiro_id', '<small class="form-text text-danger">', '</small>') ?>
+											<?php echo form_error('conta_receber_cliente_id', '<small class="form-text text-danger">', '</small>') ?>
 										</div>
 										<div class="form-group col-md-3">
 											<label for="conta_receber_valor">Valor <span style="color: red;font-weight: bold;">*</span></label>

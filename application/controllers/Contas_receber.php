@@ -125,7 +125,7 @@ class Contas_receber extends CI_Controller{
     public function add() {
         
         // formn_validation
-            $this->form_validation->set_rules('conta_receber_parceiro_id', 'parceiro', 'trim|required|max_length[1]');
+            $this->form_validation->set_rules('conta_receber_cliente_id', 'cliente', 'trim|required|max_length[1]');
             $this->form_validation->set_rules('conta_receber_data_vencimento', 'data de vencimento', 'trim|required');
             $this->form_validation->set_rules('conta_receber_valor', 'valor', 'trim|required');
             $this->form_validation->set_rules('conta_receber_obs', 'observação', 'max_length[100]');
@@ -135,7 +135,7 @@ class Contas_receber extends CI_Controller{
                 $data = elements(
 
                     array(
-                        'conta_receber_parceiro_id',
+                        'conta_receber_cliente_id',
                         'conta_receber_data_vencimento',
                         'conta_receber_valor',
                         'conta_receber_status',
@@ -190,7 +190,7 @@ class Contas_receber extends CI_Controller{
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(),
 				'avisos_home' => $this->home_model->get_avisos_home(),
 
-                'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
 
             );
             
@@ -205,8 +205,7 @@ class Contas_receber extends CI_Controller{
 
                 $data['contas_pagar_vencidas'] = TRUE;
                 $contador_notificacoes ++;
-            }  $data['contas_pagar_vencidas'] = FALSE;
-    //        }
+            } 
             if ($this->home_model->get_contas_pagar_vencem_hoje()) {
 
                 $data['contas_pagar_vence_hoje'] = TRUE;
@@ -260,7 +259,7 @@ class Contas_receber extends CI_Controller{
         } else {
             
             // formn_validation
-            $this->form_validation->set_rules('conta_receber_parceiro_id', 'parceiro', 'trim|required|max_length[15]');
+            $this->form_validation->set_rules('conta_receber_cliente_id', 'cliente', 'trim|required|max_length[15]');
             $this->form_validation->set_rules('conta_receber_data_vencimento', 'data de vencimento', 'trim|required');
             $this->form_validation->set_rules('conta_receber_valor', 'valor', 'trim|required');
             $this->form_validation->set_rules('conta_receber_obs', 'observação', 'max_length[100]');
@@ -270,7 +269,7 @@ class Contas_receber extends CI_Controller{
                 $data = elements(
 
                     array(
-                        'conta_receber_parceiro_id',
+                        'conta_receber_cliente_id',
                         'conta_receber_data_vencimento',
                         'conta_receber_valor',
                         'conta_receber_status',
@@ -326,7 +325,7 @@ class Contas_receber extends CI_Controller{
 				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'conta_receber' => $this->core_model->get_by_id('contas_receber', array('conta_receber_id' => $conta_receber_id)),
-                'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
 
             );
             

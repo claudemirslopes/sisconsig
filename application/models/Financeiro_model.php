@@ -8,11 +8,13 @@ class Financeiro_model extends CI_Model {
         
         $this->db->select([
             'contas_pagar.*',
-            'fornecedor_id',
-            'fornecedor_nome_fantasia as fornecedor',
+            'parceiro_id',
+            'parceiro_nome as nome',
+            'parceiro_sobrenome as sobrenome',
+			'parceiro_pessoa as pessoa',
         ]);
         
-        $this->db->join('fornecedores', 'fornecedor_id = conta_pagar_fornecedor_id', 'LEFT');
+        $this->db->join('parceiros', 'parceiro_id = conta_pagar_parceiro_id', 'LEFT');
         return $this->db->get('contas_pagar')->result();
         
     }
@@ -21,13 +23,13 @@ class Financeiro_model extends CI_Model {
         
         $this->db->select([
             'contas_receber.*',
-            'parceiro_id',
-            'parceiro_nome as parceiro',
-            'parceiro_sobrenome as parceiro_sobrenome',
-            'parceiro_pessoa as pessoa',
+            'cliente_id',
+            'cliente_nome as nome',
+            'cliente_sobrenome as sobrenome',
+            'cliente_pessoa as pessoa',
         ]);
         
-        $this->db->join('parceiros', 'parceiro_id = conta_receber_parceiro_id', 'LEFT');
+        $this->db->join('clientes', 'cliente_id = conta_receber_cliente_id', 'LEFT');
         return $this->db->get('contas_receber')->result();
         
     }
@@ -37,13 +39,14 @@ class Financeiro_model extends CI_Model {
         
         $this->db->select([
             'contas_receber.*',
-            'parceiro_id',
-            'CONCAT (parceiros.parceiro_nome, " ", parceiros.parceiro_sobrenome) as parceiro_nome_completo',
-            'parceiro_pessoa as pessoa',
+            'cliente_id',
+            'clientes.cliente_nome as nome', 
+			'clientes.cliente_sobrenome as sobrenome',
+            'cliente_pessoa as pessoa',
         ]);
         
         $this->db->where('conta_receber_status', $conta_receber_status);
-        $this->db->join('parceiros', 'parceiro_id = conta_receber_parceiro_id', 'LEFT');
+        $this->db->join('clientes', 'cliente_id = conta_receber_cliente_id', 'LEFT');
         
         if ($data_vencimento) {
             date_default_timezone_set('America/Sao_Paulo');
@@ -75,13 +78,15 @@ class Financeiro_model extends CI_Model {
         
         $this->db->select([
             'contas_pagar.*',
-            'fornecedor_id',
-            'fornecedor_nome_fantasia',
-            'fornecedor_cnpj',
+            'parceiro_id',
+            'parceiro_nome',
+            'parceiro_sobrenome',
+            'parceiro_cpf_cnpj',
+			'parceiro_pessoa',
         ]);
         
         $this->db->where('conta_pagar_status', $conta_pagar_status);
-        $this->db->join('fornecedores', 'fornecedor_id = conta_pagar_fornecedor_id', 'LEFT');
+        $this->db->join('parceiros', 'parceiro_id = conta_pagar_parceiro_id', 'LEFT');
         
         if ($data_vencimento) {
             date_default_timezone_set('America/Sao_Paulo');

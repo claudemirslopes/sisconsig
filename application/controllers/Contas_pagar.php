@@ -125,7 +125,7 @@ class Contas_pagar extends CI_Controller{
     public function add() {
         
         // formn_validation
-            $this->form_validation->set_rules('conta_pagar_fornecedor_id', 'fornecedor', 'trim|required|max_length[15]');
+            $this->form_validation->set_rules('conta_pagar_parceiro_id', 'parceiro', 'trim|required|max_length[15]');
             $this->form_validation->set_rules('conta_pagar_data_vencimento', 'data de vencimento', 'trim|required');
             $this->form_validation->set_rules('conta_pagar_valor', 'valor', 'trim|required');
             $this->form_validation->set_rules('conta_pagar_obs', 'observação', 'max_length[100]');
@@ -135,7 +135,7 @@ class Contas_pagar extends CI_Controller{
                 $data = elements(
 
                     array(
-                        'conta_pagar_fornecedor_id',
+                        'conta_pagar_parceiro_id',
                         'conta_pagar_data_vencimento',
                         'conta_pagar_valor',
                         'conta_pagar_status',
@@ -190,7 +190,7 @@ class Contas_pagar extends CI_Controller{
                 'top_servicos' => $this->home_model->get_servicos_mais_vendidos(), 
 				'avisos_home' => $this->home_model->get_avisos_home(),
 
-                'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
+                'parceiros' => $this->core_model->get_all('parceiros', array('parceiro_ativo' => 1)),
 
             );
             
@@ -259,7 +259,7 @@ class Contas_pagar extends CI_Controller{
         } else {
             
             // formn_validation
-            $this->form_validation->set_rules('conta_pagar_fornecedor_id', 'fornecedor', 'trim|required|max_length[15]');
+            $this->form_validation->set_rules('conta_pagar_parceiro_id', 'parceiro', 'trim|required|max_length[15]');
             $this->form_validation->set_rules('conta_pagar_data_vencimento', 'data de vencimento', 'trim|required');
             $this->form_validation->set_rules('conta_pagar_valor', 'valor', 'trim|required');
             $this->form_validation->set_rules('conta_pagar_obs', 'observação', 'max_length[100]');
@@ -269,7 +269,7 @@ class Contas_pagar extends CI_Controller{
                 $data = elements(
 
                     array(
-                        'conta_pagar_fornecedor_id',
+                        'conta_pagar_parceiro_id',
                         'conta_pagar_data_vencimento',
                         'conta_pagar_valor',
                         'conta_pagar_status',
@@ -324,7 +324,7 @@ class Contas_pagar extends CI_Controller{
 				'avisos_home' => $this->home_model->get_avisos_home(),
 
                 'conta_pagar' => $this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id)),
-                'fornecedores' => $this->core_model->get_all('fornecedores'),
+                'parceiros' => $this->core_model->get_all('parceiros'),
 
             );
             

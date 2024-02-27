@@ -73,10 +73,16 @@
 												<legend class="font-small"><i class="fa fa-credit-card"></i> Dados da conta</legend>
 												<div class="form-row">
 													<div class="form-group col-md-5">
-														<label for="conta_pagar_fornecedor_id">Fornecedor <span style="color: red;font-weight: bold;">*</span></label> 
-														<select style="pointer-events: none;touch-action: none;"  name="conta_pagar_fornecedor_id" class="custom-select">
-															<?php foreach($fornecedores as $fornecedor): ?>
-															<option value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $conta_pagar->conta_pagar_fornecedor_id ? 'selected' : ''); ?>><?php echo $fornecedor->fornecedor_nome_fantasia ?></option>
+														<label for="conta_pagar_parceiro_id">Parceiro <small>Consignado</small> <span style="color: red;font-weight: bold;">*</span></label> 
+														<select style="pointer-events: none;touch-action: none;"  name="conta_pagar_parceiro_id" class="custom-select">
+															<?php foreach($parceiros as $parceiro): ?>
+															<option value="<?php echo $parceiro->parceiro_id ?>" <?php echo ($parceiro->parceiro_id == $conta_pagar->conta_pagar_parceiro_id ? 'selected' : ''); ?>><?php 
+																if($parceiro->parceiro_pessoa == 1){
+																	echo $parceiro->parceiro_nome.' '.$parceiro->parceiro_sobrenome;
+																} else {
+																	echo $parceiro->parceiro_sobrenome;
+																}
+																?></option>
 															<?php endforeach; ?>
 														</select>
 														<?php echo form_error('conta_pagar_fornecedor_id', '<small class="form-text text-danger">','</small>') ?>

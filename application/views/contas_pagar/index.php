@@ -83,7 +83,7 @@
 											<thead>
 												<tr>
 													<th class="text-center">#</th>
-													<th>Fornecedor</th>
+													<th>Parceiro</th>
 													<th>Valor</th>
 													<th class="text-center">Data Venc.</th>
 													<th class="text-center">Data Pagam.</th>
@@ -95,7 +95,13 @@
 												<?php foreach ($contas_pagar as $conta_pagar): ?>
 												<tr>
 													<td class="text-center"><?php echo $conta_pagar->conta_pagar_id; ?></td>
-													<td><?php echo $conta_pagar->fornecedor; ?></td>
+													<td><?php 
+													if($conta_pagar->pessoa == 1){
+														echo $conta_pagar->nome.' '.$conta_pagar->sobrenome; 
+													} else {
+														echo $conta_pagar->sobrenome;
+													}
+													?></td>
 													<td><?php echo ('R$ '.$conta_pagar->conta_pagar_valor); ?></td>
 													<td class="text-center pr-4"><?php echo formata_data_banco_sem_hora($conta_pagar->conta_pagar_data_vencimento); ?></td>
 													<td class="text-center pr-4"><?php echo ($conta_pagar->conta_pagar_status == 1 ? formata_data_banco_com_hora($conta_pagar->conta_pagar_data_pagamento) : 'Aguardando pagamento'); ?></td>

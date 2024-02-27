@@ -82,7 +82,7 @@
 											<thead>
 												<tr>
 													<th class="text-center">#</th>
-													<th>Autorizado</th>
+													<th>Cliente</th>
 													<th>Valor</th>
 													<th class="text-center">Data Venc.</th>
 													<th class="text-center">Data Pagam.</th>
@@ -94,9 +94,13 @@
 												<?php foreach ($contas_receber as $conta_receber): ?>
 												<tr>
 													<td class="text-center"><?php echo $conta_receber->conta_receber_id; ?></td>
-													<td>
-														<?php echo ($conta_receber->pessoa == 1 ? $conta_receber->parceiro.'&nbsp;'.$conta_receber->parceiro_sobrenome : $conta_receber->parceiro); ?>
-													</td>
+													<td><?php 
+													if($conta_receber->pessoa == 1){
+														echo $conta_receber->nome.' '.$conta_receber->sobrenome; 
+													} else {
+														echo $conta_receber->sobrenome;
+													}
+													?></td>
 													<td><?php echo ('R$ '.$conta_receber->conta_receber_valor); ?></td>
 													<td class="text-center pr-4"><?php echo formata_data_banco_sem_hora($conta_receber->conta_receber_data_vencimento); ?></td>
 													<td class="text-center pr-4"><?php echo ($conta_receber->conta_receber_status == 1 ? formata_data_banco_com_hora($conta_receber->conta_receber_data_pagamento) : 'Aguardando pagamento'); ?></td>

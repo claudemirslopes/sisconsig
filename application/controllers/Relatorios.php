@@ -203,7 +203,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<tr>';
                     $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$venda->venda_id.'</td>';
                     $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'. formata_data_banco_com_hora($venda->venda_data_emissao).'</td>';
-                    $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$venda->parceiro_nome_completo.'</td>';
+                    $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$venda->cliente_nome_completo.'</td>';
                     $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$venda->forma_pagamento.'</td>';
                     $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.'R$ '.$venda->venda_valor_total.'</td>';
                     $html .= '</tr>';                 
@@ -545,7 +545,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<tr>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cód.</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Data Venc.</th>';
-                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Parceiro</th>';
+                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cliente</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Situação</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Valor Total</th>';
                     $html .= '</tr>'; 
@@ -554,7 +554,11 @@ class Relatorios extends CI_Controller{
                         $html .= '<tr>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->conta_receber_id.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'. formata_data_banco_sem_hora($conta->conta_receber_data_vencimento).'</td>';
-                        $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_nome_completo.'</td>';
+						if($conta->pessoa == 1) {
+                        	$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->nome.' '.$conta->sobrenome.'</td>';
+						} else {
+							$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->sobrenome.'</td>';
+						}
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">vencida</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.'R$ '.$conta->conta_receber_valor.'</td>';
                         $html .= '</tr>';                 
@@ -638,7 +642,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<tr>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cód.</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Data Pagam.</th>';
-                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Parceiro</th>';
+                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cliente</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Situação</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Valor Total</th>';
                     $html .= '</tr>'; 
@@ -647,7 +651,11 @@ class Relatorios extends CI_Controller{
                         $html .= '<tr>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->conta_receber_id.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'. formata_data_banco_com_hora($conta->conta_receber_data_pagamento).'</td>';
-                        $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_nome_completo.'</td>';
+						if($conta->pessoa == 1) {
+                        	$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->nome.' '.$conta->sobrenome.'</td>';
+						} else {
+							$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->sobrenome.'</td>';
+						}
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">paga</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.'R$ '.$conta->conta_receber_valor.'</td>';
                         $html .= '</tr>';                 
@@ -731,7 +739,7 @@ class Relatorios extends CI_Controller{
                     $html .= '<tr>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cód.</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Data Venc.</th>';
-                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Parceiro</th>';
+                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cliente</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Situação</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Valor Total</th>';
                     $html .= '</tr>'; 
@@ -740,7 +748,11 @@ class Relatorios extends CI_Controller{
                         $html .= '<tr>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->conta_receber_id.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'. formata_data_banco_sem_hora($conta->conta_receber_data_vencimento).'</td>';
-                        $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_nome_completo.'</td>';
+                        if($conta->pessoa == 1) {
+                        	$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->nome.' '.$conta->sobrenome.'</td>';
+						} else {
+							$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->sobrenome.'</td>';
+						}
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">a receber</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.'R$ '.$conta->conta_receber_valor.'</td>';
                         $html .= '</tr>';                 
@@ -907,8 +919,8 @@ class Relatorios extends CI_Controller{
                     $html .= '<tr>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cód.</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Data Venc.</th>';
-                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Fornecedor</th>';
-                    $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">CNPJ</th>';
+                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Parceiro</th>';
+                    $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">CPF/CNPJ</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Situação</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Valor Total</th>';
                     $html .= '</tr>'; 
@@ -917,8 +929,12 @@ class Relatorios extends CI_Controller{
                         $html .= '<tr>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->conta_pagar_id.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'. formata_data_banco_sem_hora($conta->conta_pagar_data_vencimento).'</td>';
-                        $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->fornecedor_nome_fantasia.'</td>';
-                        $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->fornecedor_cnpj.'</td>';
+                        if($conta->parceiro_pessoa == 1) {
+                        	$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_nome.' '.$conta->parceiro_sobrenome.'</td>';
+						} else {
+							$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_sobrenome.'</td>';
+						}
+                        $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_cpf_cnpj.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">vencida</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.'R$ '.$conta->conta_pagar_valor.'</td>';
                         $html .= '</tr>';                 
@@ -1002,8 +1018,8 @@ class Relatorios extends CI_Controller{
                     $html .= '<tr>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cód.</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Data Pagam.</th>';
-                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Fornecedor</th>';
-                    $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">CNPJ</th>';
+                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Parceiro</th>';
+                    $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">CPF/CNPJ</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Situação</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Valor Total</th>';
                     $html .= '</tr>'; 
@@ -1012,8 +1028,12 @@ class Relatorios extends CI_Controller{
                         $html .= '<tr>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->conta_pagar_id.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'. formata_data_banco_com_hora($conta->conta_pagar_data_pagamento).'</td>';
-                        $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->fornecedor_nome_fantasia.'</td>';
-                        $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->fornecedor_cnpj.'</td>';
+                        if($conta->parceiro_pessoa == 1) {
+                        	$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_nome.' '.$conta->parceiro_sobrenome.'</td>';
+						} else {
+							$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_sobrenome.'</td>';
+						}
+                        $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_cpf_cnpj.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">paga</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.'R$ '.$conta->conta_pagar_valor.'</td>';
                         $html .= '</tr>';                 
@@ -1097,8 +1117,8 @@ class Relatorios extends CI_Controller{
                     $html .= '<tr>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Cód.</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Data Venc.</th>';
-                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Fornecedor</th>';
-                    $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">CNPJ</th>';
+                    $html .= '<th align="left" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Parceiro</th>';
+                    $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">CPF/CNPJ</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Situação</th>';
                     $html .= '<th align="center" style="border: solid #ddd 1px;background: #ccc;padding: 3px">Valor Total</th>';
                     $html .= '</tr>'; 
@@ -1107,8 +1127,12 @@ class Relatorios extends CI_Controller{
                         $html .= '<tr>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->conta_pagar_id.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'. formata_data_banco_sem_hora($conta->conta_pagar_data_vencimento).'</td>';
-                        $html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->fornecedor_nome_fantasia.'</td>';
-                        $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->fornecedor_cnpj.'</td>';
+                        if($conta->parceiro_pessoa == 1) {
+                        	$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_nome.' '.$conta->parceiro_sobrenome.'</td>';
+						} else {
+							$html .= '<td align="left" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_sobrenome.'</td>';
+						}
+                        $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.$conta->parceiro_cpf_cnpj.'</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">a pagar</td>';
                         $html .= '<td align="center" style="border: solid #ddd 1px;padding: 3px">'.'R$ '.$conta->conta_pagar_valor.'</td>';
                         $html .= '</tr>';                 

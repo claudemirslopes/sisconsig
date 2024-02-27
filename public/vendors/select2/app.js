@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 
     $('.contas_receber').select2({
-        placeholder: "CPF... CNPJ ... Nome...",
+        placeholder: "CPF ... Nome...",
         allowClear: true,
         "language": {
             "noResults": function () {
@@ -41,11 +41,11 @@ $(document).ready(function () {
     });
 
     $('.contas_pagar').select2({
-        placeholder: "Nome fanstasia",
+        placeholder: "CPF... CNPJ... Nome",
         allowClear: true,
         "language": {
             "noResults": function () {
-                return '<span class="text-danger">Fornecedor não encontrado</span> <a href="' + BASE_URL + 'fornecedores/add" target="_blank" class="btn btn-primary btn-sm btn-block">Cadastrar</a>';
+                return '<span class="text-danger">Parceiro não encontrado</span> <a href="' + BASE_URL + 'parceiros/add" target="_blank" class="btn btn-primary btn-sm btn-block">Cadastrar</a>';
             }
         },
         escapeMarkup: function (markup) {
