@@ -7,7 +7,7 @@
                         <div class="header-wrap">
                             <!-- Search bar principal (Pesquisa) -->
                             <form class="form-header" method="GET" action="<?php echo base_url('/'); ?>pesquisas">
-                                <input class="au-input au-input--xl" type="text" name="busca" id="busca" placeholder="Pesquisar em vendas (produtos, clientes)..." />
+                                <input class="au-input au-input--xl" type="text" name="busca" id="busca" placeholder="Pesquisar em Vendas... Produto, Cliente, Parceiro, Código, CPF/CNPJ" />
                                 <button type="submit" class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>

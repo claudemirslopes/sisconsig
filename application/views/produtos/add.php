@@ -7,6 +7,12 @@
         <?php $this->load->view('layout/navbar') ?>
         <!-- BARRA SUPERIOR - NAVBAR -->
 
+		<style>
+			.select2-container .select2-selection--single .select2-selection__rendered {
+				width: 355px !important;
+			}
+		</style>
+
             <!-- MAIN CONTENT-->
             <div class="main-content">
 
@@ -98,6 +104,21 @@
 												</div>
 												<div class="form-row">
 													<div class="form-group col-md-4">
+														<label for="produto_parceiro_id">Parceiro consignado <span style="color: red;font-weight: bold;">*</span></label> 
+														<select name="produto_parceiro_id" class="form-control form-control-sm custom-select contas_pagar" id="produto_parceiro_id">
+															<option value="0">Selecione o parceiro</option>
+															<?php foreach($parceiros as $parceiro): ?>
+															<option value="<?php echo $parceiro->parceiro_id ?>"><?php 
+																if($parceiro->parceiro_pessoa == 1){
+																	echo $parceiro->parceiro_nome.' '.$parceiro->parceiro_sobrenome;
+																} else {
+																	echo $parceiro->parceiro_sobrenome;
+																}
+																?></option>
+															<?php endforeach; ?>
+														</select>
+													</div>
+													<div class="form-group col-md-4">
 														<label for="produto_marca_id">Marca <span style="color: red;font-weight: bold;">*</span></label>
 														<select name="produto_marca_id" class="form-control form-control-sm custom-select" id="produto_marca_id">
 															<option value="0">Selecione a marca</option>
@@ -105,15 +126,6 @@
 															<option value="<?php echo $marca->marca_id ?>"><?php echo $marca->marca_nome; ?></option>
 															<?php endforeach; ?>
 														</select>                                    
-													</div>
-													<div class="form-group col-md-4">
-														<label for="produto_parceiro_id">Parceiro consignado <span style="color: red;font-weight: bold;">*</span></label> 
-														<select name="produto_parceiro_id" class="form-control form-control-sm custom-select" id="produto_parceiro_id">
-															<option value="0">Selecione o parceiro</option>
-															<?php foreach($parceiros as $parceiro): ?>
-															<option value="<?php echo $parceiro->parceiro_id ?>"><?php echo $parceiro->parceiro_nome.' '.$parceiro->parceiro_sobrenome ?></option>
-															<?php endforeach; ?>
-														</select>
 													</div>
 													<div class="form-group col-md-4">
 														<label for="produto_categoria_id">Categoria <span style="color: red;font-weight: bold;">*</span></label> 

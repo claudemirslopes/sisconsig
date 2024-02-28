@@ -117,8 +117,9 @@
 							<table id="example1" class="table table-striped table-bordered table-sm">
 								<thead>
 									<tr>
-										<th class="text-center">#</th>
-										<th class="text-center">Data Emissão</th>
+										<th class="d-none">#</th>
+										<th class="text-left pl-2"">Emitida em</th>
+										<th class="text-left">Código Venda</th>
 										<th>Cliente</th>
 										<th>Vendedor</th>
 										<th>Valor Total</th>
@@ -129,8 +130,9 @@
 								<tbody>
 									<?php foreach ($vendas as $venda) : ?>
 										<tr>
-											<td class="text-center"><?php echo $venda->venda_id; ?></td>
-											<td class="text-center pr-4"><?php echo formata_data_banco_com_hora($venda->venda_data_emissao); ?></td>
+											<td class="d-none"><?php echo $venda->venda_id; ?></td>
+											<td class="text-left pl-2"><?php echo formata_data_banco_sem_hora($venda->venda_data_emissao); ?></td>
+											<td class="text-left"><?php echo $venda->venda_pedido; ?></td>
 											<td><?php 
 											if($venda->cliente_pessoa == 1){
 												echo $venda->cliente_nome . '&nbsp;' . $venda->cliente_sobrenome; 
@@ -144,14 +146,12 @@
 												<?php
 													if($venda->forma_pagamento == 'Dinheiro') {
 												 		echo '<span class="badge badge-secondary btn-sm"><i class="fa fa-money" aria-hidden="true"></i> Dinheiro</span>';
-													} elseif($venda->forma_pagamento == 'Cartão de Débito') {
+													} elseif($venda->forma_pagamento == 'Débito') {
 														echo '<span class="badge badge-danger btn-sm"><i class="fa fa-credit-card" aria-hidden="true"></i> Débito</span>';
-													} elseif($venda->forma_pagamento == 'Cartão de Crédito') {
+													} elseif($venda->forma_pagamento == 'Crédito') {
 														echo '<span class="badge badge-primary btn-sm"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Crédito</span>';
-													} elseif($venda->forma_pagamento == 'Depósito Bancário') {
-														echo '<span class="badge badge-info btn-sm"><i class="fa fa-file-text-o" aria-hidden="true"></i> Depósito</span>';
 													} elseif($venda->forma_pagamento == 'PIX') {
-														echo '<span class="badge badge-warning btn-sm"><i class="fa fa-qrcode" aria-hidden="true"></i> PIX a Vista</span>';
+														echo '<span class="badge badge-warning btn-sm"><i class="fa fa-qrcode" aria-hidden="true"></i> PIX</span>';
 													} else {
 														echo '---';
 													}

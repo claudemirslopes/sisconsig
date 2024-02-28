@@ -72,7 +72,7 @@
 									<legend class="font-small"><i class="fa fa-credit-card-alt"></i> Dados da conta</legend>
 									<div class="form-row">
 										<div class="form-group col-md-5">
-											<label for="conta_receber_cliente_id">Autorizado <span style="color: red;font-weight: bold;">*</span></label>
+											<label for="conta_receber_cliente_id">Cliente <span style="color: red;font-weight: bold;">*</span></label>
 											<select style="pointer-events: none;touch-action: none;" name="conta_receber_cliente_id" class="form-control custom-select">
 												<?php foreach ($clientes as $cliente) : ?>
 													<option value="<?php echo $cliente->cliente_id ?>" <?php echo ($cliente->cliente_id == $conta_receber->conta_receber_cliente_id ? 'selected' : ''); ?>><?php 

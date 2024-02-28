@@ -76,22 +76,25 @@
 
 								<fieldset id="vendas" class="border p-2" style="margin-top: -10px;">
 
-									<legend class="font-small"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Dados dos produtos</legend>
+								<legend class="font-small"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Dados dos produtos</legend>
 
-									<!--<div class="form-group row">
-										<div class="ui-widget col-lg-12 mb-1 mt-1">
-											<input id="buscar_produtos" class="search form-control form-control-lg col-lg-12" placeholder="Que produto você está buscando?">
+									<div class="form-group row">
+										<div class="ui-widget col-lg-10 mb-1 mt-1">
+											<input id="buscar_produtos" class="search form-control form-control-sm col-lg-12" placeholder="Que produto você está buscando?" readonly>
 										</div>
-									</div>-->
-
+										<div class="ui-widget col-lg-2 mb-1 mt-1">
+											<input class="form-control form-control-sm bg-dark text-light text-center" name="venda_pedido" value="<?php echo $venda->venda_pedido; ?>" readonly="">
+											<small class="form-text text-muted text-center">Código da venda</small>
+										</div>
+									</div>
 
 									<div class="table-responsive">
 										<table id="table_produtos" class="table">
 											<thead>
 												<tr>
 													<th></th>
-													<th class="" style="width: 55%">Produto</th>
-													<th class="text-right pr-2" style="width: 12%">Valor unitário</th>
+													<th class="" style="width: 47%">Produto</th>
+													<th class="text-right pr-2" style="width: 20%">Valor unitário</th>
 													<th class="text-center" style="width: 8%">Qty</th>
 													<th class="" style="width: 8%">% Desc</th>
 													<th class="text-right pr-2" style="width: 15%">Total</th>
@@ -164,12 +167,12 @@
 												<select class="form-control form-control-sm custom-select contas_receber" name="venda_cliente_id" required="">
 													<?php foreach ($clientes as $cliente) : ?>
 														<option value="<?php echo $cliente->cliente_id; ?>" <?php echo ($venda->venda_cliente_id == $cliente->cliente_id ? 'selected' : '') ?>><?php
-															if($cliente->cliente_pessoa == 1) { 
-																echo $cliente->cliente_nome . ' ' . $cliente->cliente_sobrenome . ' | CPF/CNPJ: ' . $cliente->cliente_cpf_cnpj; 
-															}else {
-																echo  $cliente->cliente_sobrenome . ' | CPF/CNPJ: ' . $cliente->cliente_cpf_cnpj; 
-															}
-															?></option>
+																																																if ($cliente->cliente_pessoa == 1) {
+																																																	echo $cliente->cliente_nome . ' ' . $cliente->cliente_sobrenome . ' | CPF/CNPJ: ' . $cliente->cliente_cpf_cnpj;
+																																																} else {
+																																																	echo  $cliente->cliente_sobrenome . ' | CPF/CNPJ: ' . $cliente->cliente_cpf_cnpj;
+																																																}
+																																																?></option>
 													<?php endforeach; ?>
 												</select>
 												<?php echo form_error('venda_cliente_id', '<div class="text-danger small">', '</div>') ?>

@@ -83,8 +83,8 @@
 											<input id="buscar_servicos" class="search form-control form-control-sm col-lg-12" placeholder="Que serviço você está buscando?">
 										</div>
 										<div class="ui-widget col-lg-2 mb-1 mt-1">
-											<input class="form-control form-control-sm bg-dark text-light text-center" name="ordem_servico_pedido" value="<?php echo $ordem_servico_pedido; ?>" readonly="">
-											<small class="form-text text-muted">Número do pedido</small>
+											<input class="form-control form-control-sm bg-dark text-light text-center" name="ordem_servico_pedido" value="<?php echo 'OS-'.$ordem_servico_pedido; ?>" readonly="">
+											<small class="form-text text-muted text-center">Código do pedido</small>
 										</div>
 									</div>
 

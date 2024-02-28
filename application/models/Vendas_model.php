@@ -35,6 +35,7 @@ defined('BASEPATH') OR exit('Ação não permitida');
             //Array de um select com JOIN na base de dados
             $this->db->select([
                 'vendas.*',
+				'vendas.venda_pedido',
                 'clientes.cliente_id',
                 'clientes.cliente_nome as nome', 
 				'clientes.cliente_sobrenome as sobrenome',
@@ -64,7 +65,7 @@ defined('BASEPATH') OR exit('Ação não permitida');
             if ($venda_id) {
                 $this->db->select([
                     'venda_produtos.*',
-                    'produtos.produto_descricao'
+                    'produtos.produto_descricao',
                 ]);
                 
                 $this->db->join('produtos', 'produto_id = venda_produto_id_produto', 'LEFT');

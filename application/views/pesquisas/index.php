@@ -81,11 +81,13 @@
 							<table id="example1" class="table table-striped table-bordered table-sm">
 								<thead>
 									<tr>
-										<th class="text-center pr-2">#</th>
-										<th class="pl-2">Parceiro</th>
+										<th class="d-none">#</th>										
+										<th class="pl-2">Emitido em</th>
+										<th class="text-left">Código</th>
+										<th class="pl-2">Cliente</th>
 										<th class="pl-2">Produto</th>
-										<th class="pl-2">Valor Total</th>
-										<th class="pl-2">Data de Emissão</th>
+										<th class="pl-2">Consignado</th>
+										<th class="pl-2">Vl. Total</th>
 										<th class="text-center pl-2">Qty</th>
 										<th class="text-right">Ações</th>
 									</tr>
@@ -93,11 +95,29 @@
 								<tbody>
 									<?php foreach ($pesquisas as $pesquisa) : ?>
 										<tr>
-											<td class="text-center"><?php echo $pesquisa->venda_id; ?></td>
-											<td class="pl-2"><?php echo $pesquisa->parceiro_nome; ?></td>
+											<td class="d-none"><?php echo $pesquisa->venda_id; ?></td>
+											<td class="pl-2"><?php echo formata_data_banco_sem_hora($pesquisa->venda_data_emissao); ?></td>
+											<td class="text-left"><?php echo $pesquisa->venda_pedido; ?></td>
+											<td class="pl-2">
+												<?php
+												if($pesquisa->cliente_pessoa == 1) {
+													echo $pesquisa->cliente_nome.' '.$pesquisa->cliente_sobrenome; ; 
+												} else {
+													echo $pesquisa->cliente_sobrenome; 
+												}
+												?>
+											</td>
 											<td class="pl-2"><?php echo $pesquisa->produto_descricao; ?></td>
+											<td class="pl-2">
+												<?php
+												if($pesquisa->parceiro_pessoa == 1) {
+													echo $pesquisa->parceiro_nome.' '.$pesquisa->parceiro_sobrenome; ; 
+												} else {
+													echo $pesquisa->parceiro_sobrenome; 
+												}
+												?>
+											</td>
 											<td class="pl-2"><?php echo 'R$ '.$pesquisa->venda_valor_total; ?></td>
-											<td class="pl-2"><?php echo $pesquisa->venda_data_emissao; ?></td>
 											<td class="text-center"><?php echo $pesquisa->venda_produto_quantidade; ?></td>
 											<td class="text-right">
 												<a href="<?php echo base_url('vendas/edit/' . $pesquisa->venda_id); ?>" class="btn btn-sm btn-info" title="Ver"><i class="fa fa-eye"></i></a>

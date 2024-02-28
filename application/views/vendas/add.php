@@ -79,8 +79,12 @@
 									<legend class="font-small"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Escolha os produtos</legend>
 
 									<div class="form-group row">
-										<div class="ui-widget col-lg-12 mb-1 mt-1">
+										<div class="ui-widget col-lg-10 mb-1 mt-1">
 											<input id="buscar_produtos" class="search form-control form-control-sm col-lg-12" placeholder="Que produto você está buscando?">
+										</div>
+										<div class="ui-widget col-lg-2 mb-1 mt-1">
+											<input class="form-control form-control-sm bg-dark text-light text-center" name="venda_pedido" value="<?php echo 'VD-'.$venda_pedido; ?>" readonly="">
+											<small class="form-text text-muted text-center">Código da venda</small>
 										</div>
 									</div>
 

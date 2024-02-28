@@ -258,11 +258,23 @@ class Produtos extends CI_Controller{
 			$data = array(
 				'titulo' => 'Cadastrar produto',
 
-				'scripts' => array(
-					'vendors/mask/jquery_3.2.1.min.js',
-					'vendors/mask/jquery.mask.min.js',
-					'vendors/mask/app.js',
-				),
+				'styles' => array(
+                    'vendors/select2/select2.min.css',
+                    'vendors/autocomplete/jquery-ui.css',
+                    'vendors/autocomplete/estilo.css',
+                ),
+
+                'scripts' => array (
+                    'vendors/autocomplete/jquery-migrate.js', //Nesta ordem
+                    'vendors/calcx/jquery-calx-sample-2.2.8.min.js',
+                    'vendors/calcx/os.js',
+                    'vendors/select2/select2.min.js',
+                    'vendors/select2/app.js',
+                    'vendors/autocomplete/jquery-ui.js',
+                    'vendors/mask/jquery.mask.min.js',
+                    'vendors/mask/app.js',
+                ),
+
 				// Home
 				'soma_vendas' => $this->home_model->get_sum_vendas(),
 				'soma_servicos' => $this->home_model->get_sum_ordem_servicos(),
