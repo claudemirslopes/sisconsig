@@ -12,31 +12,6 @@
 		border: #D8D8D8;
 		font-weight: 650;
 	}
-
-	.btn-danger {
-		background: #3B0B0B;
-		border: solid 1px #3B0B0B;
-	}
-
-	.btn-danger:hover {
-		background: #FE642E;
-		border: solid 1px #FE642E;
-	}
-
-	.btn-primary {
-		background: #0B3861;
-		border: solid 1px #0B3861;
-	}
-
-	.btn-secondary {
-		background: #DF0101;
-		border: solid 1px #DF0101;
-	}
-
-	.btn-secondary:hover {
-		background: #F78181;
-		border: solid 1px #F78181;
-	}
 	.badge-primary{
 		background: #007BFF;
 		border: solid 1px #007BFF;
@@ -158,9 +133,9 @@
 												 ?>
 											</td>
 											<td class="text-right">
-												<a href="<?php echo base_url('vendas/edit/' . $venda->venda_id); ?>" class="btn btn-sm btn-primary" title="Ver"><i class="fa fa-eye"></i></a>
-												<a href="<?php echo base_url('vendas/pdf/' . $venda->venda_id); ?>" target="_blank" class="btn btn-sm btn-secondary" title="Imprimir PDF"><i class="fa fa-file-pdf-o"></i></a>
-												<a href="javascript(void)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#venda-<?php echo $venda->venda_id; ?>" title="Excluír"><i class="fa fa-trash" aria-hidden="true"></i></a>
+												<a href="<?php echo base_url('vendas/edit/' . $venda->venda_id); ?>" class="btn btn-sm btn-info" title="Ver"><i class="fa fa-eye"></i></a>
+												<a href="<?php echo base_url('vendas/pdf/' . $venda->venda_id); ?>" target="_blank" class="btn btn-sm btn-success" title="Imprimir PDF"><i class="fa fa-file-pdf-o"></i></a>
+												<a href="javascript(void)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#venda-<?php echo $venda->venda_id; ?>" title="Excluír"><i class="fa fa-trash" aria-hidden="true"></i></a>
 											</td>
 										</tr>
 									<?php endforeach; ?>

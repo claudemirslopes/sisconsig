@@ -106,17 +106,27 @@
 													</td>
 													<td class="text-right">
 														<style>
-															.btn-danger {
+															.btn-soca {
 																background: #D61B42;
 																border: solid 1px #D61B42;
+																color: #fff;
+															}
+															.btn-soca:hover {
+																background: #B40404;
+																border: solid 1px #B40404;
+																color: #fff;
 															}
 															.btn-primary {
 																background: #0B3861;
 																border: solid 1px #0B3861;
 															}
+															.btn-primary:hover {
+																background: #0B243B;
+																border: solid 1px #0B243B;
+															}
 														</style>
 														<a href="<?php echo base_url('produtos/edit/'.$produto->produto_id); ?>" class="btn btn-sm btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
-														<a href="javascript(void)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#produto-<?php echo $produto->produto_id; ?>" title="Excluír"><i class="fa fa-trash" aria-hidden="true"></i></a>
+														<a href="javascript(void)" class="btn btn-sm btn-soca" data-toggle="modal" data-target="#produto-<?php echo $produto->produto_id; ?>" title="Excluír"><i class="fa fa-trash" aria-hidden="true"></i></a>
 													</td>
 												</tr>
 												<?php endforeach; ?>
