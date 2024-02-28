@@ -105,10 +105,10 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                 </li>
                             </ul>
                         </li>
-						<li class="has-sub">
+						<!-- <li class="has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>servicos">
                                 <i class="fas fa-server"></i>Serviços</a>
-                        </li>
+                        </li> -->
 						<li class="has-sub">
                             <a class="js-arrow" href="#">
                               <i class="fa fa-credit-card" aria-hidden="true"></i>Financeiro <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
@@ -124,6 +124,10 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                             </ul>
                         </li>
 						<li class="has-sub">
+                            <a class="js-arrow" href="<?php echo base_url('/'); ?>servicos">
+                                <i class="fas fa-shopping-cart"></i>Vendas <small>(PDV)</small></a>
+                        </li>
+						<!-- <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-shopping-cart"></i>Pedidos <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -134,6 +138,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                     <a href="<?php echo base_url('/'); ?>vendas"><span style="font-size: .8em;">Vendas produtos</span></a>
                                 </li>
                             </ul>
+						</li> -->
 						<li class="has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>relatorios">
                                 <i class="fas fa-th-list"></i>Relatorios</a>
@@ -216,10 +221,11 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                 </li><hr>
                             </ul>
                         </li>
-						<li class="<?php if (current_url() == base_url('/servicos') || current_url() == base_url('/servicos/add') || preg_match($edit_service1, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
+						<!-- <li class="<?php if (current_url() == base_url('/servicos') || current_url() == base_url('/servicos/add') || preg_match($edit_service1, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>servicos">
                                 <i class="fas fa-server"></i>Serviços</a>
-                        </li><hr />
+                        </li> -->
+						<hr />
 						<li class="<?php if (current_url() == base_url('/modulo') || current_url() == base_url('/modulo/add') || current_url() == base_url('/contas_pagar') || current_url() == base_url('/contas_pagar/add') || current_url() == base_url('/contas_receber') || current_url() == base_url('/contas_receber/add') || preg_match($edit_financial1, $url) || preg_match($edit_financial2, $url) || preg_match($edit_financial3, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                               <i class="fa fa-credit-card" aria-hidden="true"></i>Financeiro <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
@@ -236,6 +242,10 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                             </ul>
                         </li>
 						<li class="<?php if (current_url() == base_url('/os') || current_url() == base_url('/os/add') || current_url() == base_url('/vendas') || current_url() == base_url('/vendas/add') || preg_match($edit_order1, $url) || preg_match($edit_order2, $url) || preg_match($edit_order3, $url) || preg_match($edit_order4, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
+                            <a class="js-arrow" href="<?php echo base_url('/'); ?>vendas">
+                                <i class="fas fa-shopping-cart"></i>Vendas <small>(PDV)</small></a>
+                        </li><hr>
+						<!-- <li class="<?php if (current_url() == base_url('/os') || current_url() == base_url('/os/add') || current_url() == base_url('/vendas') || current_url() == base_url('/vendas/add') || preg_match($edit_order1, $url) || preg_match($edit_order2, $url) || preg_match($edit_order3, $url) || preg_match($edit_order4, $url)) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-shopping-cart"></i>Pedidos <span class="float-right" style="font-size:.6em;"><i class="fa fa-chevron-down pt-2" aria-hidden="true"></i></span></a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -246,7 +256,7 @@ $edit_tools3 = '#' . preg_quote(base_url('/kb/view/')) . '\d+#';
                                     <a href="<?php echo base_url('/'); ?>vendas"><span style="font-size: .8em;">Vendas produtos</span></a>
                                 </li>
                             </ul>
-                        </li><hr>
+                        </li><hr> -->
 						<li class="<?php if (current_url() == base_url('/relatorios') || current_url() == base_url('/relatorios/vendas') || current_url() == base_url('/relatorios/os') || current_url() == base_url('/relatorios/receber') || current_url() == base_url('/relatorios/pagar')) { echo 'active'; } else { echo ''; } ?> has-sub">
                             <a class="js-arrow" href="<?php echo base_url('/'); ?>relatorios">
                                 <i class="fas fa-th-list"></i>Relatórios</a>

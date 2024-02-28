@@ -31,6 +31,7 @@ class Home extends CI_Controller{
             'top_produtos' => $this->home_model->get_produtos_mais_vendidos(),
             'top_servicos' => $this->home_model->get_servicos_mais_vendidos(),
             'avisos_home' => $this->home_model->get_avisos_home(),
+			'count_clientes' => $this->home_model->get_count_clientes(),
             
         );
         

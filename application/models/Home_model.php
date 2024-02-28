@@ -91,7 +91,7 @@ class Home_model extends CI_Model {
         
         $this->db->join('produtos', 'produto_id = venda_produto_id_produto', 'LEFT');
         
-        $this->db->limit(3);
+        $this->db->limit(10);
         $this->db->group_by('venda_produto_id_produto');
         $this->db->order_by('quantidade_vendidos', 'DESC');
         
@@ -186,6 +186,13 @@ class Home_model extends CI_Model {
         return $this->db->get('avisados')->result();
         
     }
+
+	public function get_count_clientes() {
+		$this->db->select('COUNT(cliente_id) as total_clientes');
+		$this->db->where('cliente_ativo', 1);
+		$query = $this->db->get('clientes');
+		return $query->row(); // Alterado de result() para row()
+	}
     
     
 }
