@@ -3,7 +3,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-warning">
     <div class="card-header text-center bg-dark">
-        <a href="https://tanamesa.com/" title="Acessar o site" target="_blank" class="h1"><img src="<?php echo base_url('public/dist/img/Logo_SisConsig03.png'); ?>" alt="TNM Logo" class="brand-image swing"  style="border-radius: 1px !important;width: 80%;"></a>
+        <a href="https://tanamesa.com/" title="Acessar o site" target="_blank" class="h1"><img src="<?php echo base_url('public/dist/img/Logo_SisConsig03.png'); ?>" alt="TNM Logo" class="brand-image"  style="border-radius: 1px !important;width: 80%;"></a>
     </div>
     <div class="card-body form-signin bg-dark">
       <p class="login-box-msg">Bem vindo ao Painel ADM</p>
@@ -39,7 +39,7 @@
     <!--<div class="col-12">-->
         <!-- Mensagem de erro -->
       <?php if ($message = $this->session->flashdata('error')): ?>
-      <div class="alert  alert-danger alert-dismissible fade show " role="alert" style="font-size: 0.8em;">
+      <div class="alert  alert-danger alert-dismissible fade show swing" role="alert" style="font-size: 0.8em;">
               <span class="badge badge-pill"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
                <?php echo $message; ?>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -51,7 +51,7 @@
 
       <!-- Mensagem de info -->
       <?php if ($message = $this->session->flashdata('info')): ?>
-      <div class="alert  alert-warning alert-dismissible fade show " role="alert" style="font-size: 0.8em;">
+      <div class="alert  alert-warning alert-dismissible fade show swing" role="alert" style="font-size: 0.8em;">
               <span class="badge badge-pill badge-light"><i class="fa fa-info" aria-hidden="true"></i></span>
                <?php echo $message; ?>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -9,7 +9,7 @@ class Home extends CI_Controller{
         
         // Definir se tem sessão aberta
         if (!$this->ion_auth->logged_in()){
-            $this->session->set_flashdata('info', 'Sua sessão expirou, acesse novamente');
+            $this->session->set_flashdata('info', 'Sua sessão expirou, acesse novamente por gentileza!');
             redirect('login');
         }
         
