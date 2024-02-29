@@ -5,48 +5,70 @@ defined('BASEPATH') OR exit('Ação não permitida');
 class Home_model extends CI_Model {
         
     public function get_sum_vendas() {
-        
-        $this->db->select([
-            'FORMAT(SUM(REPLACE(venda_valor_total, ",", "")), 2) as venda_valor_total',
-        ]);
-        
-        return $this->db->get('vendas')->row();
-        
-    }
+		$this->db->select([
+			'SUM(REPLACE(venda_valor_total, ",", "")) as venda_valor_total',
+		]);
+		
+		$result = $this->db->get('vendas')->row();
+		
+		if ($result) {
+			$formatted_value = number_format($result->venda_valor_total, 2, ',', '.');
+			$result->venda_valor_total = $formatted_value;
+		}
+		
+		return $result;
+	}
     
     public function get_sum_ordem_servicos() {
-        
-        $this->db->select([
-            'FORMAT(SUM(REPLACE(ordem_servico_valor_total, ",", "")), 2) as ordem_servico_valor_total',
-        ]);
-        
-        return $this->db->get('ordens_servicos')->row();
-        
-    }
+		$this->db->select([
+			'SUM(REPLACE(ordem_servico_valor_total, ",", "")) as ordem_servico_valor_total',
+		]);
+		
+		$result = $this->db->get('ordens_servicos')->row();
+		
+		if ($result) {
+			$formatted_value = number_format($result->ordem_servico_valor_total, 2, ',', '.');
+			$result->ordem_servico_valor_total = $formatted_value;
+		}
+		
+		return $result;
+	}
+	
     
     public function get_sum_receber() {
-        
-        $this->db->select([
-            'FORMAT(SUM(REPLACE(conta_receber_valor, ",", "")), 2) as conta_receber_valor',
-        ]);
-        
-        $this->db->where('conta_receber_status', 0);
-        
-        return $this->db->get('contas_receber')->row();
-        
-    }
-    
-    public function get_sum_pagar() {
-        
-        $this->db->select([
-            'FORMAT(SUM(REPLACE(conta_pagar_valor, ",", "")), 2) as conta_pagar_valor',
-        ]);
-        
-        $this->db->where('conta_pagar_status', 0);
-        
-        return $this->db->get('contas_pagar')->row();
-        
-    }
+		$this->db->select([
+			'SUM(REPLACE(conta_receber_valor, ",", "")) as conta_receber_valor',
+		]);
+		
+		$this->db->where('conta_receber_status', 0);
+		
+		$result = $this->db->get('contas_receber')->row();
+		
+		if ($result) {
+			$formatted_value = number_format($result->conta_receber_valor, 2, ',', '.');
+			$result->conta_receber_valor = $formatted_value;
+		}
+		
+		return $result;
+	}
+	
+	public function get_sum_pagar() {
+		$this->db->select([
+			'SUM(REPLACE(conta_pagar_valor, ",", "")) as conta_pagar_valor',
+		]);
+		
+		$this->db->where('conta_pagar_status', 0);
+		
+		$result = $this->db->get('contas_pagar')->row();
+		
+		if ($result) {
+			$formatted_value = number_format($result->conta_pagar_valor, 2, ',', '.');
+			$result->conta_pagar_valor = $formatted_value;
+		}
+		
+		return $result;
+	}
+	
     
     public function get_contas_pagar_vencem_hoje() {
         

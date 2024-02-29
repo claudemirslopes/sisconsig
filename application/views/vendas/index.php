@@ -116,7 +116,7 @@
 											}
 											?></td>
 											<td><?php echo $venda->vendedor_nome_completo; ?></td>
-											<td><?php echo ('R$ ' . $venda->venda_valor_total); ?></td>
+											<td><?php echo 'R$ ' . number_format((float) $venda->venda_valor_total, 2, ',', '.'); ?></td>
 											<td class="text-center pr-4">
 												<?php
 													if($venda->forma_pagamento == 'Dinheiro') {

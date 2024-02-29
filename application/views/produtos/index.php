@@ -86,7 +86,7 @@
 													<td class="text-center" style="display: none;"><?php echo $produto->produto_id; ?></td>
 													<td><?php echo $produto->produto_descricao; ?></td>
 													<td><?php echo $produto->categoria; ?></td>
-													<td><?php echo ('R$ '.$produto->produto_preco_venda); ?></td>
+													<td><?php echo 'R$ ' . number_format((float) str_replace(',', '.', str_replace('.', '', $produto->produto_preco_venda)), 2, ',', ''); ?></td>
 													<td class="text-center pr-4"><?php echo '<span class="badge badge-dark btn-sm">'.$produto->produto_estoque_minimo.'</span>'; ?></td>
 													<td class="text-center pr-4">
 														<?php 
