@@ -18,6 +18,50 @@ class Home_model extends CI_Model {
 		
 		return $result;
 	}
+
+	public function get_sum_vendas_credit() {
+        
+        $this->db->select([
+            'SUM(venda_valor_total) as venda_valor_credit',
+        ]);
+		$this->db->where('venda_forma_pagamento_id', 2); // Condição adicionada
+        
+        return $this->db->get('vendas')->row();
+        
+    }
+
+	public function get_sum_vendas_debit() {
+        
+        $this->db->select([
+            'SUM(venda_valor_total) as venda_valor_debit',
+        ]);
+		$this->db->where('venda_forma_pagamento_id', 3); // Condição adicionada
+        
+        return $this->db->get('vendas')->row();
+        
+    }
+
+	public function get_sum_vendas_cash() {
+        
+        $this->db->select([
+            'SUM(venda_valor_total) as venda_valor_cash',
+        ]);
+		$this->db->where('venda_forma_pagamento_id', 1); // Condição adicionada
+        
+        return $this->db->get('vendas')->row();
+        
+    }
+
+	public function get_sum_vendas_pix() {
+        
+        $this->db->select([
+            'SUM(venda_valor_total) as venda_valor_pix',
+        ]);
+		$this->db->where('venda_forma_pagamento_id', 4); // Condição adicionada
+        
+        return $this->db->get('vendas')->row();
+        
+    }	
     
     public function get_sum_ordem_servicos() {
 		$this->db->select([
@@ -114,6 +158,25 @@ class Home_model extends CI_Model {
         $this->db->join('produtos', 'produto_id = venda_produto_id_produto', 'LEFT');
         
         $this->db->limit(10);
+        $this->db->group_by('venda_produto_id_produto');
+        $this->db->order_by('quantidade_vendidos', 'DESC');
+        
+        return $this->db->get('venda_produtos')->result();
+        
+    }
+
+	public function get_produtos_mais_fives() {
+        
+        $this->db->select([
+            'venda_produtos.*',
+            'SUM(venda_produto_quantidade) as quantidade_vendidos',
+            'produtos.produto_id',
+            'produtos.produto_descricao',
+        ]);
+        
+        $this->db->join('produtos', 'produto_id = venda_produto_id_produto', 'LEFT');
+        
+        $this->db->limit(5);
         $this->db->group_by('venda_produto_id_produto');
         $this->db->order_by('quantidade_vendidos', 'DESC');
         

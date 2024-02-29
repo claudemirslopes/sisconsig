@@ -7,6 +7,13 @@
 <!-- BARRA SUPERIOR - NAVBAR -->
 
 <style>
+	.chart {
+		width: 100%;
+		min-height: 200px;
+		text-align: center;
+		margin: auto;
+	}
+
 	.card-body {
 		padding-bottom: 1px !important;
 	}
@@ -77,7 +84,7 @@
 				<!-- Mensagem de erro -->
 				<!-- Primeiro relatório - soma de vendas totais -->
 				<div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
-					<div class="overview-item overview-item--c1">
+					<div class="overview-item overview-item--c5">
 						<div class="overview__inner">
 							<div class="overview-box clearfix pb-2">
 								<div class="icon" style="margin-top: -10px;">
@@ -96,7 +103,7 @@
 				</div>
 				<!-- Segundo relatório - soma de contas a receber -->
 				<div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
-					<div class="overview-item overview-item--c2">
+					<div class="overview-item overview-item--c6">
 						<div class="overview__inner">
 							<div class="overview-box clearfix pb-2">
 								<div class="icon" style="margin-top: -10px;">
@@ -115,11 +122,11 @@
 				</div>
 				<!-- Terceiro relatório - soma de contas a pagar -->
 				<div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
-					<div class="overview-item overview-item--c3">
+					<div class="overview-item overview-item--c7">
 						<div class="overview__inner">
 							<div class="overview-box clearfix pb-2">
 								<div class="icon" style="margin-top: -10px;">
-								<i class="fa fa-cc-mastercard" aria-hidden="true"></i>
+									<i class="fa fa-cc-mastercard" aria-hidden="true"></i>
 								</div>
 								<div class="text" style="margin-top: -20px;">
 									<h2 style="font-size:1.4em;">
@@ -133,7 +140,7 @@
 					</div>
 				</div>
 				<!-- Quarto relatório - total de parceiros consignados -->
-				<div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
+				<!-- <div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
 					<div class="overview-item overview-item--c5">
 						<div class="overview__inner">
 							<div class="overview-box clearfix pb-2">
@@ -150,14 +157,14 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- Quinto relatório - total de produtos no estoque -->
-				<div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
+				<!-- <div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
 					<div class="overview-item overview-item--c6">
 						<div class="overview__inner">
 							<div class="overview-box clearfix pb-2">
 								<div class="icon" style="margin-top: -10px;">
-								<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+									<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 								</div>
 								<div class="text" style="margin-top: -20px;">
 									<h2 style="font-size:1.4em;">
@@ -169,9 +176,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- Sexto relatório - Total de clientes cadastrados -->
-				<div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
+				<!-- <div class="col-sm-6 col-lg-4" style="margin-top: -15px !important;">
 					<div class="overview-item overview-item--c7">
 						<div class="overview__inner">
 							<div class="overview-box clearfix pb-2">
@@ -188,10 +195,56 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Início do lado A | Dashboard para os usuários da plataforma -->
 				<div class="content mt-1 col-lg-6" style="margin-top: -15px !important;">
+					<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+					<script type="text/javascript">
+						google.charts.load("current", {
+							packages: ['corechart']
+						});
+						google.charts.setOnLoadCallback(drawChart);
+
+						function drawChart() {
+							var data = google.visualization.arrayToDataTable([
+								["Element", "R$", {
+									role: "style"
+								}],
+								["CRÉDITO", <?php echo $soma_vendas_credit->venda_valor_credit; ?>, "#FA5858"],
+								["DÉBITO", <?php echo $soma_vendas_debit->venda_valor_debit; ?>, "#2E64FE"],
+								["DINHEIRO", <?php echo $soma_vendas_cash->venda_valor_cash; ?>, "#DBA901"],
+								["PIX", <?php echo $soma_vendas_pix->venda_valor_pix; ?>, "#088A68"]
+
+							]);
+
+							var view = new google.visualization.DataView(data);
+							view.setColumns([0, 1,
+								{
+									calc: "stringify",
+									sourceColumn: 1,
+									type: "string",
+									role: "annotation"
+								},
+								2
+							]);
+
+							var options = {
+								title: "Formas de pagamentos mais utilizadas (R$)",
+								bar: {
+									groupWidth: "90%"
+								},
+								legend: {
+									position: "none"
+								},
+							};
+							var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+							chart.draw(view, options);
+						}
+					</script>
+					<div class="card" style="margin-bottom: 25px !important;">
+						<div id="columnchart_values" class="chart"></div>
+					</div>
 					<div class="card">
 						<!-- Contador para verificar produtos mais vendidos -->
 						<div class="col-sm-12">
@@ -273,14 +326,41 @@
 
 				<!-- Início do lado B | Avisos gerais para os colaboradores -->
 				<div class="content mt-1 col-lg-6 pl-0" style="margin-top: -15px !important;">
+					<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+					<script type="text/javascript">
+						google.charts.load("current", {
+							packages: ["corechart"]
+						});
+						google.charts.setOnLoadCallback(drawChart);
+
+						function drawChart() {
+							var data = google.visualization.arrayToDataTable([
+								['Produtos', 'Quantidade'],
+
+								<?php foreach ($five_produtos as $produto) : ?>['<?php echo $produto->produto_descricao; ?>', <?php echo $produto->quantidade_vendidos; ?>],
+								<?php endforeach; ?>
+							]);
+
+							var options = {
+								title: 'Top 5 Produtos mais vendidos (%)',
+								pieHole: 0.4,
+							};
+
+							var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+							chart.draw(data, options);
+						}
+					</script>
+					<div class="card" style="margin-bottom: 25px !important;">
+						<div id="donutchart" class="chart"></div>
+					</div>
 
 					<?php foreach ($avisos_home as $avisado) : ?>
 						<?php if ($avisado->avisado_tipo == 0 && $avisado->avisado_ativa == 1  || $avisado->avisado_tipo == 2 && $avisado->avisado_ativa == 1) : ?>
 							<!-- Condição para mensagem no formato de vídeo -->
 							<?php if ($avisado->avisado_formato == 1) { ?>
 								<div class="col-md-12 pl-0 pr-0">
-									<div class="card" style="border: 1px solid #B5B5B5;">
-										<div class="card-header bg-light" style="border-bottom: 1px solid #B5B5B5;">
+									<div class="card" style="border: 1px solid transparent;">
+										<div class="card-header bg-white" style="border-bottom: 1px solid #B5B5B5;">
 											<h4 class="text-light" style="font-size: 1.1em;"><?php echo $avisado->avisado_assunto; ?></h4>
 										</div>
 										<div class="card-body" style="border: 1px solid #B5B5B5;">
@@ -293,9 +373,9 @@
 								<!-- Condição para mensagem no formato de texto -->
 							<?php } elseif ($avisado->avisado_formato == 0) { ?>
 								<div class="col-md-12 pl-0 pr-0">
-									<div class="card" style="border: 1px solid #B5B5B5;">
+									<div class="card" style="border: 1px solid transparent;">
 										<div class="card-header bg-light" style="border-bottom: 1px solid #B5B5B5;">
-											<h4 class="text-light" style="font-size: .9em;"><?php echo $avisado->avisado_assunto; ?></h4>
+											<h4 class="text-white" style="font-size: .9em;"><?php echo $avisado->avisado_assunto; ?></h4>
 										</div>
 										<div class="card-body" style="border: 1px solid #B5B5B5;">
 											<span id=""><?php echo word_limiter($avisado->avisado_mensagem, 100) ?><br /> <a class="btn btn-info btn-sm float-right" href="javascript(void)" data-toggle="modal" data-target="#avisoModal-<?php echo $avisado->avisado_id; ?>">LER AVISO COMPLETO</a></span>
@@ -305,8 +385,8 @@
 							<?php } else { ?>
 								<!-- Condição para mensagem no formato de imagem -->
 								<div class="col-md-12 pl-0 pr-0">
-									<div class="card" style="border: 1px solid #B5B5B5;">
-										<div class="card-header bg-light" style="border-bottom: 1px solid #B5B5B5;">
+									<div class="card" style="border: 1px solid transparent;">
+										<div class="card-header bg-white" style="border-bottom: 1px solid #B5B5B5;">
 											<h4 class="text-dark" style="font-size: 1.1em;"><?php echo $avisado->avisado_assunto; ?></h4>
 										</div>
 										<div class="card-body" style="border-top:none;margin-top: -25px !important;">
