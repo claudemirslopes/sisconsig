@@ -77,6 +77,56 @@
 
 	<!-- Adicione a definição da variável BASE_URL após incluir os estilos -->
 	<script>var BASE_URL = "<?php echo base_url(); ?>";</script>
+	<style>
+		.swing {
+			animation: swing ease-in-out 1s infinite alternate;
+			transform-origin: center -20px;
+			/* float: left; */
+			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+		}
+
+		.swing img {
+			border: 5px solid #f8f8f8;
+			display: block;
+		}
+
+		.swing:after {
+			content: '';
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			border: 1px solid #ccc;
+			top: -10px;
+			left: 50%;
+			z-index: 0;
+			border-bottom: none;
+			border-right: none;
+			transform: rotate(45deg);
+		}
+
+		/* nail */
+		.swing:before {
+			content: '';
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			top: -14px;
+			left: 52.5%;
+			z-index: 5;
+			border-radius: 50% 50%;
+			background: #FF9D02;
+		}
+
+		@keyframes swing {
+			0% {
+				transform: rotate(3deg);
+			}
+
+			100% {
+				transform: rotate(-3deg);
+			}
+		}
+	</style>
 
 </head>
 

@@ -1,6 +1,6 @@
 	<!-- INÍCIO MODAL LOGOUT -->
-	<div class="modal fade swing" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
-		<div class="modal-dialog modal-sm" role="document">
+	<div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog modal-sm swing" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="staticModalLabel">Sair do sistema</h5>
@@ -185,7 +185,7 @@
 	<!-- Fim Modal de exclusão de usuarios -->
 
 	<!-- Modal de adição de foto usuarios -->
-	<div class="modal fade swing" id="foto" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+	<div class="modal fade" id="foto" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
 				<div class="modal-header">

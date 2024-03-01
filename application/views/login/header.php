@@ -49,7 +49,7 @@
 		.swing {
 			animation: swing ease-in-out 1s infinite alternate;
 			transform-origin: center -20px;
-			float: left;
+			/* float: left; */
 			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 		}
 
@@ -79,7 +79,7 @@
 			width: 5px;
 			height: 5px;
 			top: -14px;
-			left: 53%;
+			left: 52.5%;
 			z-index: 5;
 			border-radius: 50% 50%;
 			background: #fff;
